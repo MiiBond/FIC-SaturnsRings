@@ -1,241 +1,380 @@
+
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <!--<script src="javascripts/mobiledetect.js" type="text/javascript" charset="utf-8">{"redirect":"./index_m.html"}</script>-->
-  <!--<script src="javascripts/mobiledetect.js" type="text/javascript" charset="utf-8"></script>-->
-  <meta property="og:image" content="http://api.verold.com/demos/falling-in-circles/images/falling-in-circles.jpg"/>
-  <meta property="og:title" content="Falling in Circles: A 3D experiment powered by Verold and Three.js"/>
-  <meta property="og:url" content="http://api.verold.com/demos/falling-in-circles"/>
-  <meta property="og:site_name" content="Falling in Circles: A 3D experiment powered by Verold and Three.js"/>
-  <meta property="og:description" content="A visualization of the dynamical evolution of Saturn's Rings. Runs in your browser with no plugin required. Powered by Verold Studio and Three.js."/>
-  <meta property="og:type" content="website"/>
+  <title>Saturn&#x27;s Rings</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <style>
+  
+    /* Application */
+body, html, canvas, #verold3d {
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
 
-  <title>Falling in Circles: A 3D experiment powered by Verold and Three.js</title>
-  <link rel="stylesheet" href="stylesheets/reset.css">
-  <link rel="stylesheet" href="stylesheets/dat.gui.css">
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <link rel="stylesheet" href="stylesheets/scene-font.css">
-  
-  <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>-->
-  <script type="text/javascript" src="javascripts/browsercaps.js"></script>
+body {
+  background: #000000;
+  /*background-image:url('http://assets.verold.com/production/images/verold-studio-scene-logo.svg');*/
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:center;
+}
 
-  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-  <script src="javascripts/jquery.hashchange.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="javascripts/jquery.easytabs.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="javascripts/jquery.nicescroll.min.js" type="text/javascript" charset="utf-8"></script>
+#verold3d {
+  display: none;
+}
+
+.loading {
+  position: absolute;
+  font-family: tahoma, sans-serif;
+  font-size: 20pt;
+  color: #fff;
+  left: 40%;
+  top: 40%;
+  width: 20%;
+}
+
+.time {
+  position: absolute;
+  background-color: rgba(51,51,51,0.8);
+  border-radius: 5px;
+  border: 3px solid #fff;
+  color: #fff;
   
-  <script type="text/javascript" src="http://assets.verold.com/verold_api/verold_api_v1.unstable.js"></script>
+  font-family: tahoma, sans-serif;
+  font-size: 10pt;
+  width: 15%;
+  overflow: hidden;
+  padding: 0px 20px;
+  right: 40%;
+  top: 5%;
+  display: none;
+}
+
+.posterMainPage {
+  position: absolute;
+  background-color: rgba(51,51,51,0.8);
+  border-radius: 5px;
+  border: 3px solid #fff;
+  color: #fff;
   
-  <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,300' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  font-family: tahoma, sans-serif;
+  font-size: 10pt;
+  width: 15%;
+  overflow: hidden;
+  padding: 0px 20px;
+}
+
+#posterMainPage {
+  right: 5%;
+  top: 5%;
+  width: 20%;
+  bottom: 5%;
   
+  overflow-y: auto;
+}
+
+.posterMainPage img {
+  width: 100%;
+  
+}
+
+#ResonancesTriggerPanel {
+  left: 5%;
+  top: 5%;
+  height: 30%;
+  color: #222;
+  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/a7bb8feed293351776ef5b9633c5e34b/Saturn_A_ring_spiral_density_waves-low.jpg) top left no-repeat;
+}
+
+#MimasTriggerPanel {
+  left: 50%;
+  top: 5%;
+  height: 30%;
+  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg) top left no-repeat;
+}
+
+#ShepherdTriggerPanel {
+  left: 5%;
+  bottom: 5%;
+  height: 30%;
+  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg) top left no-repeat;
+}
+
+#EnckeTriggerPanel {
+  left: 50%;
+  bottom: 5%;
+  height: 30%;
+  color: #333;
+  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg) top left no-repeat;
+}
+
+
+
+.information {
+  position: absolute;
+  background-color: #333;
+  border-radius: 5px;
+  border: 3px solid #fff;
+  color: #fff;
+  opacity: 0.8;
+  font-family: tahoma, sans-serif;
+  font-size: 10pt;
+  width: 25%;
+  height: 30%;
+  overflow-y: auto;
+  display: none;
+  padding: 20px;
+}
+
+.information img {
+  width: 100%;
+  height: 300px;
+}
+
+#BackButton {
+  left: 5%;
+  top: 5%;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+#BackButton img {
+  height: 100%;
+  width: 100%;
+}
+
+
+#MimasInformation {
+  right: 5%;
+  top: 5%;
+  height: 80%;
+}
+
+
+
+#ShepherdInformation {
+  right: 5%;
+  top: 5%;
+  width: 20%;
+  height: 80%;
+}
+
+
+
+/*
+.trigger {
+  position: absolute;
+}
+
+#trigger-1 {
+  left: 10px;
+  top: 30px;
+}
+
+#trigger-2 {
+  left: 10px;
+  top: 50px;
+}
+
+#trigger-3 {
+  left: 10px;
+  top: 80px;
+}
+*/
+
+
+
+/* NProgress */
+#nprogress { pointer-events: none; }
+#nprogress .bar { background: #009BDF; position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 3px; }
+#nprogress .peg { display: block; position: absolute; right: 0px; width: 100px; height: 100%; box-shadow: 0 0 10px #009BDF, 0 0 5px #009BDF; opacity: 1.0; -webkit-transform: rotate(3deg) translate(0px, -4px); -ms-transform: rotate(3deg) translate(0px, -4px); transform: rotate(3deg) translate(0px, -4px); }
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner { display: block; position: fixed; z-index: 100; top: 15px; right: 15px; }
+#nprogress .spinner-icon { width: 18px; height: 18px; box-sizing: border-box; border: solid 2px transparent; border-top-color: #009BDF; border-left-color: #009BDF; border-radius: 50%; -webkit-animation: nprogress-spinner 400ms linear infinite; animation: nprogress-spinner 400ms linear infinite; }
+@-webkit-keyframes nprogress-spinner { 0%   { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); }
+@keyframes nprogress-spinner { 0%   { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+  
+  </style>
 </head>
 <body>
+  
+    <div id="verold3d"></div>
 
-  <script type="text/javascript" src="javascripts/ui.js"></script>
-  <!--<script type="text/javascript" src="javascripts/VeroldApp.js"></script>-->
-  <!--<script type="text/javascript" src="javascripts/GravitationApp.js"></script>
-  <script type="text/javascript" src="javascripts/GPGPUSimulation.js"></script>
-  <script type="text/javascript" src="javascripts/AsteroidSimulation.js"></script>
-  <script type="text/javascript" src="javascripts/TrojanCamera.js"></script>-->
-  <script type="text/javascript" src="javascripts/dat.gui.min.js"></script>
+<div class="loading" id="loading">
+  <h1>Loading...</h1>
+</div>
 
-  <!-- facebook share button dependency -->
-  <div id="fb-root"></div>
+<div class="time" id="time">
+  <h1>Time: ...</h1>
+</div>
 
-  <div id="headers">
-    <h1>FALLING IN CIRCLES</h1>
-    <h2>Saturn's Rings</h2>
+<a href="#" id="ResonancesTrigger">
+<div class="posterMainPage" id="ResonancesTriggerPanel">
+  <h1>1. Resonances</h1>
+  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/a7bb8feed293351776ef5b9633c5e34b/Saturn_A_ring_spiral_density_waves-low.jpg">-->
+</div>
+</a>
+
+<div class="information" id="ResonancesInformation">
+  <h1>Resonances</h1>
+  <p>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</div>
+
+<a href="#" id="MimasTrigger">
+<div class="posterMainPage" id="MimasTriggerPanel">
+  <h1>2. Cassini Division</h1>
+  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg">-->
+</div>
+</a>
+
+<div class="information" id="MimasInformation">
+  <h1>Mimas Information</h1>
+  <p>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</div>
+
+<a href="#" id="ShepherdTrigger">
+<div class="posterMainPage" id="ShepherdTriggerPanel">
+  <h1>3. Shepherd Moons</h1>
+  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg">-->
+</div>
+</a>
+
+<div class="information" id="ShepherdInformation">
+  <h1>Shepherd Information</h1>
+  <p>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+  <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/dfe7feb24f3bae4917e85a1977bd0eee/Shepherd25years-low.jpg">
+</div>
+
+<a href="#" id="EnckeTrigger">
+<div class="posterMainPage" id="EnckeTriggerPanel">
+  <h1>4. Encke Gap</h1>
+  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg">-->
+</div>
+</a>
+
+<div class="information" id="EnckeInformation">
+  <h1>Encke Gap</h1>
+  <p>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</div>
+
+<!--<a href="#" id="BackButtonTrigger">-->
+  <div class="information" id="BackButton">
+    <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/91df66b9fa132c7a278c16a474ecaa15/Left-Arrow-low.png">
   </div>
+<!--</a>-->
 
-	<div id="loading-progress-container">
-	 
-    <p>Loading...</p>
-    <div class="loading-progress">
-      <div>&nbsp;</div>
-    </div>
-
-  </div>
-
-  <div style="display:none;" id="webGLunsupported">
-    <p>This demo requires support for WebGL.<br />
-    Click <a href="http://verold.com/blog/2013/1/2/enabling-webgl-in-your-browser" target="_blank">here</a> to learn more.</p>
-  </div>
-
-  <div style="display:none;" id="fpTexturesUnsupported">
-    <p>This demo requires support for floating-point textures. Updating your video card drivers may resolve the issue.<br />
-  </div>
-
-  <div style="display:none;" id="vTexturesUnsupported">
-    <p>This demo requires support for vertex textures. Updating your video card drivers may resolve the issue.<br />
-  </div>
-
-  <div id="info-panel" class="overlay">
-    <a href="javascript:void(0);" class="close">&times;</a>
-    <ul class="etabs clearfix">
-      <li class="tab"><a href="#info">Info</a></li>
-      <li class="tab"><a href="#about">About</a></li>
-      <li class="tab"><a href="#credits">Credits</a></li>
-    </ul>
-
-    <div id="tab-content-container">
-
-      <div id="info" class="tab-content">
-
-        <h2>Saturn's Rings</h2>
-        <p>The force of gravity can be described with a very simple equation involving only mass and distance. Despite this, the resulting behaviour of gravitating bodies can be extremely complex, even chaotic, when three or more objects are involved. There are, however, restricted versions of the so-called "three-body" problem that are well understood and can be described mathematically.</p><br>
-        <p>The simulation on the left demonstrates two such situations that were first described by the French mathematician Joseph Lagrange in 1772. For two bodies which have circular orbits, relative to each other, there are two locations where additional objects of negligible mass can remain in a stable lock-step with the larger bodies. This can occur because the centripetal acceleration of the small objects (induced by the gravitational pull of the larger bodies) exactly balances the centrifugal force of the their orbital trajectories. These locations, known as the L4 and L5 points after Lagrange, are stable. A slight perturbation in any direction will be met with a net force causing the object to move back toward the point, leading to what are often referred to as "tadpole" orbits. After this simulation runs for a minute or two, you will start to see asteroids collecting at these locations.</p><br>
-        <p>In 1906, more than one hundred years after Lagrange proposed the existence of these points, the first "Trojan" asteroids were discovered at the L4 and L5 points of the Sun-Jupiter system. Named after mythological heroes on the two opposing sides of the Trojan War, there are dozens that are known and probably thousands that exist.</p><br>
-        <p>For more information, read my <a href="http://verold.com/blog/2013/3/4/falling-in-circles-lagrange-points" target="_blank">blog post</a> about Lagrange points.</p>
-
-      </div>
-
-      <div id="about" class="tab-content">
-
-        <h2>About this Simulation</h2>
-        <p>This demo simulates the effect that the gravitational interaction between the Sun and Jupiter has on about 260,000 asteroids. After it runs for a few minutes, you will begin to see some patterns develop.  First, Jupiter will clear out most of the asteroids from its orbit but will leave some inside its orbit and some outside. Second, you will see two pockets of <a href="http://en.wikipedia.org/wiki/Trojan_Asteroids" target="_blank">"Trojan" asteroids</a> develop about 60 degrees ahead and behind the planet. These are locations of gravitationally stability where the forces balance out and allow objects to remain in lock-step with Jupiter. Select info icon in the top-left of the screen to learn more.</p><br>
-        <p>This simulation of the asteroids is done entirely on your computer's GPU. Normally used for rendering graphics, the GPU is also an extremely powerful vector processor, allowing many calculations to be done in parallel.</p><br>
-        <p><strong>Left mouse button</strong> - Click and hold to spawn asteroids in a circular orbit around the Sun.</p><br>
-        <p><strong>Right mouse button</strong> - Click and hold to spawn asteroids with velocity relative to the mouse. Drag the mouse while spawning to affect their starting velocity.</p><br>
-        <p><strong>Space bar</strong> - Toggle between a Sun and Jupiter perspective. In Jupiter's perspective, the locations of gravitational balance are highlighted.</p><br>
-
-      </div>
-
-      <div id="credits" class="tab-content">
-
-        <h2>Credits</h2>
-        <p><strong>Programming and design:</strong> Michael Bond</p><br>
-        <p><strong>UI Programming and design:</strong> Aaron Cepukas and Carlos Sánchez García</p><br>
-        <p><strong>Assets:</strong></p><br>
-        <p class="pMargin">Jupiter texture map by <a href="http://laps.noaa.gov/albers/sos/sos.html" target="_blank">Steve Albers</a> and the <a href="http://photojournal.jpl.nasa.gov/catalog/PIA07782" target="_blank">JPL</a>.</p><br>
-        <!-- <p class="pMargin">Jupiter title image courtesy of the JPL and the <a href="http://photojournal.jpl.nasa.gov/targetFamily/jupiter?subselect=Spacecraft%3ACassini+Orbiter%3A" target="_blank">Cassini-Huygens</a> mission.</p><br> -->
-        <p><strong>A big thanks to:</strong></p><br>
-        <p class="pMargin">The <a href="http://www.swinburne.edu.au/">Swinburne University of Technology</a> where I'm currently working towards a Masters degree in Astronomy.</p><br>
-        <p class="pMargin">Fraser Cain and Dr. Pamela Gay from <a href="http://www.astronomycast.com/">AstronomyCast</a>, who's weekly show inspired me to make something to help spread my love of astronomy and all the awesomely cool stuff that's out there.</p><br>
-        <p class="pMargin">Mr. Doob, Altered Qualia and the countless others working on <a href="http://mrdoob.github.com/three.js/">Three.JS</a>, the superb open-source library for WebGL development.</p><br>
-        <p class="pMargin"><a href="studio.verold.com">Verold Inc.</a>, for given me to the chance to make this.</p><br>
-
-      </div>
-    
-    </div>
-
-  </div>
-
-  <div id="controls-panel" class="overlay">
-    <a href="javascript:void(0);" class="close">&times;</a>
-
-    <h2>Settings</h2>
-    
-    <p>Here you can adjust the simulation parameters.</p>
-
-    <div id="datgui-container"></div>
-
-    <h3>Keyboard Controls</h3>
-
-    <p><span class="key">Space</span>&nbsp;&nbsp;&nbsp;Toggle between perspectives.</p><br>
-    <p><span class="key">R</span>&nbsp;&nbsp;&nbsp;Reset asteroid orbits.</p>
-
-    <h3>Mouse Controls</h3>
-
-    <p><i class="icon-moon icon-click-left control-icon"></i>&nbsp;&nbsp;&nbsp;Spawn asteroids in orbit.</p>
-    <p><i class="icon-moon icon-click-right control-icon"></i>&nbsp;&nbsp;&nbsp;Spawn asteroids with velocity.</p>
-  </div>
-
-  <div id="share-panel" class="menu">
-    <div class="fb-like" data-href="http://api.verold.com/demos/falling-in-circles/" data-send="false" data-layout="button_count" data-width="75" data-show-faces="false" data-colorscheme="light"></div>
-    <div class="g-plus" data-action="share" data-annotation="bubble" data-href="http://api.verold.com/demos/falling-in-circles"></div>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://api.verold.com/demos/falling-in-circles/">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-  </div>
-
-  <div id="mainMenu" class="menu">
-    <a id="infoLink" class="icon-moon icon-project" href="javascript:void(0);"></a>
-    <a id="controlsLink" class="icon-moon icon-settings" href="javascript:void(0);"></a>
-  </div>
-
-  <div id="footer">
-    <p>Powered by <a href="http://studio.verold.com" target="_blank"><img src="images/verold_logo_white.png" /></a> & <a href="http://mrdoob.github.com/three.js/" target="_blank"><img src="images/three_js_logo.png" height="30" /></a></p>
-  </div>
-
+<div class="posterMainPage" id="posterMainPage">
+  <h1>External Gavitational Influences on the Morphology of Saturn's Rings</h1>
+  <p>
+    BOND, M. D. C., 2013
+  </p>
+  <h2>Abstract</h2>
+  <p>
+  The first up-close images of Saturn's rings by passing probes in the late 70's and early 80's revealed astonishingly complex and intricate structure. And although we've learned an enormous amount about the morphology of ring systems in the past three decades, we now have more questions than ever before about their nature and evolution. Many factors affect their structure including self gravitation, internal particle collisions, radiation drag (Goldreich & Tremaine 1982) and even the magnetic field of the planet (Mitchell et al, 2007). In this report, I investigate several ways in which planetary rings are influenced by the gravity of satellites, both embedded in the ring and external, and find that this gravitational influence, alone, is enough to form structure.
+  </p>
+  <h2>Method</h2>
+  <p>
+    Three scenarios were investigated using simulations conducted with the Solar System Dynamics (SSD) simulator. This simulator is based on the SWIFT code (Levison and Duncan 1994) and was run on the Swinburne supercomputer over its web-based interface. The first scenario looked at the satellite Mimas and its ability to form and/or maintain the Cassini Division. The second scenario looked at the F Ring and the idea that it is being confined by the satellites Prometheus and Pandora. Finally, the Encke gap
+  </p>
+  <p>
+    Compared to the satellites that concern us, the mass of the individual ring particles is negligible. Therefore we can essentially  consider them massless. Additionally, since we are concerned with the external gravitational influences of satellites, we will also neglect self-gravitation of the rings as well as any internal, viscous pressures caused by particle-particle collisions within the rings.
+  </p>
+  <p>
+    Simulations of satellites and test particles (TP) around Saturn were run for anywhere between several dozen years down to a few days, depending on what was being studied. The integration time step used was never more than 2e-6 years which corresponds to less than a degree of longitudinal movement for any TP's that we are concerned with.
+  </p>
+</div>
+  
   <script>
+  function startApplication(VAPI) {
+    var $ = window.jQuery;
 
-    if (BrowserCaps.isWebGLEnabled()) {
+    
       VAPI.progress.start();
 
-      var SaturnsRingsApp = VAPI.VeroldApp.extend({
-        defaultSceneLoaded: function (scene) {
-          this.threeScene = scene.threeData;
+var SaturnsRingsApp = VAPI.VeroldApp.extend({
+  defaultSceneLoaded: function (scene) {
+    this.threeScene = scene.threeData;
 
-          var that = this;
-          scene.traverse(function(obj) {
-            if (obj.threeData instanceof THREE.Camera) {
-              that.threeCamera = obj.threeData;
-
-              obj.threeData.aspect = $(window).width() / $(window).height();
-              obj.threeData.updateProjectionMatrix();
-            }
-          });
-
-          VAPI.progress.done();
-        },
-
-        defaultSceneProgress: function(sceneObj) {
-          var loaded = Math.ceil(((sceneObj.loadingProgress.hierarchy + sceneObj.loadingProgress.dependencies) / sceneObj.getDataSize()) * 100) / 100;
-          VAPI.progress.set(loaded);
-        },
-
-        update: function(delta) {
-        },
-
-        render: function(delta) {
-          // Call this once per render to reset draw calls, vertices and
-          // faces
-          VAPI.resetRenderStats();
-
-          if (this.threeScene && this.threeCamera) {
-            var renderer = this.getRenderer();
-
-            renderer.render( this.threeScene, this.threeCamera );
-
-            // Call this after each call to renderer.render to track
-            // draw calls, vertices and faces
-            VAPI.addRenderStats(renderer);
-          }
-        }
-      });
-
-      var app = new SaturnsRingsApp({
-        el: '#verold3d',
-        projectId: '525c57c6e7c503020000034a',
-        engineOptions: {
-        }
-      });
-
-      app.run();
-
-    } else {
-      AppUI.webGLDisabled();
-    }
+    var that = this;
+    $('#loading').fadeOut( 1200 );
     
+    
+    $('#verold3d').fadeIn( 1200 );
+    this.threeCamera = scene.getObject("525c57c6e7c503020000034e").threeData;
+   
+    this.veroldEngine.on( "resize", that.resize, that );
+    this.resize();
+
+    VAPI.progress.done();
+  },
+
+  defaultSceneProgress: function(sceneObj) {
+    var loaded = Math.ceil(((sceneObj.loadingProgress.hierarchy + sceneObj.loadingProgress.dependencies) / sceneObj.getDataSize()) * 100) / 100;
+    VAPI.progress.set(loaded);
+  },
+
+  update: function(delta) {
+  },
+
+  render: function(delta) {
+    // Call this once per render to reset draw calls, vertices and
+    // faces
+    //VAPI.resetRenderStats();
+
+    if (this.threeScene && this.threeCamera) {
+      var renderer = this.getRenderer();
+
+      renderer.render( this.threeScene, this.threeCamera );
+
+      // Call this after each call to renderer.render to track
+      // draw calls, vertices and faces
+      //VAPI.addRenderStats(renderer);
+    }
+  },
+  
+  resize: function() {
+    var renderer = this.veroldEngine.renderController;
+    this.threeCamera.aspect = renderer.getWidth() / renderer.getHeight();
+    console.log("Resizing");
+    this.threeCamera.updateProjectionMatrix();
+  }
+});
+
+var app = new SaturnsRingsApp({
+  el: '#verold3d',
+  projectId: '525c57c6e7c503020000034a',
+  engineOptions: {
+  }
+});
+
+app.run();
+
+    
+  }
   </script>
-
-  <script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-32112573-1']);
-    _gaq.push(['_setDomainName', 'verold.com']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-  </script>
-
+  
+    <script src="http://assets.verold.com/runtime/verold-runtime-0.5.0.min.js?bust=1546f81668d3"></script>
+    <script>
+    window.VAPI.DEBUG = true;
+    VAPI.initWatch();
+    startApplication(window.VAPI);
+    VAPI.help();
+    </script>
+  
 </body>
 </html>
