@@ -445,15 +445,24 @@ var SaturnsRingsApp = VAPI.VeroldApp.extend({
   }
 });
 
-var app = new SaturnsRingsApp({
-  el: '#verold3d',
-  projectId: '525c57c6e7c503020000034a',
-  engineOptions: {
+if ( !( function () { try { var canvas = document.createElement( 'canvas' ); return !! window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ); } catch( e ) { return false; } } )() ) {
+  if ( window.WebGLRenderingContext ) {
+    $('#loading').text( "Sorry, WebGL is not supported by your graphics card." );
   }
-});
-
-app.run();
-
+  else {
+    $('#loading').text( "Sorry, WebGL is not supported by your browser." );
+  }
+}
+else {
+  var app = new SaturnsRingsApp({
+    el: '#verold3d',
+    projectId: '525c57c6e7c503020000034a',
+    engineOptions: {
+    }
+  });
+  
+  app.run();
+}
     
   }
   </script>
