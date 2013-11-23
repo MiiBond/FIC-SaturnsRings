@@ -131,12 +131,16 @@ body {
   border: 3px solid #fff;
   color: #fff;
   font-family: tahoma, sans-serif;
-  font-size: 10pt;
+  font-size: 12pt;
   width: 25%;
   height: 30%;
   overflow-y: auto;
   display: none;
   padding: 20px;
+}
+
+.imformation h1 {
+  font-size: 18pt;
 }
 
 .information img {
@@ -271,7 +275,7 @@ body {
   </p>
   <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/453e0f9ca30d61edd10b779659a874dc/Mimas2-1-low.jpg">
   <p>
-    According to my simulations, Mimas inflicts an average eccentricity change on particles at the 2:1 ILR of 3.0e-4 over 20 years which directly corresponds to these particles crossing orbits at least 2.3e-7 AU away from where they started. So it seems very reasonable to assume that, if viscous forces within the rings were also modelled, we would see the perturbed particles eccentricity get damped and a gap in the ring would open at the 2:1 ILR. The gap would grow ever wider until it was balanced by the viscous pressures within the B Ring. Mimas role in shaping the the edge of the B Ring quite visible but how important it is in shaping the entire Cassini Division is much less clear. The inner edge of the A Ring, almost 5000 km away, is far outside the immediate gravitation influence of the 2:1 ILR. However, once viscous forces and self-gravitation are considered, the transport of angular momentum via density waves may be able to account for this.
+    According to my simulations, Mimas inflicts an average eccentricity change on particles at the 2:1 ILR of 3.0e-4 over 20 years which directly corresponds to these particles crossing orbits at least 2.3e-7 AU away from where they started. So it seems very reasonable to assume that, if viscous forces within the rings were also modelled, we would see the perturbed particles eccentricity get damped and a gap in the ring would open at the 2:1 ILR. The gap would grow ever wider until it was balanced by the viscous pressures within the B Ring. Mimas' role in shaping the edge of the B Ring is quite visible but how important it is in shaping the entire Cassini Division is much less clear. The inner edge of the A Ring, almost 5000 km away, is far outside the immediate gravitational influence of the 2:1 ILR. However, once viscous forces and self-gravitation are considered, the transport of angular momentum via density waves may be able to account for this.
   </p>
 </div>
 
@@ -454,12 +458,9 @@ app.run();
   }
   </script>
   
-    <script src="http://assets.verold.com/runtime/verold-runtime-0.5.0.min.js?bust=1546f81668d3"></script>
+    <script src="http://assets.verold.com/runtime/verold-runtime-0.5.0.min.js"></script>
     <script>
-    window.VAPI.DEBUG = false;
-    VAPI.initWatch();
     startApplication(window.VAPI);
-    VAPI.help();
     </script>
   
 </body>
