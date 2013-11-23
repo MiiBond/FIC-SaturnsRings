@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Saturn&#x27;s Rings</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <style>
+  
+    /* Application */
+body, html, canvas, #verold3d {
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #000000;
+  /*background-image:url('http://assets.verold.com/production/images/verold-studio-scene-logo.svg');*/
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:center;
+}
+
+#verold3d {
+  display: none;
+}
+
+.loading {
+  position: absolute;
+  font-family: tahoma, sans-serif;
+  font-size: 20pt;
+  color: #fff;
+  left: 40%;
+  top: 40%;
+  width: 20%;
+}
+
+.time {
+  position: absolute;
+  background-color: rgba(51,51,51,0.8);
+  border-radius: 5px;
+  border: 3px solid #fff;
+  color: #fff;
+  
+  font-family: tahoma, sans-serif;
+  font-size: 10pt;
+  width: 15%;
+  overflow: hidden;
+  padding: 0px 20px;
+  right: 40%;
+  top: 5%;
+  display: none;
+}
+
+.posterMainPage {
+  position: absolute;
+  background-color: rgba(51,51,51,0.8);
+  border-radius: 5px;
+  border: 3px solid #fff;
+  color: #fff;
+  
+  font-family: tahoma, sans-serif;
+  font-size: 12pt;
+  width: 15%;
+  overflow: hidden;
+  padding: 0px 20px;
+}
+
+.posterMainPage h1 {
+  font-size: 18pt;
+  text-shadow: 2px 1px #111;
+}
+
+.posterMainPage h2 {
+  font-size: 16pt;
+}
+
+#posterMainPage {
+  right: 5%;
+  top: 5%;
+  width: 20%;
+  bottom: 5%;
+  
+  overflow-y: auto;
+}
+
+.posterMainPage img {
+  width: 100%;
+  
+}
+
+#ResonancesTriggerPanel {
+  left: 5%;
+  top: 5%;
+  height: 30%;
+  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/f94f91f10289f08ec96bc269abadba5f/P+PResonances2-low.jpg);
+  background-size: 100%;
+}
+
+#MimasTriggerPanel {
+  left: 50%;
+  top: 5%;
+  height: 30%;
+  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg) top left no-repeat;
+}
+
+#ShepherdTriggerPanel {
+  left: 5%;
+  bottom: 5%;
+  height: 30%;
+  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg) top left no-repeat;
+  background-size: cover;
+}
+
+#EnckeTriggerPanel {
+  left: 50%;
+  bottom: 5%;
+  height: 30%;
+  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg);
+  background-size: cover;
+}
+
+
+
+.information {
+  position: absolute;
+  background-color: rgba(51,51,51,0.8);
+  border-radius: 5px;
+  border: 3px solid #fff;
+  color: #fff;
+  font-family: tahoma, sans-serif;
+  font-size: 10pt;
+  width: 25%;
+  height: 30%;
+  overflow-y: auto;
+  display: none;
+  padding: 20px;
+}
+
+.information img {
+  width: 100%;
+  height: 300px;
+}
+
+#BackButton {
+  left: 5%;
+  top: 5%;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+#BackButton img {
+  height: 100%;
+  width: 100%;
+}
+
+#MimasInformation {
+  right: 5%;
+  top: 5%;
+  height: 80%;
+}
+
+#ShepherdInformation {
+  right: 5%;
+  top: 5%;
+  height: 80%;
+}
+
+#EnckeInformation {
+  right: 5%;
+  top: 5%;
+  height: 80%;
+}
+
+#ResonancesInformation {
+  right: 5%;
+  top: 5%;
+  height: 80%;
+}
+
+/*
+.trigger {
+  position: absolute;
+}
+
+#trigger-1 {
+  left: 10px;
+  top: 30px;
+}
+
+#trigger-2 {
+  left: 10px;
+  top: 50px;
+}
+
+#trigger-3 {
+  left: 10px;
+  top: 80px;
+}
+*/
+
+
+
+/* NProgress */
+#nprogress { pointer-events: none; }
+#nprogress .bar { background: #009BDF; position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 3px; }
+#nprogress .peg { display: block; position: absolute; right: 0px; width: 100px; height: 100%; box-shadow: 0 0 10px #009BDF, 0 0 5px #009BDF; opacity: 1.0; -webkit-transform: rotate(3deg) translate(0px, -4px); -ms-transform: rotate(3deg) translate(0px, -4px); transform: rotate(3deg) translate(0px, -4px); }
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner { display: block; position: fixed; z-index: 100; top: 15px; right: 15px; }
+#nprogress .spinner-icon { width: 18px; height: 18px; box-sizing: border-box; border: solid 2px transparent; border-top-color: #009BDF; border-left-color: #009BDF; border-radius: 50%; -webkit-animation: nprogress-spinner 400ms linear infinite; animation: nprogress-spinner 400ms linear infinite; }
+@-webkit-keyframes nprogress-spinner { 0%   { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); }
+@keyframes nprogress-spinner { 0%   { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+  
+  </style>
+</head>
+<body>
+  
+    <div id="verold3d"></div>
+
+<div class="loading" id="loading">
+  <h1>Loading...</h1>
+</div>
+
+<div class="time" id="time">
+  <h1>Time: ...</h1>
+</div>
+
+<a href="#" id="ResonancesTrigger">
+<div class="posterMainPage" id="ResonancesTriggerPanel">
+  <h1>1. Resonances</h1>
+  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/a7bb8feed293351776ef5b9633c5e34b/Saturn_A_ring_spiral_density_waves-low.jpg">-->
+</div>
+</a>
+
+<div class="information" id="ResonancesInformation">
+  <h1>Resonances</h1>
+  <p>
+  Even for a satellite outside of the ring system, where the gravitational acceleration exerted on the ring particles is vanishingly small, clear effects can still be induced in the ring. A satellite can do this through what are called mean-motion orbital resonances. A resonance occurs when the orbital periods of two or more bodies are integer-ratios of each other (e.g. a 3:1 resonance is when one body completes three orbits in exactly the same time as the second completes one). We refer to the portion of the resonance in the longitudinal direction as a "Lindblad" resonance (named after astronomer, Bertil Lindblad, who initially described how these resonances generate spiral density waves inside of galaxies) as opposed to the resonant effects that act perpendicular or radially to the ring plane. Lindblad resonances play the most important role in clearing and confining structure in ring systems (de Pater & Lissauer 2010).
+  </p>
+  <p>
+  The strongest Lindblad resonances occur when the orbital ratio between the two bodies has a difference of 1 (e.g. 2:1, 3:2, 4:3, etc.) (de Pater & Lissauer 2010). These resonances are called “first-order” and provide the most coherent forcing because every conjunction occurs at the same location in the orbit of the two bodies. This allows the gravitational disturbance from every encounter to build on each other without being disrupted by forcing in other directions.
+  </p>
+  <p>
+  Ring particles moving past the satellite on an inner orbit (in an "inner Lindblad resonance, or ILR) will give up some of their momentum to the satellite, slowing them down ever-so-slightly and changing the eccentricity of their orbit. Gaps can be cleared in the rings as the particle's new eccentricity brings it into contact with other less perturbed particles in different orbits. Crossing these orbits leads to inevitable collisions which tend to damp out the eccentricities so that the particle’s mean-motion matches the overall flow of the surrounding particles. This can result in a gap at the location of the resonance if the eccentricity-pumping is strong enough to resist the natural viscous spreading of the ring material (Goldreich & Tremaine 1982).
+  </p>
+  <p>
+    In the animation on the left, we can see the orbits of 300 TP's in the outer A Ring, along with the moons Prometheus (<font color="red">red</font>) and Pandora (<font color="green">green</font>). Over the 10 years of the simulation, the TP's at various ILR's with the two moons have their eccentricities subtly changed. The amount of change is highlighted in pink in the animation and can be clearly seen in the following image where simulation results of eccentricity change are overlaid on a photograph of the outer A Ring. Note that the image is from a simulation with many more particles and a slightly different range than the animation show.
+  </p>
+  <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/4634add56326823094f5ff852af8cea5/P+P+Close+Resonances+Overlay2-low.jpg">
+</div>
+
+<a href="#" id="MimasTrigger">
+<div class="posterMainPage" id="MimasTriggerPanel">
+  <h1>2. Cassini Division</h1>
+  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg">-->
+</div>
+</a>
+
+<div class="information" id="MimasInformation">
+  <h1>Mimas and the Cassini Division</h1>
+  <p>
+    Mimas, the innermost, spherical moon of Saturn, is widely considered to be responsible for clearing the Cassini Division in Saturn’s rings via the 2:1 ILR (Freedman, Geller & Kaufmann 2011) (de Pater & Lissauer 2010) (Goldreich & Tremaine 1979). Because of the resonant forcing of the ring particles at the 2:1 location, the ring particles move inward over time, opening a gap. The Cassini Division is roughly 3.2e-5 AU wide and lies between Saturn's A and B rings.
+  </p>
+  <p>
+    The animation on the left shows the results of simulating 300 TP's and Mimas (show in <font color="red">red</font>) over 20 years with SWIFT. The particles are spread across 3.0e-5 AU (about 4500 km). The change in eccentricity is very small so, in the animation playback, the TP's orbit is highlighted pink relative to the amount of eccentricity change it has undergone. Below is a plot from the SWIFT simulation that clearly shows the change in eccentricity at the 2:1 ILR.
+  </p>
+  <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/453e0f9ca30d61edd10b779659a874dc/Mimas2-1-low.jpg">
+  <p>
+    According to my simulations, Mimas inflicts an average eccentricity change on particles at the 2:1 ILR of 3.0e-4 over 20 years which directly corresponds to these particles crossing orbits at least 2.3e-7 AU away from where they started. So it seems very reasonable to assume that, if viscous forces within the rings were also modelled, we would see the perturbed particles eccentricity get damped and a gap in the ring would open at the 2:1 ILR. The gap would grow ever wider until it was balanced by the viscous pressures within the B Ring. Mimas role in shaping the the edge of the B Ring quite visible but how important it is in shaping the entire Cassini Division is much less clear. The inner edge of the A Ring, almost 5000 km away, is far outside the immediate gravitation influence of the 2:1 ILR. However, once viscous forces and self-gravitation are considered, the transport of angular momentum via density waves may be able to account for this.
+  </p>
+</div>
+
+<a href="#" id="ShepherdTrigger">
+<div class="posterMainPage" id="ShepherdTriggerPanel">
+  <h1>3. Shepherd Moons</h1>
+  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg">-->
+</div>
+</a>
+
+<div class="information" id="ShepherdInformation">
+  <h1>Shepherd Information</h1>
+  <p>
+  The two moons, Prometheus (shown in <font color="red">red</font> in the animation and graph below) and Pandora (shown in <font color="green">green</font>) are thought to be responsible for constraining the narrow F Ring through a gravitational interaction known as the shepherding effect. As Prometheus moves past the ring particles outside its orbit (which are travelling more slowly), it gives up some of its momentum to the particle, speeding it up and boosting it into a slightly higher orbit. It also changes the particle's orbital eccentricity, helping to bring it into contact with other TP orbits. In reality, the particles in the F Ring are exerting an outward pressure due to internal collisions and this is being balanced by the forcing of Prometheus and Pandora. In the simulations conducted, we can clearly see this forcing occurring over relatively short timescales of only 25 years. However, after such a short time, the thickness of the F Ring produced is still several times larger than the actual F Ring.
+  </p>
+  <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/dfe7feb24f3bae4917e85a1977bd0eee/Shepherd25years-low.jpg">
+  <p>
+  Over longer timescales, the F Ring undergoes more forcing by the satellites but, with no internal pressure to balance the forcing in the simulations, the system is unstable and the ring disintegrates. Below is a plot of the system over 150,000 years.
+  </p>
+  <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/f588daf23240d8e39d2b20a66ead685c/Shepherd+150000+years-low.jpg">
+  <p>
+  We can estimate the expected eccentricity perturbation of a TP by a nearby satellite, assuming both are on circular orbits (de Pater & Lissauer 2010). We do this for the actual  locations of the inner and outer F Ring and then use the relationship, a = ( 1 - e ) to derive the expected change in semi-major axis due to the eccentricity perturbation (where a is the semi-major axis and e is the eccentricity). The resulting estimate is about 5.6e-8 AU for the inner edge and 9.2e-9 AU for the outer edge per conjunction. In 5 years, Prometheus undergoes roughly 60 conjunctions with the inner F Ring particles while Pandora undergoes about 140 with the outer F Ring particles. Looking at the results of the simulation, these values seem quite reasonable, considering their applicability only while the TP's maintain a circular orbit.
+  </p>
+  
+</div>
+
+<a href="#" id="EnckeTrigger">
+<div class="posterMainPage" id="EnckeTriggerPanel">
+  <h1>4. Encke Gap</h1>
+  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg">-->
+</div>
+</a>
+
+<div class="information" id="EnckeInformation">
+  <h1>Pan and the Encke Gap/Ringlet</h1>
+  <p>
+  The final scenario simulated involved the tiny satellite, Pan, embedded inside the Encke Gap. It is thought that Pan cleared the gap itself through the shepherding effect and continues to keep it clear today (Showalter 1991).
+  </p>
+  <p>
+  In the simulation results, we see a gap open up around Pan quite quickly. The actual Encke Gap is 2.2e-6 AU wide (Rings_web) and, in my results, TP’s are most affected by Pan inside a gap of about 5e-6 AU. This seems reasonably consistent since it shows that, neglecting other factors, Pan has at least the sufficient gravitational influence to clear a gap the size of Encke. When viscous spreading is taken into account, I expect that the clearing force would be partially countered by this pressure.
+  </p>
+  <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/d512b2b9fb2678ed03d539ae7efb8383/Pan-90+years2-low.jpg">
+  <p>
+    Several particles in both the shepherding simulations of Pandora and Prometheus as well as the simulations of Pan can be seen maintaining an orbit close to the satellites, despite the tendency for the moons to clear their immediate orbit. These particles have entered a 1:1 resonance with the satellite and their resulting “horseshoe” orbit can be seen. The animation on the left is from a simulation of 300 TP's and Pan (<font color="red">red</font>) inside the Encke Gap. Over the course of 100 years, the particles within about 1.0e-7 AU of Pan maintain their semi-major axis close to Pan while other TP's are cleared (see corresponding graph below). The TP's that remain alternate between orbiting inside and outside of of Pan's orbit and appear stable over long periods of time.
+  </p>
+  <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/27b3a8d520c64fd28d0ec0abb6f259cf/Encke+Gap+and+Ringlet-low.jpg">
+</div>
+
+<!--<a href="#" id="BackButtonTrigger">-->
+  <div class="information" id="BackButton">
+    <img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/91df66b9fa132c7a278c16a474ecaa15/Left-Arrow-low.png">
+  </div>
+<!--</a>-->
+
+<div class="posterMainPage" id="posterMainPage">
+  <h1>External Gavitational Influences on the Morphology of Saturn's Rings</h1>
+  <p>
+    BOND, M. D. C., 2013
+  </p>
+  <h2>Abstract</h2>
+  <p>
+  The first up-close images of Saturn's rings by passing probes in the late 70's and early 80's revealed astonishingly complex and intricate structure. And although we've learned an enormous amount about the morphology of ring systems in the past three decades, we now have more questions than ever before about their nature and evolution (de Pater & Lissauer 2010). Many factors affect their structure including self gravitation, internal particle collisions, radiation drag (Goldreich & Tremaine 1982) and even the magnetic field of the planet (Mitchell et al, 2007). I investigate several ways in which planetary rings are influenced by the gravity of satellites, both embedded in the ring and external, and find that this gravitational influence alone is enough to form significant structure.
+  </p>
+  <h2>Method</h2>
+  <p>
+    Several scenarios were investigated using simulations conducted with the Solar System Dynamics (SSD) simulator. This simulator is based on the SWIFT code (Levison and Duncan 1994) and was run on the Swinburne supercomputer over its web-based interface. The first two scenarios looked at resonances and their ability to form structure in the outer A Ring and, by the satellite Mimas, at the boundary between the Cassini Division and outer B Ring. The third scenario looked at the F Ring and the idea that it is being confined by the satellites Prometheus and Pandora. Finally, the moonlet, Pan, was simulated and its ability to clear the Encke Gap and form the Encke Ringlet was investigated.
+  </p>
+  <p>
+    Compared to the satellites that concern us, the mass of the individual ring particles is negligible and can therefore be considered massless. Additionally, since we are focussing on the external gravitational influences of satellites alone, we neglect self-gravitation of the rings as well as any internal, viscous pressures caused by particle-particle collisions.
+  </p>
+  <p>
+    Simulations of satellites and test particles (TP) around Saturn were run for anywhere between several dozen years down to a few days, depending on what was being studied. The integration time step used was never more than 2e-6 years which corresponds to less than a degree of longitudinal movement for any TP's that we are concerned with.
+  </p>
+  <p>
+    An overview of the results can be found on the left, along with animations of some of the simulations. For the sake of small download sizes, these animations were limited to 100 time steps of data.
+  </p>
+  <h2>Conclusions</h2>
+  <p>
+  The effect of external satellite gravity alone is enough to cause dramatic changes to a ring system and induce clear structure. This occurs mainly at first-order Lindblad resonances where eccentricities are excited most significantly. The intricately banded nature of Saturn’s A Ring coincides perfectly with the pattern of first-order ILR’s of Pandora and Prometheus in the performed simulations. The small eccentricity changes are easily enough to cause TP’s to cross the orbits of other TP’s and have their new eccentricity damped by particle-particle collisions so I would theorize that simulating the viscous forces within the ring would be enough to have these resonances open gaps (i.e. without the need of simulating self-gravity in the ring).
+  </p>
+  <p>
+  The ability for moons to clear their own orbits via the shepherding effect was clearly shown as well as the stability of 1:1 resonant horseshoe orbits within the satellite’s cleared gap. However, to properly make measurements of the confinement of a ring, viscous forces within the ring are required to counter-balance the driving force by the shepherding satellites.
+  </p>
+  <h2>References</h2>
+  <p>
+  de Pater, I., Lissauer, J. J., 2010, Planetary Sciences (2nd ed.), United Kingdom, Cambridge University Press
+  </p>
+  <p>
+  Freedman, R. A., Geller, R. M. & Kaufmann III, W. J., 2011, The Universe, (9th ed.), New York, W. H. Freeman and Company
+  </p>
+  <p>
+  Goldreich, P., 1979, The Rings of Saturn and Uranus, IAUS, 81, 191
+  </p>
+  <p>
+  Goldreich, P., Tremaine, S. 1979, The Excitation and of Density Waves at the Lindblad and Corotation Resonances by an External Potential, ApJ, 233, 857
+  </p>
+  <p>
+  Goldreich, P., Tremaine, S. 1982, The Dynamics of Planetary Rings, ARA&A, 20, 249
+  </p>
+  <p>
+  Levison, H., Duncan, M., 1994, Icarus, 108, 18
+  </p>
+  <p>
+  Mitchell, C. J., Horanyi, M., Havnes, O., Porco, C. C. 2006, Saturn’s Spokes: Lost and Found, Science Magazine, 311, 1587
+  </p>
+  <p>
+  Rings_web: Vital Statistics for Saturn’s Rings and Inner Moons, http://pds-rings.seti.org/saturn/saturn_tables.html (accessed Nov. 15)
+  </p>
+  <p>
+  Showalter, M. R. 1991. Visual detection of 1981S13, Saturn’s eighteenth satellite, and its role in the Encke Gap. Nature 351, 709–713
+  </p>
+</div>
+  
+  <script>
+  function startApplication(VAPI) {
+    var $ = window.jQuery;
+
+    
+      VAPI.progress.start();
+
+var SaturnsRingsApp = VAPI.VeroldApp.extend({
+  defaultSceneLoaded: function (scene) {
+    this.threeScene = scene.threeData;
+
+    var that = this;
+    $('#loading').fadeOut( 1200 );
+    
+    
+    $('#verold3d').fadeIn( 1200 );
+    this.threeCamera = scene.getObject("525c57c6e7c503020000034e").threeData;
+   
+    this.veroldEngine.on( "resize", that.resize, that );
+    this.resize();
+
+    VAPI.progress.done();
+  },
+
+  defaultSceneProgress: function(sceneObj) {
+    var loaded = Math.ceil(((sceneObj.loadingProgress.hierarchy + sceneObj.loadingProgress.dependencies) / sceneObj.getDataSize()) * 100) / 100;
+    VAPI.progress.set(loaded);
+  },
+
+  update: function(delta) {
+  },
+
+  render: function(delta) {
+    // Call this once per render to reset draw calls, vertices and
+    // faces
+    //VAPI.resetRenderStats();
+
+    if (this.threeScene && this.threeCamera) {
+      var renderer = this.getRenderer();
+
+      renderer.render( this.threeScene, this.threeCamera );
+
+      // Call this after each call to renderer.render to track
+      // draw calls, vertices and faces
+      //VAPI.addRenderStats(renderer);
+    }
+  },
+  
+  resize: function() {
+    var renderer = this.veroldEngine.renderController;
+    this.threeCamera.aspect = renderer.getWidth() / renderer.getHeight();
+    console.log("Resizing");
+    this.threeCamera.updateProjectionMatrix();
+  }
+});
+
+var app = new SaturnsRingsApp({
+  el: '#verold3d',
+  projectId: '525c57c6e7c503020000034a',
+  engineOptions: {
+  }
+});
+
+app.run();
+
+    
+  }
+  </script>
+  
+    <script src="http://assets.verold.com/runtime/verold-runtime-0.5.0.min.js?bust=1546f81668d3"></script>
+    <script>
+    window.VAPI.DEBUG = false;
+    VAPI.initWatch();
+    startApplication(window.VAPI);
+    VAPI.help();
+    </script>
+  
+</body>
+</html>
