@@ -1,0 +1,78 @@
+{
+  "jsonVersion": "0.1",
+  "config": {
+    "runtimeVersion": "0.7.7",
+    "apiBaseUrl": "",
+    "assetsBaseUrl": "",
+    "staticBaseUrl": "",
+    "glAssetsBaseUrl": "production/assets",
+    "development": false
+  },
+  "project": {
+    "id": "525c57c6e7c503020000034a",
+    "userId": "4fbe315558a5fb0100000716",
+    "featured": true,
+    "privacy": "public",
+    "forkable": false,
+    "published": true,
+    "hasModel": true,
+    "title": "Gravity in Saturn's Rings",
+    "description": "A simple, interactive presentation of the simulation results I obtained as part of a school project.",
+    "customAttribution": "",
+    "tags": [],
+    "dateCreated": "2013-10-14T20:44:54.707Z",
+    "previewImageUrl": "/media/525c57c6e7c503020000034a/70c0f5/d2a0b76b5b2cee963676f4aabd8ae255project-preview-250x250.jpg",
+    "largeImageUrl": "/media/525c57c6e7c503020000034a/524ef5/d2a0b76b5b2cee963676f4aabd8ae255project-preview-600x400.jpg",
+    "originalImageUrl": "/media/525c57c6e7c503020000034a/7b7566/d2a0b76b5b2cee963676f4aabd8ae255project-preview.png",
+    "collaborators": [
+      "4fbbe9c83896710100000027"
+    ],
+    "renderSettings": {
+      "clearOpacity": 0,
+      "clearColor": 0,
+      "devicePixelRatio": 1,
+      "antialias": true,
+      "customRenderer": false,
+      "shadowSettings": {
+        "shadowMapDebug": false,
+        "shadowMapCascade": false,
+        "shadowMapType": 2,
+        "shadowMapEnabled": true
+      }
+    },
+    "media": [],
+    "entityId": "525c57c6e7c503020000034d",
+    "startupApplicationId": "539b5009c92acfdf77001788",
+    "counts": {
+      "views": 203,
+      "forks": 1,
+      "follows": 0
+    },
+    "domains": [],
+    "externalResources": [],
+    "allowApi": true,
+    "runnable": true,
+    "attributes": {}
+  },
+  "application": {
+    "id": "528e80993b0766020000052e",
+    "projectId": "525c57c6e7c503020000034a",
+    "shortId": "KrBFY9",
+    "settings": {
+      "engineOptions": {
+        "componentSettings": {
+          "enabled": true,
+          "runtime": true,
+          "editor": false,
+          "persistent": true,
+          "nonPersistent": true
+        }
+      },
+      "runtimeVersion": "0.7.7"
+    }
+  },
+  "resources": {
+    "baseUrl": "",
+    "entities": "resources/entities.json"
+  }
+}

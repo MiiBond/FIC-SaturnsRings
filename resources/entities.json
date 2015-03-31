@@ -1,0 +1,4101 @@
+[
+  {
+    "id": "525c57c6e7c503020000034f",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "light",
+    "name": "Ambient Light",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "orientation": {
+        "w": 0.9978557991854006,
+        "z": -0.016404959903001406,
+        "y": -0.0014500235742583635,
+        "x": -0.06334492023770573
+      },
+      "shadowCameraVisible": false,
+      "static": true,
+      "shadowCascadeOffset": {
+        "z": -300,
+        "y": 10,
+        "x": 0
+      },
+      "shadowCascadeBias": [
+        -0.003,
+        -0.004,
+        -0.004
+      ],
+      "shadowCascadeHeight": [
+        1024,
+        1024,
+        1024
+      ],
+      "shadowCascadeWidth": [
+        1024,
+        1024,
+        1024
+      ],
+      "shadowCascadeFarZ": [
+        0.986,
+        0.994,
+        0.998
+      ],
+      "shadowCascadeNearZ": [
+        -1,
+        0.986,
+        0.994
+      ],
+      "shadowCascadeCount": 3,
+      "shadowCascade": false,
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "distance": 1,
+      "intensity": 1,
+      "type": "AmbientLight",
+      "color": 789516
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "template": false,
+    "children": {}
+  },
+  {
+    "id": "525c57c6e7c5030200000350",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "light",
+    "name": "Main Light",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "orientation": {
+        "w": 1,
+        "z": 0,
+        "y": 0,
+        "x": 0
+      },
+      "visible": true,
+      "shadowMapHeight": 2048,
+      "shadowMapWidth": 2048,
+      "shadowBias": -0.003,
+      "shadowCameraBottom": -20,
+      "shadowCameraTop": 20,
+      "shadowCameraRight": 20,
+      "shadowCameraLeft": -20,
+      "shadowCameraFar": 500,
+      "shadowCameraNear": 140,
+      "castShadow": true,
+      "target": {
+        "position": {
+          "z": 0,
+          "y": 0,
+          "x": 0
+        }
+      },
+      "position": {
+        "z": 102.76774335669764,
+        "y": 31.083102316288112,
+        "x": -229.36235268012206
+      },
+      "intensity": 1,
+      "color": 16776180,
+      "type": "DirectionalLight",
+      "distance": 1,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "shadowCascade": false,
+      "shadowCascadeCount": 3,
+      "shadowCascadeNearZ": [
+        -1,
+        0.986,
+        0.994
+      ],
+      "shadowCascadeFarZ": [
+        0.986,
+        0.994,
+        0.998
+      ],
+      "shadowCascadeWidth": [
+        1024,
+        1024,
+        1024
+      ],
+      "shadowCascadeHeight": [
+        1024,
+        1024,
+        1024
+      ],
+      "shadowCascadeBias": [
+        -0.003,
+        -0.004,
+        -0.004
+      ],
+      "shadowCascadeOffset": {
+        "x": 0,
+        "y": 10,
+        "z": -300
+      },
+      "shadowCameraVisible": true,
+      "static": false
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [
+      "3c7879ec-d64f-4ba8-a665-3b34f41211c7"
+    ],
+    "template": false,
+    "children": {}
+  },
+  {
+    "id": "525c57d3e7c5030200000353",
+    "parentAssetId": "525c57d3e7c5030200000353",
+    "projectId": "525c57c6e7c503020000034a",
+    "packageId": "5325bd5e4b75d302000003a1",
+    "type": "script",
+    "name": "OrbitAnimator",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "parentFolderId": "5325bd2ebf4b7f02000002be",
+    "payload": {
+      "parsedComments": false,
+      "attributes": {
+        "totalAnimTime": {
+          "type": "f",
+          "min": 1,
+          "max": 1000,
+          "default": 10,
+          "description": ""
+        }
+      },
+      "description": "",
+      "externalDependencies": [],
+      "minified": "(function(t,e,i,r,o,a){var e=t(\"underscore\");var s={\"Shepherd 25 Years\":\"/resources/demos-mbond-Shepherds25Years.csv\",\"Mimas 2:1\":\"/resources/demos-mbond-Mimas2-1.csv\",\"Encke Gap\":\"/resources/demos-mbond-EnckeGap.csv\",Resonances2:\"/resources/demos-mbond-P%26PResonances.csv\"};function n(){this.currentTime=0;this.animSpeed=1;this.currentTPOrbitData={}}n.prototype=new i.VeroldComponent;n.prototype.init=function(){this.state=\"pending\";this.getEngine().globalEvents.on(\"loadAnimation\",this.loadAnimation,this);this.getEngine().globalEvents.on(\"parseAnimation\",this.parseAnimation,this);this.getEngine().globalEvents.on(\"playAnimation\",this.playAnimation,this);this.getEngine().globalEvents.on(\"stopAnimation\",this.stopAnimation,this)};n.prototype.loadAnimation=function(t,e){var i=this;this.state=\"downloading\";if(s[t]){this.loadData(s[t],function(t){i.state=\"downloaded\";i.textData=t;if(e){e()}})}};n.prototype.parseAnimation=function(t){this.parseDataNew(this.textData);this.setupAnimData();this.state=\"loaded\";this.textData=null;if(t){t()}};n.prototype.playAnimation=function(){var t=this;if(this.state===\"loaded\"){this.state=\"playing\"}};n.prototype.stopAnimation=function(){var t=this;this.state=\"pending\";this.currentTime=0;this.orbitData=undefined;this.currentTPOrbitData=undefined;this.currentPLOrbitData=undefined;if(this.orbitRenderer){this.orbitRenderer.unloadOrbitGeometry()}};n.prototype.loadData=function(t,e){var i=new XMLHttpRequest;i.open(\"GET\",t,true);i.onload=function(){if(i.responseText){var t=i.responseText;e(t)}else{}};i.onerror=function(e){if(e){o.error(\"Error downloading \"+t+\". Seems to be unreachable or file there is empty\",e)}};i.send()};n.prototype.parseDataNew=function(t){var e=u(t);var i=12;e.splice(0,1);var r=p(e,i);var o=0;var s=0;this.tp=[];this.pl=[];var n=r.tpNum+r.plNum;var c=a.round(e.length/n);this.orbitData=[];for(var h=0;h<c;h++){var l=[];var d=[];var b=parseFloat(e[h*n][0]);for(var m=0;m<n;m++){var v=e[h*n+m][1].substr(-2,2);var f=[];f.push(parseInt(e[h*n+m][0]));for(var g=3;g<i;g++){f.push(parseFloat(e[h*n+m][g]))}if(v===\"tp\"){l.push(f)}else{d.push(f)}}this.orbitData.push({time:b,tpBodies:l,plBodies:d})}};function p(t,e){var i={tpNum:0,plNum:0};var r={count:0};var o={count:0};for(var a=0;a<t.length;a++){if(t[a][1].substr(-2,2)===\"tp\"){registry=r}else{registry=o}if(registry[t[a][2]]){i.tpNum=r.count;i.plNum=o.count;return i}else{registry[t[a][2]]=true;registry.count++}}}n.prototype.parseData=function(t){var e=h(t);var i=12;e.splice(0,i);var r=c(e,i);var o=0;var s=0;this.tp=[];this.pl=[];var n=r.tpNum+r.plNum;var p=a.floor(e.length/n/i);this.orbitData=[];for(var u=0;u<p;u++){var l=[];var d=[];var b=e[u*n*i];for(var m=0;m<n;m++){var v=e[u*n*i+m*i+1];var f=[];for(var g=2;g<i;g++){f.push(e[u*n*i+m*i+g])}if(v===\"tp\"){l.push(f)}else{d.push(f)}}this.orbitData.push({time:b,tpBodies:l,plBodies:d})}};function c(t,e){var i={tpNum:0,plNum:0};var r={count:0};var o={count:0};for(var a=0;a<t.length-12;a+=e){if(t[a+1]===\"tp\"){registry=r}else{registry=o}if(registry[t[a+2]]){i.tpNum=r.count;i.plNum=o.count;return i}else{registry[t[a+2]]=true;registry.count++}}}function h(t){var e=/^\\s*(?:'[^'\\\\]*(?:\\\\[\\S\\s][^'\\\\]*)*'|\"[^\"\\\\]*(?:\\\\[\\S\\s][^\"\\\\]*)*\"|[^,'\"\\s\\\\]*(?:\\s+[^,'\"\\s\\\\]+)*)\\s*(?:,\\s*(?:'[^'\\\\]*(?:\\\\[\\S\\s][^'\\\\]*)*'|\"[^\"\\\\]*(?:\\\\[\\S\\s][^\"\\\\]*)*\"|[^,'\"\\s\\\\]*(?:\\s+[^,'\"\\s\\\\]+)*)\\s*)*$/;var i=/(?!\\s*$)\\s*(?:'([^'\\\\]*(?:\\\\[\\S\\s][^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\[\\S\\s][^\"\\\\]*)*)\"|([^,'\"\\s\\\\]*(?:\\s+[^,'\"\\s\\\\]+)*))\\s*(?:,|$|\\n)/g;if(!e.test(t))return null;var r=t.replace(/[\\f\\r\\n\\v↵]/g,\",\");t=undefined;var o=[];r.replace(i,function(t,e,i,r){if(e!==undefined)o.push(e.replace(/\\\\'/g,\"'\"));else if(i!==undefined)o.push(i.replace(/\\\\\"/g,'\"'));else if(r!==undefined)o.push(r);return\"\"});if(/,\\s*$/.test(r))o.push(\"\");return o}function u(t,e){e=e||\",\";var i=new RegExp(\"(\\\\\"+e+\"|\\\\r?\\\\n|\\\\r|^)\"+'(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|'+'([^\"\\\\'+e+\"\\\\r\\\\n]*))\",\"gi\");t.replace(/\\s/g,\"\");var r=[[]];var o=null;while(o=i.exec(t)){var a=o[1];if(a.length&&a!=e){r.push([])}if(o[2]){var s=o[2].replace(new RegExp('\"\"',\"g\"),'\"')}else{var s=o[3]}r[r.length-1].push(s)}return r}n.prototype.setupAnimData=function(){this.currentTPOrbitData=new Array(this.orbitData[0].tpBodies.length);for(var t=0;t<this.orbitData[0].tpBodies.length;t++){var e={};e.objectPosition=new r.Vector3;e.objectVelocity=new r.Vector3;e.orbitParams=new r.Vector3;this.currentTPOrbitData[t]=e}this.currentPLOrbitData=new Array(this.orbitData[0].plBodies.length);for(t=0;t<this.orbitData[0].plBodies.length;t++){var i={};i.objectPosition=new r.Vector3;i.objectVelocity=new r.Vector3;i.orbitParams=new r.Vector3;this.currentPLOrbitData[t]=i}this.orbitRenderer.initializeBodies(this.currentTPOrbitData,this.currentPLOrbitData)};n.prototype.objectCreated=function(){var t=this;t.orbitRenderer=e.values(t.getEntity().getComponentsByScriptName(\"OrbitRenderer\"))[0]};n.prototype.update=function(t){function e(t,e,i){return t*(1-i)+e*i}if(this.veroldEntity.threeData&&this.orbitData){if(this.orbitRenderer&&this.state===\"playing\"){this.currentTime+=t;this.currentTime=this.currentTime%this.totalAnimTime;var i=this.currentTime/this.totalAnimTime;i*=this.orbitData.length;var r=a.floor(i);var o=a.ceil(i);var s=i-r;var n=this.orbitData[r];if(o>=this.orbitData.length){o=0}var p=this.orbitData[o];var c=e(n.time,p.time,s);$(\"#time h1\").text(\"Time: \"+c.toFixed(2)+\" years\");for(var h=0;h<this.orbitData[0].tpBodies.length;h++){this.currentTPOrbitData[h].objectPosition.x=n.tpBodies[h][1];this.currentTPOrbitData[h].objectPosition.y=n.tpBodies[h][2];this.currentTPOrbitData[h].objectPosition.z=n.tpBodies[h][3];this.currentTPOrbitData[h].objectVelocity.x=n.tpBodies[h][4];this.currentTPOrbitData[h].objectVelocity.y=n.tpBodies[h][5];this.currentTPOrbitData[h].objectVelocity.z=n.tpBodies[h][6];this.currentTPOrbitData[h].orbitParams.x=e(n.tpBodies[h][7],p.tpBodies[h][7],s);this.currentTPOrbitData[h].orbitParams.y=e(n.tpBodies[h][8],p.tpBodies[h][8],s);this.currentTPOrbitData[h].orbitParams.z=e(n.tpBodies[h][9],p.tpBodies[h][9],s)}for(h=0;h<this.orbitData[0].plBodies.length;h++){this.currentPLOrbitData[h].objectPosition.x=n.plBodies[h][1];this.currentPLOrbitData[h].objectPosition.y=n.plBodies[h][2];this.currentPLOrbitData[h].objectPosition.z=n.plBodies[h][3];this.currentPLOrbitData[h].objectVelocity.x=n.plBodies[h][4];this.currentPLOrbitData[h].objectVelocity.y=n.plBodies[h][5];this.currentPLOrbitData[h].objectVelocity.z=n.plBodies[h][6];this.currentPLOrbitData[h].orbitParams.x=e(n.plBodies[h][7],p.plBodies[h][7],s);this.currentPLOrbitData[h].orbitParams.y=e(n.plBodies[h][8],p.plBodies[h][8],s);this.currentPLOrbitData[h].orbitParams.z=e(n.plBodies[h][9],p.plBodies[h][9],s)}}}};n.prototype.setTime=function(t){this.currentTime=t};n.prototype.shutdown=function(){};return n});",
+      "visible": true,
+      "category": "User Defined",
+      "attributesOrder": [
+        "totalAnimTime"
+      ]
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "525c601b254a94020000035a",
+    "prefabInstanceId": "528c3327cdf5c802000009bb",
+    "parentId": "528c3327cdf5c802000009bb",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "node",
+    "name": "Orbit Animator",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "geometry": {},
+      "visible": true,
+      "position": {
+        "z": 0,
+        "x": 0,
+        "y": 0
+      },
+      "orientation": {
+        "w": 1,
+        "z": 0,
+        "y": 0,
+        "x": 0
+      }
+    },
+    "resources": [],
+    "components": {
+      "59a5cfe6-9951-4765-4471-cb7f692fdcd6": {
+        "enabled": true,
+        "componentData": {
+          "numSegments": 160
+        },
+        "scriptId": "5267d276bb9719020000000d"
+      },
+      "2e1e6b16-0157-4d5e-4ff2-17670245aaeb": {
+        "enabled": true,
+        "componentData": {
+          "totalAnimTime": 15
+        },
+        "scriptId": "525c57d3e7c5030200000353"
+      }
+    },
+    "componentsOrder": [
+      "2e1e6b16-0157-4d5e-4ff2-17670245aaeb",
+      "59a5cfe6-9951-4765-4471-cb7f692fdcd6"
+    ],
+    "children": {}
+  },
+  {
+    "id": "5267d276bb9719020000000d",
+    "parentAssetId": "5267d276bb9719020000000d",
+    "projectId": "525c57c6e7c503020000034a",
+    "packageId": "5325bd5e4b75d302000003a1",
+    "type": "script",
+    "name": "OrbitRenderer",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "parentFolderId": "5325bd2ebf4b7f02000002be",
+    "payload": {
+      "attributesOrder": [
+        "numSegments"
+      ],
+      "category": "User Defined",
+      "parsedComments": false,
+      "visible": true,
+      "minified": "(function(t,e,i,r,o,s){var e=t(\"underscore\");function n(){this.orbitMeshes=[];this.orbitMaterials=[];this.objectPosition=new r.Vector3;this.objectVelocity=new r.Vector3;this.orbitParams=new r.Vector3;this.orbitColours=[new r.Color(3482901),new r.Color(16711680),new r.Color(65280)];this.maxOrbitsPerMesh=65}n.prototype=new i.VeroldComponent;n.prototype.init=function(){this.getEngine().globalEvents.on(\"setOrbitRenderParams\",this.setRenderParams,this)};n.prototype.unloadOrbitGeometry=function(){e.each(this.orbitMeshes,function(t){t.parent.remove(t);t.geometry.dispose()},this);e.each(this.orbitMaterials,function(t){e.each(t.uniforms,function(t){t.value=null},this);t.dispose()},this);this.orbitMeshes=[];this.orbitMaterials=[]};n.prototype.initializeBodies=function(t,e){this.initOrbitMesh(t.length+e.length,e.length);this.initOrbitMaterial(t,e)};n.prototype.setRenderParams=function(t,i,r){e.each(this.orbitMaterials,function(e){e.uniforms.eccDimFactor.value=t;e.uniforms.eccOffset.value=i;e.uniforms.eccColour.value.copy(r)},this)};n.prototype.initOrbitMesh=function(t,i){this.orbitMeshes=[];for(var n=0;n<s.ceil(t/this.maxOrbitsPerMesh);n++){var a=new r.BufferGeometry;var l=new Float32Array(this.numSegments*6*this.maxOrbitsPerMesh);a.addAttribute(\"position\",new r.BufferAttribute(l,3));var h=a.attributes.position.array;var u,c,m;for(u=0;u<this.maxOrbitsPerMesh;u++){for(c=0;c<this.numSegments;c++){if(c===this.numSegments-1){h[u*this.numSegments*6+c*6+3]=u;h[u*this.numSegments*6+c*6+4]=0;h[u*this.numSegments*6+c*6+5]=0}else{h[u*this.numSegments*6+c*6+3]=u;h[u*this.numSegments*6+c*6+4]=c+1;h[u*this.numSegments*6+c*6+5]=0}h[u*this.numSegments*6+c*6]=u;h[u*this.numSegments*6+c*6+1]=c;h[u*this.numSegments*6+c*6+2]=0}}if(n===s.ceil(t/this.maxOrbitsPerMesh)-1){var b=t%this.maxOrbitsPerMesh-i;if(this.maxOrbitsPerMesh-b>=i){var f=0;for(m=b;f<i;m++){f++;for(c=0;c<this.numSegments;c++){h[m*this.numSegments*6+c*6+5]=f;h[m*this.numSegments*6+c*6+2]=f}}}else{o.error(\"We need to handle the case that planets are split between line meshes.\")}}var v=new r.Line(a);v.mode=r.LinePieces;v.scale.multiplyScalar(4e4);v.dynamic=false;this.orbitMeshes.push(v)}e.each(this.orbitMeshes,function(t,e){this.veroldEntity.threeData.add(t)},this)};n.prototype.initOrbitMaterial=function(t,e){var i=[\"uniform vec3 orbitParams[ \"+this.maxOrbitsPerMesh+\"];\",\"uniform vec3 objectVelocity[ \"+this.maxOrbitsPerMesh+\"];\",\"uniform vec3 objectPosition[ \"+this.maxOrbitsPerMesh+\"];\",\"uniform vec3 orbitColour[ \"+e.length+1+\"];\",\"uniform vec3 eccColour;\",\"uniform float angleIncrement;\",\"uniform float eccDimFactor;\",\"uniform float eccOffset;\",\"varying vec3 vOrbitColour;\",\"void main() {\",\"int index = int( position.x );\",\"float mag_r = length( objectPosition[ index ] );\",\"vec3 unit_r = objectPosition[ index ] / mag_r;\",\"vec3 unit_v = normalize( objectVelocity[ index ] );\",\"float cosY = dot( unit_r, unit_v);\",\"float a = orbitParams[ index ].x;\",\"float e = orbitParams[ index ].y;\",\"float temp = (a - a * e * e);\",\"float trueAnomaly = acos( clamp(temp / (mag_r * e) - ( 1.0 / e), -1.0, 1.0) );\",\"float fAngle = position.y * angleIncrement;\",\"float f;\",\"if (cosY > 0.0)\",\"{\",\"f = fAngle + trueAnomaly;\",\"}\",\"else\",\"{\",\"f = fAngle - trueAnomaly;\",\"}\",\"int colourIndex = int( position.z );\",\"vOrbitColour = orbitColour[colourIndex];\",\"if ( colourIndex == 0 ) {\",\"vOrbitColour = mix( vOrbitColour, eccColour, min(1.0, eccDimFactor * abs( eccOffset - e)));\",\"}\",\"vec3 newDirection = vec3( unit_r.x * cos( fAngle ) - unit_r.y * sin( fAngle ), 0.0, unit_r.x * sin( fAngle ) + unit_r.y * cos( fAngle ));\",\"float r = temp / (e * cos( f ) + 1.0 );\",\"vec3 newPosition = newDirection * r;\",\"gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition.xyz, 1.0 );\",\"}\"].join(\"\\n\");var o=[\"varying vec3 vOrbitColour;\",\"void main() {\",\"gl_FragColor = vec4( vOrbitColour, 1.0 );\",\"}\"].join(\"\\n\");for(var n=0;n<this.orbitMeshes.length;n++){this.orbitMaterials.push(new r.ShaderMaterial({uniforms:{orbitParams:{type:\"v3v\",value:new Array(this.maxOrbitsPerMesh)},objectVelocity:{type:\"v3v\",value:new Array(this.maxOrbitsPerMesh)},objectPosition:{type:\"v3v\",value:new Array(this.maxOrbitsPerMesh)},orbitColour:{type:\"v3v\",value:new Array(e.length+1)},angleIncrement:{type:\"f\",value:2*s.PI/this.numSegments},eccDimFactor:{type:\"f\",value:0},eccOffset:{type:\"f\",value:0},eccColour:{type:\"c\",value:new r.Color}},vertexShader:i,fragmentShader:o,depthTest:true,depthWrite:false,transparent:true,blending:r.AdditiveBlending}));var a=this.orbitMaterials[n].uniforms.orbitColour.value;for(var l=0;l<a.length;l++){var h=l%this.orbitColours.length;a[l]=new r.Vector3;a[l].x=this.orbitColours[h].r;a[l].y=this.orbitColours[h].g;a[l].z=this.orbitColours[h].b}this.orbitMeshes[n].material=this.orbitMaterials[n];var u;for(var c=0;c<this.maxOrbitsPerMesh;c++){if(n*this.maxOrbitsPerMesh+c>=t.length){u=e;if(n*this.maxOrbitsPerMesh+c>=t.length+e.length){this.orbitMaterials[n].uniforms.orbitParams.value[c]=new r.Vector3;this.orbitMaterials[n].uniforms.objectPosition.value[c]=new r.Vector3;this.orbitMaterials[n].uniforms.objectVelocity.value[c]=new r.Vector3}else{var m=n*this.maxOrbitsPerMesh+c-t.length;this.orbitMaterials[n].uniforms.orbitParams.value[c]=u[m].orbitParams;this.orbitMaterials[n].uniforms.objectPosition.value[c]=u[m].objectPosition;this.orbitMaterials[n].uniforms.objectVelocity.value[c]=u[m].objectVelocity}}else{u=t;this.orbitMaterials[n].uniforms.orbitParams.value[c]=u[n*this.maxOrbitsPerMesh+c].orbitParams;this.orbitMaterials[n].uniforms.objectPosition.value[c]=u[n*this.maxOrbitsPerMesh+c].objectPosition;this.orbitMaterials[n].uniforms.objectVelocity.value[c]=u[n*this.maxOrbitsPerMesh+c].objectVelocity}}}};n.prototype.shutdown=function(){};return n});",
+      "attributes": {
+        "numSegments": {
+          "description": "",
+          "default": 20,
+          "max": 200,
+          "min": 5,
+          "type": "i"
+        }
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "5268638bc44de60200000290",
+    "parentAssetId": "5268638bc44de60200000290",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "OrbitControls",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "attributes": {
+        "target": {
+          "description": "The object that will be orbited. If not specified, the distance attribute will be used to select an orbit point",
+          "type": "object"
+        },
+        "maxDistance": {
+          "description": "maximum camera distance",
+          "default": 5,
+          "type": "f"
+        },
+        "minDistance": {
+          "description": "minimum camera distance",
+          "default": 0.01,
+          "type": "f"
+        },
+        "maxPolarAngle": {
+          "description": "maximum polar angle",
+          "default": 3.141592653589793,
+          "type": "f"
+        },
+        "minPolarAngle": {
+          "description": "minimum polar angle",
+          "default": 0,
+          "type": "f"
+        },
+        "autoRotateSpeed": {
+          "description": "speed of auto rotate",
+          "default": 2,
+          "type": "f"
+        },
+        "autoRotate": {
+          "description": "enable auto rotate?",
+          "default": false,
+          "type": "b"
+        },
+        "userPanSpeed": {
+          "description": "speed of user pan",
+          "default": 0.2,
+          "type": "f"
+        },
+        "userPan": {
+          "description": "enable user pan?",
+          "default": true,
+          "type": "b"
+        },
+        "userRotateSpeed": {
+          "description": "speed of camera rotate",
+          "default": 1,
+          "type": "f"
+        },
+        "userRotate": {
+          "description": "enable camera rotate?",
+          "default": true,
+          "type": "b"
+        },
+        "userZoomSpeed": {
+          "description": "speed of camera zoom",
+          "default": 1,
+          "type": "f"
+        },
+        "userZoom": {
+          "description": "enable user zoom?",
+          "default": true,
+          "type": "b"
+        },
+        "enabled": {
+          "description": "enable camera controls?",
+          "default": true,
+          "type": "b"
+        },
+        "distance": {
+          "type": "f",
+          "min": 0,
+          "max": 10000,
+          "default": 1,
+          "description": "The initial distance from the orbit target"
+        }
+      },
+      "description": "Orbit controls for camera.",
+      "minified": "(function(e,t,o,n,i,s){var t=e(\"underscore\");var a=1e-6;var r=1800;var h=new n.Vector2;var u=new n.Vector2;var l=new n.Vector2;var m=new n.Vector2;var d=new n.Vector2;var c=new n.Vector2;var f=0;var p=0;var v=1;var g=new n.Vector3;var D={NONE:-1,ROTATE:0,ZOOM:1,PAN:2};var y=D.NONE;function E(){this.ready=false}E.prototype=new o.VeroldComponent;E.prototype.init=function(){this.domElement=this.getRenderer().domElement;this.enabled=this.enabled;this.center=new n.Vector3;this.userZoom=this.userZoom;this.userZoomSpeed=this.userZoomSpeed;this.userRotate=this.userRotate;this.userRotateSpeed=this.userRotateSpeed;this.userPan=this.userPan;this.userPanSpeed=this.userPanSpeed;this.autoRotate=this.autoRotate;this.autoRotateSpeed=this.autoRotateSpeed;this.minPolarAngle=this.minPolarAngle;this.maxPolarAngle=this.maxPolarAngle;this.minDistance=this.minDistance;this.maxDistance=this.maxDistance;this.distance=s.min(this.maxDistance,s.max(this.distance,this.minDistance));this.onMouseDown=t.bind(function(e){if(this.enabled===false)return;if(this.userRotate===false)return;e.preventDefault();if(e.button===0){y=D.ROTATE;h.set(e.clientX,e.clientY)}else if(e.button===1){y=D.ZOOM;m.set(e.clientX,e.clientY)}else if(e.button===2){y=D.PAN}document.addEventListener(\"mousemove\",this.onMouseMove,false);document.addEventListener(\"mouseup\",this.onMouseUp,false)},this);this.onMouseMove=t.bind(function(e){if(this.enabled===false)return;e.preventDefault();if(y===D.ROTATE){u.set(e.clientX,e.clientY);l.subVectors(u,h);this.rotateLeft(2*s.PI*l.x/r*this.userRotateSpeed);this.rotateUp(2*s.PI*l.y/r*this.userRotateSpeed);h.copy(u)}else if(y===D.ZOOM){d.set(e.clientX,e.clientY);c.subVectors(d,m);if(c.y>0){this.zoomIn()}else{this.zoomOut()}m.copy(d)}else if(y===D.PAN){var t=e.movementX||e.mozMovementX||e.webkitMovementX||0;var o=e.movementY||e.mozMovementY||e.webkitMovementY||0;this.pan(new n.Vector3(-t,o,0))}},this);this.onMouseUp=t.bind(function(e){if(this.enabled===false)return;if(this.userRotate===false)return;document.removeEventListener(\"mousemove\",this.onMouseMove,false);document.removeEventListener(\"mouseup\",this.onMouseUp,false);y=D.NONE},this);this.onMouseWheel=t.bind(function(e){if(this.enabled===false)return;if(this.userZoom===false)return;var t=0;if(e.wheelDelta){t=e.wheelDelta}else if(e.detail){t=-e.detail}if(t>0){this.zoomOut()}else{this.zoomIn()}},this);this.domElement.addEventListener(\"contextmenu\",this.preventDefault,false);this.domElement.addEventListener(\"mousedown\",this.onMouseDown,false);this.domElement.addEventListener(\"mousewheel\",this.onMouseWheel,false);this.domElement.addEventListener(\"DOMMouseScroll\",this.onMouseWheel,false)};E.prototype.objectCreated=function(){if(this.target&&this.target.id!==this.getObject().id){var e=this;this.getObject().listenToOnce(this.target,\"load_base\",function(){e.center=e.target.threeData.position;e.ready=true})}else{var t=new n.Vector3(0,0,-this.distance);t.applyQuaternion(this.getThreeData().quaternion);var o=new n.Vector3;o.addVectors(this.getThreeData().position,t);this.center.set(o.x,o.y,o.z);this.ready=true}};E.prototype.shutdown=function(){this.domElement.removeEventListener(\"contextmenu\",this.preventDefault,false);this.domElement.removeEventListener(\"mousedown\",this.onMouseDown,false);this.domElement.removeEventListener(\"mousewheel\",this.onMouseWheel,false);this.domElement.removeEventListener(\"DOMMouseScroll\",this.onMouseWheel,false)};E.prototype.update=function(){if(!this.ready){return}var e=this.getThreeData().position;var t=e.clone().sub(this.center);var o=s.atan2(t.x,t.z);var n=s.atan2(s.sqrt(t.x*t.x+t.z*t.z),t.y);if(this.autoRotate){this.rotateLeft(this.getAutoRotationAngle())}o+=p;n+=f;n=s.max(this.minPolarAngle,s.min(this.maxPolarAngle,n));n=s.max(a,s.min(s.PI-a,n));var i=t.length()*v;i=s.max(this.minDistance,s.min(this.maxDistance,i));t.x=i*s.sin(n)*s.sin(o);t.y=i*s.cos(n);t.z=i*s.sin(n)*s.cos(o);e.copy(this.center).add(t);this.getThreeData().lookAt(this.center);p=0;f=0;v=1;if(g.distanceTo(this.getThreeData().position)>0){g.copy(this.getThreeData().position)}};E.prototype.rotateLeft=function(e){if(e===undefined){e=this.getAutoRotationAngle()}p-=e};E.prototype.rotateRight=function(e){if(e===undefined){e=this.getAutoRotationAngle()}p+=e};E.prototype.rotateUp=function(e){if(e===undefined){e=this.getAutoRotationAngle()}f-=e};E.prototype.rotateDown=function(e){if(e===undefined){e=this.getAutoRotationAngle()}f+=e};E.prototype.zoomIn=function(e){if(e===undefined){e=this.getZoomScale()}v/=e};E.prototype.zoomOut=function(e){if(e===undefined){e=this.getZoomScale()}v*=e};E.prototype.pan=function(e){e.transformDirection(this.getThreeData().matrix);e.multiplyScalar(this.userPanSpeed);this.getThreeData().position.add(e);this.center.add(e)};E.prototype.getAutoRotationAngle=function(){return 2*s.PI/60/60*this.autoRotateSpeed};E.prototype.getZoomScale=function(){return s.pow(.95,this.userZoomSpeed)};E.prototype.preventDefault=function(e){e.preventDefault()};return E});"
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "template": false,
+    "children": {}
+  },
+  {
+    "id": "5286647e7466e3020000092e",
+    "parentAssetId": "5286647e7466e3020000092e",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "ResonanceCalculator",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "minified": "(function(t,o,e,n,r,a){function i(){}i.prototype=new e.VeroldComponent;i.prototype.init=function(){var t=\"\";for(var o=1;o<=this.Max_Resonance_Num;o++){var e=o/(o+1);var n=a.pow(e,2/3)*this.Satellite_SMA;t+=\"\\n\"+(o+1)+\":\"+o+\" = \"+n+\" AU\"}r.log(t)};i.prototype.objectCreated=function(){};i.prototype.update=function(t){var o;if(this.hasThreeData()){o=this.getThreeData()}};i.prototype.shutdown=function(){};return i});",
+      "description": "",
+      "attributes": {
+        "Satellite_SMA": {
+          "type": "f",
+          "min": 0,
+          "max": 100,
+          "default": 0.00124,
+          "description": ""
+        },
+        "Max_Resonance_Num": {
+          "type": "i",
+          "min": 1,
+          "max": 50,
+          "default": 5,
+          "description": ""
+        }
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "528666037466e30200000948",
+    "prefabInstanceId": "528666037466e30200000948",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "node",
+    "name": "ResonanceCalculator",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "orientation": {},
+      "position": {},
+      "visible": true,
+      "geometry": {},
+      "scale": {
+        "x": 100,
+        "y": 100,
+        "z": 100
+      }
+    },
+    "resources": [],
+    "components": {
+      "a4eb4810-9aa1-438d-4fa9-1a0de70609ba": {
+        "enabled": true,
+        "scriptId": "5286647e7466e3020000092e",
+        "componentData": {
+          "Max_Resonance_Num": 35,
+          "Satellite_SMA": 0.00095
+        }
+      }
+    },
+    "componentsOrder": [
+      "a4eb4810-9aa1-438d-4fa9-1a0de70609ba"
+    ],
+    "children": {}
+  },
+  {
+    "id": "528acf01ec66b9460400084b",
+    "parentAssetId": "528acf01ec66b9460400084b",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "SaturnsRings1x8192",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "ded36595dab294f888ace15fded6e20f",
+    "payload": {
+      "generateMipmaps": true,
+      "isNormalMap": false,
+      "preferCompression": false,
+      "flipY": true,
+      "anisotropy": 1,
+      "filtering": "Trilinear",
+      "vMapping": "Wrap",
+      "uMapping": "Wrap",
+      "name": "Texture_With_No_Name",
+      "visible": true,
+      "mipmaps": []
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 1,
+          "width": 4096
+        },
+        "path": "SaturnsRings1x8192-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 4049,
+        "contentLengthIdentity": 4049,
+        "_id": "54db8f897cd7b08718e77f05"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 1,
+          "width": 1024
+        },
+        "path": "SaturnsRings1x8192-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 1458,
+        "contentLengthIdentity": 1458,
+        "_id": "54db8f897cd7b08718e77f06"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 1,
+          "width": 8192
+        },
+        "path": "SaturnsRings1x8192-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 14709,
+        "contentLengthIdentity": 32904,
+        "_id": "54db8f897cd7b08718e77f07"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 1,
+          "width": 1024
+        },
+        "path": "SaturnsRings1x8192-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 2464,
+        "contentLengthIdentity": 4232,
+        "_id": "54db8f897cd7b08718e77f08"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528acf24d47d2f0200000247",
+    "parentAssetId": "528acf24d47d2f0200000247",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "Ring Generator",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "attributesOrder": [
+        "outerRadius",
+        "innerRadius",
+        "ringMaterial",
+        "numSegments"
+      ],
+      "parsedComments": false,
+      "minified": "(function(t,e,i,n,s,r){function a(){}a.prototype=new i.VeroldComponent;a.prototype.editorInit=function(){var t=this;this.initRingGeometry();this.veroldEntity.listenToOnce(this.veroldEntity,\"load_base\",function(){t.objectCreated()})};a.prototype.init=function(){this.getEngine().globalEvents.on(\"fadeRings\",this.fadeRings,this);this.initRingGeometry();this.fadeOpacity=1;this.fadeTargetOpacity=1};a.prototype.fadeRings=function(t,e){this.fadeTime=t;this.fadeTimeLeft=t;this.fadeTargetOpacity=e};a.prototype.objectCreated=function(){var t=this;this.ringMaterial.load({load:function(){t.ringMesh=new n.Mesh(t.ringGeometry,t.ringMaterial.threeData.static);t.ringMesh.castShadow=true;t.veroldEntity.threeData.add(t.ringMesh)}})};a.prototype.initRingGeometry=function(){this.ringGeometry=new n.BufferGeometry;var t=new Float32Array(this.numSegments*2*3);var e=new Float32Array(this.numSegments*2*3);var i=new Float32Array(this.numSegments*2*2);var s=new Int16Array(this.numSegments*6*1);var a=4e4*this.innerRadius;var o,h;for(o=0;o<2;o++){for(h=0;h<=this.numSegments;h++){var m=h/this.numSegments*2*r.PI;t[o*this.numSegments*3+h*3]=a*r.cos(m);t[o*this.numSegments*3+h*3+1]=0;t[o*this.numSegments*3+h*3+2]=a*r.sin(m);e[o*this.numSegments*3+h*3]=0;e[o*this.numSegments*3+h*3+1]=1;e[o*this.numSegments*3+h*3+2]=0;i[o*this.numSegments*2+h*2]=o;i[o*this.numSegments*2+h*2+1]=a*r.sin(m)}a=4e4*this.outerRadius}for(h=0;h<this.numSegments;h++){if(h===this.numSegments-1){s[h*6+0]=0;s[h*6+5]=0;s[h*6+3]=this.numSegments}else{s[h*6+0]=h+1;s[h*6+5]=h+1;s[h*6+3]=this.numSegments+h+1}s[h*6+2]=h;s[h*6+1]=this.numSegments+h;s[h*6+4]=this.numSegments+h}this.ringGeometry.addAttribute(\"position\",new n.BufferAttribute(t,3));this.ringGeometry.addAttribute(\"normal\",new n.BufferAttribute(e,3));this.ringGeometry.addAttribute(\"uv\",new n.BufferAttribute(i,2));this.ringGeometry.addAttribute(\"index\",new n.BufferAttribute(s,1));var u={start:0,index:0,count:this.numSegments*2*3};this.ringGeometry.offsets.push(u);this.ringGeometry.computeVertexNormals();this.ringGeometry.computeTangents();this.ringGeometry.computeBoundingSphere();this.ringGeometry.dynamic=false};a.prototype.update=function(t){var e;if(this.hasThreeData()){e=this.getThreeData();if(this.fadeTimeLeft>0){this.fadeTimeLeft-=t;var i=this.fadeTimeLeft/this.fadeTime;var n=this.fadeOpacity*i+this.fadeTargetOpacity*(1-i);this.ringMaterial.threeData.static.uniforms.opacity.value=n}else{this.ringMaterial.threeData.static.uniforms.opacity.value=this.fadeTargetOpacity}}};a.prototype.shutdown=function(){};return a});",
+      "description": "",
+      "attributes": {
+        "numSegments": {
+          "description": "",
+          "default": 128,
+          "max": 256,
+          "min": 12,
+          "type": "i"
+        },
+        "ringMaterial": {
+          "description": "",
+          "filter": {
+            "material": true
+          },
+          "type": "asset"
+        },
+        "innerRadius": {
+          "type": "f",
+          "min": 1e-7,
+          "max": 1,
+          "default": 0.0004749888,
+          "description": ""
+        },
+        "outerRadius": {
+          "type": "f",
+          "min": 0.00001,
+          "max": 1,
+          "default": 0.00095362114,
+          "description": ""
+        }
+      },
+      "visible": true,
+      "category": "User Defined"
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "528ad0d3d47d2f020000024b",
+    "parentAssetId": "528ad0d3d47d2f020000024b",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "material",
+    "name": "RingMaterial",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "emissiveUVChannel": 0,
+      "emissiveIntensity": 0.5,
+      "emissiveColor": 16777215,
+      "blending": 1,
+      "lightsEnabled": true,
+      "emissiveTexture": "528acf01ec66b9460400084b",
+      "materialType": "Standard",
+      "environmentTexture": "environment_default",
+      "Features": {
+        "Emissive": {
+          "SubFeatures": {
+            "Emissive Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": true
+        },
+        "Reflections": {
+          "enabled": false
+        },
+        "Displacement": {
+          "SubFeatures": {
+            "Displacement Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": false
+        },
+        "Normal Map": {
+          "SubFeatures": {
+            "Parallax": {
+              "enabled": false
+            }
+          },
+          "enabled": false
+        },
+        "Rim Lighting": {
+          "enabled": false
+        },
+        "Specular": {
+          "SubFeatures": {
+            "Specular Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": false
+        },
+        "Diffuse Color": {
+          "SubFeatures": {
+            "AO Texture": {
+              "enabled": false
+            },
+            "Diffuse Texture": {
+              "defines": {
+                "ALPHA_BLENDMODE": 1
+              },
+              "enabled": true
+            }
+          },
+          "enabled": true
+        },
+        "Lighting": {
+          "enabled": true
+        }
+      },
+      "diffuseTexture": "528acf01ec66b9460400084b",
+      "colorOpacity": 0.9913130434782609,
+      "side": 2,
+      "depthWrite": false,
+      "fog": false,
+      "visible": true,
+      "diffuseColor": 16777215,
+      "diffuseUVChannel": 0,
+      "alphaBlendMode": 1,
+      "diffuseTextureOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "diffuseTextureScale": {
+        "x": 1,
+        "y": 1
+      },
+      "diffuseTexturePan": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528ad44bec66b9460400085c",
+    "parentAssetId": "528ad44bec66b9460400085c",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "SaturnsRings1x8192_0",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "bcb4dc9c063f2d9c8ce5fce16ec0e18a",
+    "payload": {
+      "generateMipmaps": true,
+      "isNormalMap": false,
+      "preferCompression": false,
+      "flipY": true,
+      "anisotropy": 1,
+      "filtering": "Trilinear",
+      "vMapping": "Wrap",
+      "uMapping": "Wrap",
+      "name": "Texture_With_No_Name",
+      "visible": true,
+      "mipmaps": []
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 4096,
+          "width": 1
+        },
+        "path": "SaturnsRings1x8192-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 4205,
+        "contentLengthIdentity": 4205,
+        "_id": "54db8f897cd7b08718e77f11"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 1
+        },
+        "path": "SaturnsRings1x8192-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 1511,
+        "contentLengthIdentity": 1511,
+        "_id": "54db8f897cd7b08718e77f12"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 8192,
+          "width": 1
+        },
+        "path": "SaturnsRings1x8192-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 14217,
+        "contentLengthIdentity": 32904,
+        "_id": "54db8f897cd7b08718e77f13"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 1
+        },
+        "path": "SaturnsRings1x8192-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 2415,
+        "contentLengthIdentity": 4232,
+        "_id": "54db8f897cd7b08718e77f14"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528c18b9e7b5759d09000e76",
+    "parentAssetId": "528c18b9e7b5759d09000e76",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "saturnmap",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "a89f2a5994d0ecf0639495b2b2c1ef9d",
+    "payload": {
+      "generateMipmaps": true,
+      "isNormalMap": false,
+      "preferCompression": false,
+      "flipY": true,
+      "anisotropy": 1,
+      "filtering": "Linear",
+      "vMapping": "Wrap",
+      "uMapping": "Wrap",
+      "name": "Texture_With_No_Name"
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 2048
+        },
+        "path": "saturnmap-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 99320,
+        "contentLengthIdentity": 99320,
+        "_id": "54db8f907cd7b08718e784b5"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 1024
+        },
+        "path": "saturnmap-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 54437,
+        "contentLengthIdentity": 54437,
+        "_id": "54db8f907cd7b08718e784b6"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 2048
+        },
+        "path": "saturnmap-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 283961,
+        "contentLengthIdentity": 1398248,
+        "_id": "54db8f907cd7b08718e784b7"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 1024
+        },
+        "path": "saturnmap-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 186266,
+        "contentLengthIdentity": 699192,
+        "_id": "54db8f907cd7b08718e784b8"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528c18c7cdf5c802000008e5",
+    "parentAssetId": "528c18c7cdf5c802000008e5",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "material",
+    "name": "Saturn",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "materialType": "Skin",
+      "Features": {
+        "Emissive": {
+          "SubFeatures": {
+            "Emissive Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": false
+        },
+        "Reflections": {
+          "enabled": false
+        },
+        "Specular": {
+          "SubFeatures": {
+            "Specular Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": false
+        },
+        "Displacement": {
+          "SubFeatures": {
+            "Displacement Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": false
+        },
+        "Normal Map": {
+          "SubFeatures": {
+            "Parallax": {
+              "enabled": false
+            }
+          },
+          "enabled": false
+        },
+        "Rim Lighting": {
+          "enabled": false
+        },
+        "Scattering": {
+          "SubFeatures": {
+            "Sub-surface Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": true
+        },
+        "Diffuse Color": {
+          "SubFeatures": {
+            "AO Texture": {
+              "enabled": false
+            },
+            "Diffuse Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": true
+        },
+        "Lighting": {
+          "enabled": true
+        }
+      },
+      "diffuseTexture": "528c18b9e7b5759d09000e76",
+      "emissiveTexture": "528c18b9e7b5759d09000e76",
+      "emissiveColor": 2171169,
+      "scatterColor": 4142108,
+      "scatterLocalScale": 2.04,
+      "diffuseColor": 12040119
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528c3318cdf5c802000009b9",
+    "parentAssetId": "528c3318cdf5c802000009b9",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "model",
+    "name": "Saturn_Model",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "boundingbox": {
+        "max": {
+          "z": 16.1144385,
+          "y": 16.1144385,
+          "x": 16.1144385
+        },
+        "min": {
+          "z": -16.1144385,
+          "y": -16.1144385,
+          "x": -16.1144385
+        }
+      },
+      "selectable": true,
+      "opacity": 1,
+      "receiveShadow": false,
+      "castShadow": false,
+      "position": {
+        "z": 0,
+        "y": 0,
+        "x": 0
+      },
+      "orientation": {
+        "w": 1,
+        "z": 0,
+        "y": 0,
+        "x": 0
+      },
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "geometry": {
+        "rings": 32,
+        "segments": 24,
+        "radius": 16.1144385
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {
+      "528c3319af88fd0200000c5d": true
+    }
+  },
+  {
+    "id": "528c3319af88fd0200000c5d",
+    "parentId": "528c3318cdf5c802000009b9",
+    "parentAssetId": "528c3318cdf5c802000009b9",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "mesh",
+    "name": "New Sphere Mesh",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "boundingbox": {
+        "max": {
+          "z": 16.1144385,
+          "y": 16.1144385,
+          "x": 16.1144385
+        },
+        "min": {
+          "z": -16.1144385,
+          "y": -16.1144385,
+          "x": -16.1144385
+        }
+      },
+      "geometry": {
+        "radius": 16.1144385,
+        "segments": 24,
+        "rings": 32,
+        "type": "Sphere"
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "528c3327cdf5c802000009bb",
+    "prefabObjectId": "528c3318cdf5c802000009b9",
+    "prefabAssetId": "528c3318cdf5c802000009b9",
+    "sourceObjectId": "528c3318cdf5c802000009b9",
+    "sourceAssetId": "528c3318cdf5c802000009b9",
+    "prefabInstanceId": "528c3327cdf5c802000009bb",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "model",
+    "name": "Saturn",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "geometry": {
+        "radius": 16.1144385,
+        "segments": 24,
+        "rings": 32
+      },
+      "castShadow": false,
+      "receiveShadow": false,
+      "opacity": 1,
+      "selectable": true,
+      "visible": true,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "boundingbox": {
+        "min": {
+          "x": -16.1144385,
+          "y": -16.1144385,
+          "z": -16.1144385
+        },
+        "max": {
+          "x": 16.1144385,
+          "y": 16.1144385,
+          "z": 16.1144385
+        }
+      },
+      "center": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "animationInfo": {
+        "assetId": null,
+        "state": "stop",
+        "loop": true,
+        "startTime": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    "resources": [],
+    "components": {
+      "1fb50ca9-1363-4582-b270-668ac566d7cd": {
+        "componentData": {
+          "delta": {
+            "z": 0,
+            "y": 0.1,
+            "x": 0
+          }
+        },
+        "scriptId": "528d80a1559708020000040d",
+        "enabled": true
+      },
+      "6246c1b7-4fea-48fb-b2fd-b98b0910358c": {
+        "scriptId": "528acf24d47d2f0200000247",
+        "componentData": {
+          "outerRadius": 0.0009565,
+          "innerRadius": 0.000475,
+          "ringMaterial": "528ad0d3d47d2f020000024b",
+          "numSegments": 256
+        },
+        "enabled": true
+      }
+    },
+    "componentsOrder": [
+      "6246c1b7-4fea-48fb-b2fd-b98b0910358c",
+      "1fb50ca9-1363-4582-b270-668ac566d7cd"
+    ],
+    "children": {
+      "528c3327cdf5c802000009bc": true,
+      "525c601b254a94020000035a": true
+    }
+  },
+  {
+    "id": "528c3327cdf5c802000009bc",
+    "prefabObjectId": "528c3319af88fd0200000c5d",
+    "prefabAssetId": "528c3318cdf5c802000009b9",
+    "sourceObjectId": "528c3319af88fd0200000c5d",
+    "sourceAssetId": "528c3318cdf5c802000009b9",
+    "prefabInstanceId": "528c3327cdf5c802000009bb",
+    "parentId": "528c3327cdf5c802000009bb",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "mesh",
+    "name": "Saturn Mesh",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "static": true,
+      "material": "528c18c7cdf5c802000008e5",
+      "center": {
+        "z": 0,
+        "y": 0,
+        "x": 0
+      },
+      "visible": true,
+      "boundingbox": {
+        "max": {
+          "z": 16.1144385,
+          "y": 16.1144385,
+          "x": 16.1144385
+        },
+        "min": {
+          "z": -16.1144385,
+          "y": -16.1144385,
+          "x": -16.1144385
+        }
+      },
+      "geometry": {
+        "radius": 16.1144385,
+        "segments": 24,
+        "rings": 32,
+        "type": "Sphere"
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "position": {
+        "z": 0,
+        "y": 0,
+        "x": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "528d3cb155970802000001fe",
+    "parentAssetId": "528d3cb155970802000001fe",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "model",
+    "name": "New Plane",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "boundingbox": {
+        "max": {
+          "z": 10,
+          "y": 6.123031769111886e-16,
+          "x": 15
+        },
+        "min": {
+          "z": -10,
+          "y": -6.123031769111886e-16,
+          "x": -15
+        }
+      },
+      "selectable": true,
+      "opacity": 1,
+      "receiveShadow": false,
+      "castShadow": false,
+      "position": {
+        "z": 0,
+        "y": 0,
+        "x": 0
+      },
+      "orientation": {
+        "w": 1,
+        "z": 0,
+        "y": 0,
+        "x": 0
+      },
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "geometry": {
+        "segmentsY": 1,
+        "segmentsX": 1,
+        "scale": {
+          "y": 20,
+          "x": 30
+        }
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {
+      "528d3cb25597080200000200": true
+    }
+  },
+  {
+    "id": "528d3cb25597080200000200",
+    "parentId": "528d3cb155970802000001fe",
+    "parentAssetId": "528d3cb155970802000001fe",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "mesh",
+    "name": "New Plane Mesh",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "geometry": {
+        "type": "Plane",
+        "segmentsY": 1,
+        "segmentsX": 1,
+        "scale": {
+          "y": 20,
+          "x": 30
+        }
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "528d3d645597080200000209",
+    "parentAssetId": "528d3d645597080200000209",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "LookAt",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "minified": "(function(t,e,i,o,n,a){function h(){}h.prototype=new i.VeroldComponent;h.prototype.editorInit=function(){this.init();var t=this.getEngine();t.on(\"update\",this.update,this)};h.prototype.editorShutdown=function(){var t=this.getEngine();t.off(\"update\",this.update,this);this.shutdown()};h.prototype.init=function(){this.tempVec=new o.Vector3;this.tempMatrix=new o.Matrix4;this.tempQuaternion=new o.Quaternion};h.prototype.update=function(t){var e;if(this.hasThreeData()){e=this.getThreeData();if(this.objectToFace&&this.objectToFace.threeData){var i=this.objectToFace.threeData;this.tempVec.copy(i.position);if(this.respectLocalRotation){e.lookAt(this.tempVec);e.quaternion.multiply(this.veroldEntity.getQuaternion())}else{e.lookAt(this.tempVec)}}}};h.prototype.shutdown=function(){};return h});",
+      "description": "Automatically points an object at another. This can be used for billboarding an object to the camera, making a character look at another, etc.",
+      "attributes": {
+        "respectLocalRotation": {
+          "description": "If toggled, whatever rotation you have already applied to this object will be taken into account.",
+          "default": false,
+          "type": "b"
+        },
+        "objectToFace": {
+          "description": "The object that you want this object to point towards. e.g. for billboarding, this would be the camera used to render the scene.",
+          "filter": null,
+          "type": "object"
+        }
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "template": false,
+    "children": {}
+  },
+  {
+    "id": "528d451845ec6e0200000243",
+    "parentAssetId": "528d451845ec6e0200000243",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "material",
+    "name": "SignMaterial",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "alphaBlendMode": 0,
+      "diffuseTexture": "528d5583ba7a3901040001d2",
+      "depthWrite": false,
+      "colorOpacity": 1,
+      "diffuseColor": 16777215,
+      "fog": false,
+      "Features": {
+        "Emissive": {
+          "SubFeatures": {
+            "Emissive Texture": {
+              "enabled": false
+            }
+          },
+          "enabled": false
+        },
+        "Reflections": {
+          "enabled": false
+        },
+        "Specular": {
+          "SubFeatures": {
+            "Specular Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": false
+        },
+        "Displacement": {
+          "SubFeatures": {
+            "Displacement Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": false
+        },
+        "Normal Map": {
+          "SubFeatures": {
+            "Parallax": {
+              "enabled": false
+            }
+          },
+          "enabled": false
+        },
+        "Rim Lighting": {
+          "enabled": false
+        },
+        "Diffuse Color": {
+          "SubFeatures": {
+            "AO Texture": {
+              "enabled": false
+            },
+            "Diffuse Texture": {
+              "enabled": true
+            }
+          },
+          "enabled": true
+        },
+        "Lighting": {
+          "enabled": false
+        }
+      },
+      "materialType": "Standard"
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528d6aa6fd3a300200000359",
+    "parentAssetId": "528d6aa6fd3a300200000359",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "SaturnsRingsApp",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "attributesOrder": [
+        "camera",
+        "presentations"
+      ],
+      "category": "User Defined",
+      "visible": true,
+      "minified": "(function(e,t,n,i,o,r){function s(){this.presentationInfo=[{cssTriggerElement:\"#MimasTrigger\"},{cssTriggerElement:\"#ShepherdTrigger\"},{cssTriggerElement:\"#EnckeTriggerPanel\"},{cssTriggerElement:\"#ResonancesTriggerPanel\"}]}s.prototype=new n.VeroldComponent;s.prototype.init=function(){this.scene=this.veroldEntity.getParentAsset();var e=this;t.each(this.presentationInfo,function(n,i){$(n.cssTriggerElement).click(function(n){n.preventDefault();var o=e.presentations[i];if(o){var r=t.values(o.getComponentsByScriptName(\"ResultsPresentation\"))[0];if(r){$(\".posterMainPage\").fadeOut(200);r.start(e.camera,function(){e._tweenObjectTo(e.camera.threeData,e.camera.getPosition(),e.camera.getQuaternion(),.5,0,true,true,function(){$(\".posterMainPage\").fadeIn(200)})})}}})},this)};s.prototype.sceneLoaded=function(){$(\"#loading\").fadeOut(1200);$(\"#verold3d\").fadeIn(1200)};s.prototype.shutdown=function(){};s.prototype.keyDown=function(e){var t=this};s.prototype._tweenObjectTo=function(e,t,n,o,s,a,c,p){if(e&&t){var f=0;var u=0;var g=new i.Vector3;var l;g.copy(e.position);if(n){l=new i.Quaternion;l.copy(e.quaternion)}if(o){this.getEngine().on(\"update\",function y(i){f+=i;if(f>o){this.getEngine().off(\"update\",y,this);if(typeof p===\"function\"){p()}}else{u=f/o;if(u<.5&&a||u>.5&&c){u=r.cos(u*r.PI+r.PI)*.5+.5}e.position.copy(g);e.position.lerp(t,u);if(n){if(s){if(f>=s){u=(f-s)/(o-s);if(u<.5&&a||u>.5&&c){u=r.cos(u*r.PI+r.PI)*.5+.5}e.quaternion.copy(l);e.quaternion.slerp(n,u)}}else{e.quaternion.copy(l);e.quaternion.slerp(n,u)}}}},this)}else{e.position.copy(t);if(n){e.quaternion.copy(n)}if(typeof p===\"function\"){p()}}}};return s});",
+      "attributes": {
+        "presentations": {
+          "type": "a",
+          "subType": {
+            "type": "object"
+          },
+          "description": ""
+        },
+        "camera": {
+          "type": "object",
+          "filter": {
+            "camera": true
+          },
+          "description": ""
+        }
+      },
+      "parsedComments": false,
+      "externalDependencies": [
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+      ]
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "528d6b9bfd3a30020000035f",
+    "parentAssetId": "528d6b9bfd3a30020000035f",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "WaypointPlayer",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "attributes": {
+        "delay": {
+          "description": "The number of milliseconds between each waypoint",
+          "default": 2000,
+          "type": "i"
+        },
+        "waypoints": {
+          "description": "List of VeroldObjects",
+          "subType": {
+            "type": "object"
+          },
+          "type": "a"
+        }
+      },
+      "description": "Moves the object through a series of waypoints.",
+      "minified": "(function(t,i,e,o,n,s){var i=t(\"underscore\");function h(){this.index=-1}h.prototype=new e.VeroldComponent;h.prototype.objectLoaded=function(){this.getEvents().on(\"next\",this.moveNext,this);this.getEvents().on(\"previous\",this.movePrevious,this);var t=i.bind(function(){this.moveNext();this.timerId=setTimeout(t,this.delay)},this);this.timerId=setTimeout(t,this.delay)};h.prototype.shutdown=function(){this.getEvents().off(\"next\",this.moveNext,this);this.getEvents().off(\"previous\",this.movePrevious,this);this.clearTimeout(this.timerId)};h.prototype.moveNext=function(){if(this.index<this.waypoints.length-1){this.index++;this._showWaypoint(this.index)}};h.prototype.movePrevious=function(){if(this.index>0){this.index--;this._showWaypoint(this.index)}};h.prototype._showWaypoint=function(t){this._tweenObjectTo(this.getThreeData(),this.waypoints[t].threeData.position,this.waypoints[t].threeData.quaternion,2,true,false,function(){})};h.prototype._tweenObjectTo=function(t,i,e,n,h,p,r){if(t&&i){var f=0;var u=0;var a=new o.Vector3;var c;a.copy(t.position);if(e){c=new o.Quaternion;c.copy(t.quaternion)}if(n){this.getEngine().on(\"update\",function y(o){f+=o;if(f>n){this.getEngine().off(\"update\",y,this);if(typeof r===\"function\"){r()}}else{u=f/n;if(u<.5&&h||u>.5&&p){u=s.cos(u*s.PI+s.PI)*.5+.5}t.position.copy(a);t.position.lerp(i,u);if(e){t.quaternion.copy(c);t.quaternion.slerp(e,u)}}},this)}else{t.position.copy(i);if(e){t.quaternion.copy(e)}if(typeof r===\"function\"){r()}}}};return h});"
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "template": false,
+    "children": {}
+  },
+  {
+    "id": "528d6e04fd3a300200000373",
+    "prefabInstanceId": "528d6e04fd3a300200000373",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "node",
+    "name": "SaturnsRingsApp",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "visible": true,
+      "geometry": {},
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      }
+    },
+    "resources": [],
+    "components": {
+      "baff19ad-b590-4c62-9730-1d7c8293d6be": {
+        "enabled": true,
+        "scriptId": "528d6aa6fd3a300200000359",
+        "componentData": {
+          "presentations": [
+            "528eb18ab7c7e102000005df",
+            "528d76eb45ec6e02000003f3",
+            "528faa9020a91002000000c3",
+            "528fab2eaebabd020000009e"
+          ],
+          "camera": "525c57c6e7c503020000034e",
+          "undefined": []
+        }
+      }
+    },
+    "componentsOrder": [
+      "baff19ad-b590-4c62-9730-1d7c8293d6be",
+      "daeceb35-dd36-46e0-b204-f81acc8ef5be"
+    ],
+    "children": {}
+  },
+  {
+    "id": "528d71c055970802000003dc",
+    "parentAssetId": "528d71c055970802000003dc",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "Label2D",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "minified": "(function(e,t,o,r,n,i){var a=e(\"jquery\"),s=new r.Vector3;function p(){}p.prototype=new o.VeroldComponent;p.prototype.objectCreated=function(){var e=this;this.getScene().traverse(function(t){if(t.threeData instanceof r.PerspectiveCamera){e.camera=t.threeData}});this.projector=new r.Projector;this.$el=a(\"<div>\");this.$el.css({position:\"absolute\",left:0,top:0,background:\"rgba(0,0,0, 0.2)\",padding:\"10px\",margin:\"5px\",\"border-radius\":\"5px\",color:\"#fff\",\"font-family\":\"tahoma, verdana, sans\"});this.$el.html(this.content||\"add content here\");a(this.getRenderer().domElement).parent().append(this.$el)};p.prototype.shutdown=function(){this.$el.remove()};p.prototype.update=function(){if(this.veroldEntity.threeData){var e=this.getThreeData().position.clone(),t=this.worldToScreen(e);this.$el.css({left:t.x+\"px\",top:t.y+\"px\"})}};p.prototype.worldToScreen=function(e){var t,o=this.getRenderer().domElement.width/2,r=this.getRenderer().domElement.height/2;s.copy(e);t=this.projector.projectVector(s,this.camera);return{x:i.round(t.x*o+o),y:i.round(-t.y*r+r)}};return p});",
+      "attributes": {
+        "content": {
+          "type": "s",
+          "default": "add content here",
+          "description": "html content for label"
+        }
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "template": false,
+    "children": {}
+  },
+  {
+    "id": "528d71c055970802000003dd",
+    "parentAssetId": "528d71c055970802000003dd",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "Text2D",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "attributes": {
+        "y": {
+          "default": 0,
+          "description": "vertical position in screen space between 0.0(top) and 1.0(bottom)",
+          "type": "f"
+        },
+        "x": {
+          "default": 0,
+          "description": "horizontal position in screen space between 0.0(left) and 1.0(right)",
+          "type": "f"
+        },
+        "content": {
+          "default": "content",
+          "description": "The actual text",
+          "type": "s"
+        },
+        "css": {
+          "default": {
+            "color": "white",
+            "font-size": "48pt",
+            "font-family": "tahoma, verdana, sans-serif",
+            "top": 0,
+            "left": 0,
+            "position": "absolute"
+          },
+          "description": "CSS for the text",
+          "type": "json"
+        }
+      },
+      "minified": "(function(t,e,n,o,i,s){var h=t(\"jquery\");function r(){}r.prototype=new n.VeroldComponent;r.prototype.objectCreated=function(){this.$parent=h(this.getRenderer().domElement).parent();this.projector=new o.Projector;this.$el=h(\"<div>\");this.$el.css({position:\"absolute\",left:this.x*this.$parent.width()||0,top:this.y*this.$parent.height()||0});this.$el.html(this.content||\"add content here\");this.$el.css(this.css);this.$parent.append(this.$el)};r.prototype.shutdown=function(){this.$el.remove()};return r});"
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "template": false,
+    "children": {}
+  },
+  {
+    "id": "528d739555970802000003e9",
+    "parentAssetId": "528d739555970802000003e9",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "ResultsPresentation",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "attributesOrder": [
+        "eccDimFactor",
+        "rotationValues",
+        "stopRotation",
+        "eccColour",
+        "eccOffset",
+        "viewPoint",
+        "animationName",
+        "cssInfoElement",
+        "rotationDelay",
+        "animationTime"
+      ],
+      "category": "User Defined",
+      "parsedComments": false,
+      "visible": true,
+      "minified": "(function(t,n,i,e,o,a){function r(){}r.prototype=new i.VeroldComponent;r.prototype.init=function(){};r.prototype.objectCreated=function(){};r.prototype.start=function(t,n){function i(){e.getEngine().globalEvents.trigger(\"parseAnimation\",function(){e.getEngine().globalEvents.trigger(\"fadeRings\",1,.4);$(\"#time\").fadeIn(200);if(e.stopRotation){e.getEngine().globalEvents.trigger(\"stopRotation\");e.getEngine().globalEvents.trigger(\"setRotation\",e.rotationValues)}e.getEngine().globalEvents.trigger(\"playAnimation\");e.getEngine().globalEvents.trigger(\"setOrbitRenderParams\",e.eccDimFactor,e.eccOffset,e.eccColour)})}var e=this;this.finishedCallback=n;var o=false;if(this.viewPoint&&this.animationName){this.getEngine().globalEvents.trigger(\"loadAnimation\",this.animationName,function(){if(o){i()}else{o=true}});var a=e.viewPoint.threeData.position;var r=e.viewPoint.threeData.quaternion;e._tweenObjectTo(t.threeData,a,r,this.animationTime,this.rotationDelay,true,true,function(){$(e.cssInfoElement).fadeIn(200);$(\"#BackButton\").fadeIn(200);e.onBackButtonBinding=$.proxy(e.end,e);$(\"#BackButton\").on(\"click\",e.onBackButtonBinding);if(o){i()}else{o=true}})}};r.prototype.end=function(t){t.preventDefault();$(\"#BackButton\").off(\"click\",this.onBackButtonBinding);this.getEngine().globalEvents.trigger(\"stopAnimation\");if(this.stopRotation){this.getEngine().globalEvents.trigger(\"startRotation\")}$(this.cssInfoElement).fadeOut(200);$(\"#time\").fadeOut(200);this.getEngine().globalEvents.trigger(\"fadeRings\",2,1);$(\"#BackButton\").fadeOut(200);if(this.finishedCallback){this.finishedCallback()}};r.prototype._tweenObjectTo=function(t,n,i,o,r,s,g,f){if(t&&n){var c=0;var l=0;var u=new e.Vector3;var p;u.copy(t.position);if(i){p=new e.Quaternion;p.copy(t.quaternion)}if(o){this.getEngine().on(\"update\",function h(e){c+=e;if(c>o){this.getEngine().off(\"update\",h,this);if(typeof f===\"function\"){f()}}else{l=c/o;if(l<.5&&s||l>.5&&g){l=a.cos(l*a.PI+a.PI)*.5+.5}t.position.copy(u);t.position.lerp(n,l);if(i){var E=l;if(r){if(c>=r){l=(c-r)/(o-r);if(l<.5&&s||l>.5&&g){l=a.cos(l*a.PI+a.PI)*.5+.5}t.quaternion.copy(p);t.quaternion.slerp(i,l)}}else{t.quaternion.copy(p);t.quaternion.slerp(i,l)}}}},this)}else{t.position.copy(n);if(i){t.quaternion.copy(i)}if(typeof f===\"function\"){f()}}}};r.prototype.shutdown=function(){};return r});",
+      "attributes": {
+        "animationTime": {
+          "description": "",
+          "default": 5,
+          "max": 10,
+          "min": 0,
+          "type": "f"
+        },
+        "rotationDelay": {
+          "description": "",
+          "default": 1,
+          "max": 10,
+          "min": 0,
+          "type": "f"
+        },
+        "cssInfoElement": {
+          "description": "",
+          "default": "#MimasInformation",
+          "type": "s"
+        },
+        "animationName": {
+          "description": "",
+          "default": "",
+          "type": "s"
+        },
+        "viewPoint": {
+          "description": "",
+          "type": "object"
+        },
+        "eccOffset": {
+          "type": "f",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "description": ""
+        },
+        "eccColour": {
+          "type": "c",
+          "default": 0,
+          "description": ""
+        },
+        "stopRotation": {
+          "type": "b",
+          "default": false,
+          "description": ""
+        },
+        "rotationValues": {
+          "type": "v3",
+          "min": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "max": {
+            "x": 360,
+            "y": 360,
+            "z": 360
+          },
+          "default": {
+            "x": 0,
+            "y": 11.6,
+            "z": 0
+          },
+          "description": "The fixed rotation values of Saturn to use during the animation..."
+        },
+        "eccDimFactor": {
+          "type": "f",
+          "min": 0,
+          "max": 100000,
+          "default": 1000,
+          "description": ""
+        }
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "528d76eb45ec6e02000003f3",
+    "prefabInstanceId": "528d76eb45ec6e02000003f3",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "node",
+    "name": "ShepherdPresentation",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "orientation": {},
+      "position": {},
+      "visible": true,
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "geometry": {}
+    },
+    "resources": [],
+    "components": {
+      "d3d4ee4f-fbd6-4bc0-9cb2-48981ea1f544": {
+        "enabled": true,
+        "scriptId": "528d739555970802000003e9",
+        "componentData": {
+          "eccDimFactor": 500,
+          "eccOffset": 0.001782,
+          "animationName": "Shepherd 25 Years",
+          "cssInfoElement": "#ShepherdInformation",
+          "cssElement": "#MimasTrigger",
+          "rotationDelay": 3,
+          "viewPoint": "528ee4a33b07660200000798",
+          "rotationValues": {
+            "z": 0,
+            "y": 11.6,
+            "x": 0
+          },
+          "stopRotation": false,
+          "eccColour": 0,
+          "animationTime": 5
+        }
+      }
+    },
+    "componentsOrder": [
+      "d3d4ee4f-fbd6-4bc0-9cb2-48981ea1f544"
+    ],
+    "children": {
+      "528ee4a33b07660200000798": true
+    }
+  },
+  {
+    "id": "528d80a1559708020000040d",
+    "parentAssetId": "528d80a1559708020000040d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "Rotate",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "minified": "(function(t,e,i,n,o,a){var s=new n.Vector3,h=new n.Euler;function r(){}r.prototype=new i.VeroldComponent;r.prototype.objectCreated=function(){this.getEngine().globalEvents.on(\"stopRotation\",this.stop,this);this.getEngine().globalEvents.on(\"startRotation\",this.start,this);this.getEngine().globalEvents.on(\"setRotation\",this.setRotation,this);this.active=true;this.delta=new n.Vector3(this.delta.x,this.delta.y,this.delta.z);this.angle=this.delta.clone();this.angle.applyQuaternion(this.getThreeData().quaternion)};r.prototype.update=function(t){if(this.getThreeData()&&this.active){s.copy(this.delta).multiplyScalar(t);this.angle.add(s);h.set(this.angle.x,this.angle.y,this.angle.z);this.getThreeData().quaternion.setFromEuler(h)}};r.prototype.stop=function(){this.active=false};r.prototype.start=function(){this.active=true};r.prototype.setRotation=function(t){h.set(t.x,t.y,t.z);this.getThreeData().quaternion.setFromEuler(h)};return r});",
+      "description": "Simple script which rotates an object by the specified angle delta.",
+      "attributes": {
+        "delta": {
+          "description": "the angle delta per second in radians",
+          "default": {
+            "z": -0.1,
+            "y": 1,
+            "x": 0.5
+          },
+          "type": "v3"
+        }
+      }
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "template": false,
+    "children": {}
+  },
+  {
+    "id": "528e80c3b7c7e102000004af",
+    "parentAssetId": "528e80c3b7c7e102000004af",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "script",
+    "name": "BindEventExample",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "minified": "(function(t,n,e,o,i,r){var f=t(\"jquery\");function a(){}a.prototype=new e.VeroldComponent;a.prototype.init=function(){f(\"#eventTrigger\").click(function(t){t.preventDefault()});f(\"#trigger-2\").click(function(t){t.preventDefault();f(\".information\").fadeOut(200,function(){f(\"#information-2\").fadeIn(200)})});f(\"#trigger-3\").click(function(t){t.preventDefault();f(\".information\").fadeOut(200,function(){f(\"#information-3\").fadeIn(200)})})};a.prototype.objectCreated=function(){};a.prototype.update=function(t){var n;if(this.hasThreeData()){n=this.getThreeData()}};a.prototype.shutdown=function(){};return a});"
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "528e9cc363dcc6f31e001996",
+    "parentAssetId": "528e9cc363dcc6f31e001996",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Mimas-jpl-nasa",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "6892a71a5044f5c2590353f064b4b56a",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Mimas-jpl-nasa-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 11398,
+        "contentLengthIdentity": 11398,
+        "_id": "54db8f957cd7b08718e78d61"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Mimas-jpl-nasa-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 11398,
+        "contentLengthIdentity": 11398,
+        "_id": "54db8f957cd7b08718e78d62"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Mimas-jpl-nasa-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 20207,
+        "contentLengthIdentity": 43832,
+        "_id": "54db8f957cd7b08718e78d63"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Mimas-jpl-nasa-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 20211,
+        "contentLengthIdentity": 43832,
+        "_id": "54db8f957cd7b08718e78d64"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528eb18ab7c7e102000005df",
+    "prefabInstanceId": "528eb18ab7c7e102000005df",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "node",
+    "name": "MimasPresentation",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "orientation": {},
+      "visible": true,
+      "position": {
+        "z": 0,
+        "y": 0,
+        "x": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    "resources": [],
+    "components": {
+      "d3d4ee4f-fbd6-4bc0-9cb2-48981ea1f544": {
+        "componentData": {
+          "cssInfoElement": "#MimasInformation",
+          "rotationDelay": 1,
+          "animationTime": 5,
+          "rotationValues": {
+            "z": 0,
+            "y": 0,
+            "x": 0
+          },
+          "stopRotation": true,
+          "eccDimFactor": 500,
+          "eccOffset": 0.001782,
+          "eccColour": 16711935,
+          "animationName": "Mimas 2:1",
+          "cssElement": "#MimasTrigger",
+          "viewPoint": "528eb4c63b076602000006e9",
+          "ccsInfoElement": "#MimasInformation"
+        },
+        "scriptId": "528d739555970802000003e9",
+        "enabled": true
+      }
+    },
+    "componentsOrder": [
+      "d3d4ee4f-fbd6-4bc0-9cb2-48981ea1f544"
+    ],
+    "children": {
+      "528eb4c63b076602000006e9": true
+    }
+  },
+  {
+    "id": "528ebb2563dcc6f31e001a5b",
+    "parentAssetId": "528ebb2563dcc6f31e001a5b",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Shepherds-Wikipedia",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "e354887f38e7dd96444e623bdc3fbb93",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Shepherds-Wikipedia-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 6108,
+        "contentLengthIdentity": 6108,
+        "_id": "54db8f957cd7b08718e78d69"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Shepherds-Wikipedia-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 6108,
+        "contentLengthIdentity": 6108,
+        "_id": "54db8f957cd7b08718e78d6a"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Shepherds-Wikipedia-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 13295,
+        "contentLengthIdentity": 43832,
+        "_id": "54db8f957cd7b08718e78d6b"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Shepherds-Wikipedia-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 13299,
+        "contentLengthIdentity": 43832,
+        "_id": "54db8f957cd7b08718e78d6c"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528f609f0b04fd3d04000320",
+    "parentAssetId": "528f609f0b04fd3d04000320",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Shepherd25years",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "dfe7feb24f3bae4917e85a1977bd0eee",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Shepherd25years-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 112287,
+        "contentLengthIdentity": 112287,
+        "_id": "54db8f957cd7b08718e78de9"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Shepherd25years-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 112287,
+        "contentLengthIdentity": 112287,
+        "_id": "54db8f957cd7b08718e78dea"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Shepherd25years-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 75743,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f957cd7b08718e78deb"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Shepherd25years-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 75747,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f957cd7b08718e78dec"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528f7fe7a5bc4e691800000a",
+    "parentAssetId": "528f7fe7a5bc4e691800000a",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Left-Arrow",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "91df66b9fa132c7a278c16a474ecaa15",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgba",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Left-Arrow-tex.png",
+        "contentType": "image/png",
+        "contentLength": 39868,
+        "contentLengthIdentity": 39868,
+        "_id": "54db8f957cd7b08718e78df5"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgba",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Left-Arrow-low.png",
+        "contentType": "image/png",
+        "contentLength": 39868,
+        "contentLengthIdentity": 39868,
+        "_id": "54db8f957cd7b08718e78df6"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgba",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Left-Arrow-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 19246,
+        "contentLengthIdentity": 87536,
+        "_id": "54db8f957cd7b08718e78df7"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgba",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Left-Arrow-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 19250,
+        "contentLengthIdentity": 87536,
+        "_id": "54db8f957cd7b08718e78df8"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528fa48259d67ba81d00006f",
+    "parentAssetId": "528fa48259d67ba81d00006f",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Encke_Division",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "8723f6912d3f4a4155b5c6ea786871de",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Encke_Division-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 11563,
+        "contentLengthIdentity": 11563,
+        "_id": "54db8f957cd7b08718e78e7d"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Encke_Division-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 11563,
+        "contentLengthIdentity": 11563,
+        "_id": "54db8f957cd7b08718e78e7e"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Encke_Division-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 26130,
+        "contentLengthIdentity": 43832,
+        "_id": "54db8f957cd7b08718e78e7f"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "Encke_Division-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 26134,
+        "contentLengthIdentity": 43832,
+        "_id": "54db8f957cd7b08718e78e80"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528fa63f59d67ba81d000070",
+    "parentAssetId": "528fa63f59d67ba81d000070",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Saturn_A_ring_spiral_density_waves",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "a7bb8feed293351776ef5b9633c5e34b",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 1024
+        },
+        "path": "Saturn_A_ring_spiral_density_waves-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 227464,
+        "contentLengthIdentity": 227464,
+        "_id": "54db8f957cd7b08718e78e81"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 1024
+        },
+        "path": "Saturn_A_ring_spiral_density_waves-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 227464,
+        "contentLengthIdentity": 227464,
+        "_id": "54db8f957cd7b08718e78e82"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 1024
+        },
+        "path": "Saturn_A_ring_spiral_density_waves-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 448229,
+        "contentLengthIdentity": 699192,
+        "_id": "54db8f957cd7b08718e78e83"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 1024,
+          "width": 1024
+        },
+        "path": "Saturn_A_ring_spiral_density_waves-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 448233,
+        "contentLengthIdentity": 699192,
+        "_id": "54db8f957cd7b08718e78e84"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "528faa9020a91002000000c3",
+    "prefabInstanceId": "528faa9020a91002000000c3",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "node",
+    "name": "EnckePresentation",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "orientation": {},
+      "visible": true,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    "resources": [],
+    "components": {
+      "d3d4ee4f-fbd6-4bc0-9cb2-48981ea1f544": {
+        "componentData": {
+          "animationTime": 5,
+          "rotationValues": {
+            "z": 0,
+            "y": 2.5,
+            "x": 0
+          },
+          "stopRotation": true,
+          "eccDimFactor": 0,
+          "eccColour": 392192,
+          "eccOffset": 0.001782,
+          "cssInfoElement": "#EnckeInformation",
+          "cssElement": "#MimasTrigger",
+          "ccsInfoElement": "#MimasInformation",
+          "animationName": "Encke Gap",
+          "viewPoint": "528faa9020a91002000000c4",
+          "rotationDelay": 2
+        },
+        "scriptId": "528d739555970802000003e9",
+        "enabled": true
+      }
+    },
+    "componentsOrder": [
+      "d3d4ee4f-fbd6-4bc0-9cb2-48981ea1f544"
+    ],
+    "children": {
+      "528faa9020a91002000000c4": true
+    }
+  },
+  {
+    "id": "528fab2eaebabd020000009e",
+    "prefabInstanceId": "528fab2eaebabd020000009e",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "node",
+    "name": "ResonancePresentation",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "orientation": {},
+      "visible": true,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    "resources": [],
+    "components": {
+      "d3d4ee4f-fbd6-4bc0-9cb2-48981ea1f544": {
+        "componentData": {
+          "animationTime": 5,
+          "rotationValues": {
+            "z": 0,
+            "y": 11.6,
+            "x": 0
+          },
+          "stopRotation": false,
+          "eccDimFactor": 20000,
+          "eccOffset": 0.001782,
+          "eccColour": 16711935,
+          "animationName": "Resonances2",
+          "cssInfoElement": "#ResonancesInformation",
+          "cssElement": "#MimasTrigger",
+          "viewPoint": "528fab2eaebabd020000009f",
+          "ccsInfoElement": "#MimasInformation",
+          "rotationDelay": 2
+        },
+        "scriptId": "528d739555970802000003e9",
+        "enabled": true
+      }
+    },
+    "componentsOrder": [
+      "d3d4ee4f-fbd6-4bc0-9cb2-48981ea1f544"
+    ],
+    "children": {
+      "528fab2eaebabd020000009f": true
+    }
+  },
+  {
+    "id": "528fda4e59d67ba81d000181",
+    "parentAssetId": "528fda4e59d67ba81d000181",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Encke Gap and Ringlet",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "27b3a8d520c64fd28d0ec0abb6f259cf",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Encke+Gap+and+Ringlet-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 108929,
+        "contentLengthIdentity": 108929,
+        "_id": "54db8f967cd7b08718e78e95"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Encke+Gap+and+Ringlet-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 108929,
+        "contentLengthIdentity": 108929,
+        "_id": "54db8f967cd7b08718e78e96"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Encke+Gap+and+Ringlet-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 78904,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78e97"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Encke+Gap+and+Ringlet-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 78908,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78e98"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "5290c7d220cd854704000153",
+    "parentAssetId": "5290c7d220cd854704000153",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "P&PResonances;",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "117a51d0c688e0ab4088b13980cbd63d",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 512
+        },
+        "path": "P+PResonances-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 69730,
+        "contentLengthIdentity": 69730,
+        "_id": "54db8f967cd7b08718e78f4d"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 512
+        },
+        "path": "P+PResonances-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 69730,
+        "contentLengthIdentity": 69730,
+        "_id": "54db8f967cd7b08718e78f4e"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 512
+        },
+        "path": "P+PResonances-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 109376,
+        "contentLengthIdentity": 174904,
+        "_id": "54db8f967cd7b08718e78f4f"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 512
+        },
+        "path": "P+PResonances-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 109380,
+        "contentLengthIdentity": 174904,
+        "_id": "54db8f967cd7b08718e78f50"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "5290c91020cd854704000154",
+    "parentAssetId": "5290c91020cd854704000154",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "P&PResonances2;",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "f94f91f10289f08ec96bc269abadba5f",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "P+PResonances2-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 27032,
+        "contentLengthIdentity": 27032,
+        "_id": "54db8f967cd7b08718e78f51"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "P+PResonances2-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 27032,
+        "contentLengthIdentity": 27032,
+        "_id": "54db8f967cd7b08718e78f52"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "P+PResonances2-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 25933,
+        "contentLengthIdentity": 43832,
+        "_id": "54db8f967cd7b08718e78f53"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 256,
+          "width": 256
+        },
+        "path": "P+PResonances2-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 25937,
+        "contentLengthIdentity": 43832,
+        "_id": "54db8f967cd7b08718e78f54"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "5290ce6520cd854704000155",
+    "parentAssetId": "5290ce6520cd854704000155",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Shepherd 150000 years",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "f588daf23240d8e39d2b20a66ead685c",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Shepherd+150000+years-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 152548,
+        "contentLengthIdentity": 152548,
+        "_id": "54db8f967cd7b08718e78f55"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Shepherd+150000+years-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 152548,
+        "contentLengthIdentity": 152548,
+        "_id": "54db8f967cd7b08718e78f56"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Shepherd+150000+years-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 140151,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78f57"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Shepherd+150000+years-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 140155,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78f58"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "5290f3c520cd85470400035f",
+    "parentAssetId": "5290f3c520cd85470400035f",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "P&PResonancesPlot;",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "ecedf5d63edb891813fb9fbb1ecdef36",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "P+PResonancesPlot-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 37395,
+        "contentLengthIdentity": 37395,
+        "_id": "54db8f967cd7b08718e78f81"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "P+PResonancesPlot-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 37395,
+        "contentLengthIdentity": 37395,
+        "_id": "54db8f967cd7b08718e78f82"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "P+PResonancesPlot-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 20017,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78f83"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "P+PResonancesPlot-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 20021,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78f84"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "5290f3f720cd854704000361",
+    "parentAssetId": "5290f3f720cd854704000361",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "P&P Close Resonances Overlay2",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "4634add56326823094f5ff852af8cea5",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "P+P+Close+Resonances+Overlay2-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 132152,
+        "contentLengthIdentity": 132152,
+        "_id": "54db8f967cd7b08718e78f85"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "P+P+Close+Resonances+Overlay2-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 132152,
+        "contentLengthIdentity": 132152,
+        "_id": "54db8f967cd7b08718e78f86"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "P+P+Close+Resonances+Overlay2-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 180825,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78f87"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "P+P+Close+Resonances+Overlay2-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 180829,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78f88"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "52910c8b20cd8547040003d4",
+    "parentAssetId": "52910c8b20cd8547040003d4",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Mimas2-1",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "453e0f9ca30d61edd10b779659a874dc",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Mimas2-1-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 43252,
+        "contentLengthIdentity": 43252,
+        "_id": "54db8f967cd7b08718e78fb5"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Mimas2-1-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 43252,
+        "contentLengthIdentity": 43252,
+        "_id": "54db8f967cd7b08718e78fb6"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Mimas2-1-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 23659,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78fb7"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Mimas2-1-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 23663,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78fb8"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "52910fe220cd8547040003e8",
+    "parentAssetId": "52910fe220cd8547040003e8",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "texture2D",
+    "name": "Pan-90 years2",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "folder": "d512b2b9fb2678ed03d539ae7efb8383",
+    "payload": {
+      "name": "Texture_With_No_Name",
+      "uMapping": "Wrap",
+      "vMapping": "Wrap",
+      "filtering": "Trilinear",
+      "anisotropy": 1,
+      "flipY": true,
+      "preferCompression": false,
+      "isNormalMap": false,
+      "generateMipmaps": true
+    },
+    "resources": [
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Pan-90+years2-tex.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 80061,
+        "contentLengthIdentity": 80061,
+        "_id": "54db8f967cd7b08718e78fcd"
+      },
+      {
+        "properties": {
+          "compression": "none",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Pan-90+years2-low.jpg",
+        "contentType": "image/jpeg",
+        "contentLength": 80061,
+        "contentLengthIdentity": 80061,
+        "_id": "54db8f967cd7b08718e78fce"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Pan-90+years2-dxt.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 41785,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78fcf"
+      },
+      {
+        "properties": {
+          "compression": "dxt",
+          "pixelFormat": "rgb",
+          "height": 512,
+          "width": 1024
+        },
+        "path": "Pan-90+years2-dxt-low.dds",
+        "contentType": "image/x-dds",
+        "contentLength": 41789,
+        "contentLengthIdentity": 349672,
+        "_id": "54db8f967cd7b08718e78fd0"
+      }
+    ],
+    "components": {},
+    "componentsOrder": [],
+    "hasPreview": true,
+    "children": {}
+  },
+  {
+    "id": "5325bd2ebf4b7f02000002be",
+    "parentAssetId": "5325bd2ebf4b7f02000002be",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "folder",
+    "name": "Orbit Utils",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "dateSynchronized": "2014-03-16T15:03:59.914Z",
+      "packageId": "5325bd5e4b75d302000003a1",
+      "export": true,
+      "import": false
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "53bd88b9c22b36672b000107",
+    "parentAssetId": "53bd88b9c22b36672b000107",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "css",
+    "name": "Application CSS",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "visible": true,
+      "css": "/* Application */\nbody, html, canvas, #verold3d {\n  margin: 0 auto;\n  padding: 0;\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\n\nbody {\n  background: #000000;\n  /*background-image:url('http://assets.verold.com/production/images/verold-studio-scene-logo.svg');*/\n  background-repeat:no-repeat;\n  background-attachment:fixed;\n  background-position:center;\n}\n\n/* #verold3d {\n  display: none;\n} */\n\n.loading {\n  position: absolute;\n  font-family: tahoma, sans-serif;\n  font-size: 20pt;\n  color: #fff;\n  left: 40%;\n  top: 40%;\n  width: 20%;\n}\n\n.time {\n  position: absolute;\n  background-color: rgba(51,51,51,0.8);\n  border-radius: 5px;\n  border: 3px solid #fff;\n  color: #fff;\n  \n  font-family: tahoma, sans-serif;\n  font-size: 10pt;\n  width: 15%;\n  overflow: hidden;\n  padding: 0px 20px;\n  right: 40%;\n  top: 5%;\n  display: none;\n}\n\n.posterMainPage {\n  position: absolute;\n  background-color: rgba(51,51,51,0.8);\n  border-radius: 5px;\n  border: 3px solid #fff;\n  color: #fff;\n  \n  font-family: tahoma, sans-serif;\n  font-size: 12pt;\n  width: 15%;\n  overflow: hidden;\n  padding: 0px 20px;\n}\n\n.posterMainPage h1 {\n  font-size: 18pt;\n  text-shadow: 2px 1px #111;\n}\n\n.posterMainPage h2 {\n  font-size: 16pt;\n}\n\n#posterMainPage {\n  right: 5%;\n  top: 5%;\n  width: 20%;\n  bottom: 5%;\n  \n  overflow-y: auto;\n}\n\n.posterMainPage img {\n  width: 100%;\n  \n}\n\n#ResonancesTriggerPanel {\n  left: 5%;\n  top: 5%;\n  height: 30%;\n  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/f94f91f10289f08ec96bc269abadba5f/P+PResonances2-low.jpg);\n  background-size: 100%;\n}\n\n#MimasTriggerPanel {\n  left: 50%;\n  top: 5%;\n  height: 30%;\n  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg) top left no-repeat;\n}\n\n#ShepherdTriggerPanel {\n  left: 5%;\n  bottom: 5%;\n  height: 30%;\n  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg) top left no-repeat;\n  background-size: cover;\n}\n\n#EnckeTriggerPanel {\n  left: 50%;\n  bottom: 5%;\n  height: 30%;\n  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg);\n  background-size: cover;\n}\n\n\n\n.information {\n  position: absolute;\n  background-color: rgba(51,51,51,0.8);\n  border-radius: 5px;\n  border: 3px solid #fff;\n  color: #fff;\n  font-family: tahoma, sans-serif;\n  font-size: 12pt;\n  width: 25%;\n  height: 30%;\n  overflow-y: auto;\n  display: none;\n  padding: 20px;\n}\n\n.imformation h1 {\n  font-size: 18pt;\n}\n\n.information img {\n  width: 100%;\n  height: 300px;\n}\n\n#BackButton {\n  left: 5%;\n  top: 5%;\n  width: 100px;\n  height: 100px;\n  overflow: hidden;\n}\n\n#BackButton img {\n  height: 100%;\n  width: 100%;\n}\n\n#MimasInformation {\n  right: 5%;\n  top: 5%;\n  height: 80%;\n}\n\n#ShepherdInformation {\n  right: 5%;\n  top: 5%;\n  height: 80%;\n}\n\n#EnckeInformation {\n  right: 5%;\n  top: 5%;\n  height: 80%;\n}\n\n#ResonancesInformation {\n  right: 5%;\n  top: 5%;\n  height: 80%;\n}\n\n/*\n.trigger {\n  position: absolute;\n}\n\n#trigger-1 {\n  left: 10px;\n  top: 30px;\n}\n\n#trigger-2 {\n  left: 10px;\n  top: 50px;\n}\n\n#trigger-3 {\n  left: 10px;\n  top: 80px;\n}\n*/\n\n\n\n/* NProgress */\n#nprogress { pointer-events: none; }\n#nprogress .bar { background: #009BDF; position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 3px; }\n#nprogress .peg { display: block; position: absolute; right: 0px; width: 100px; height: 100%; box-shadow: 0 0 10px #009BDF, 0 0 5px #009BDF; opacity: 1.0; -webkit-transform: rotate(3deg) translate(0px, -4px); -ms-transform: rotate(3deg) translate(0px, -4px); transform: rotate(3deg) translate(0px, -4px); }\n\n/* Remove these to get rid of the spinner */\n#nprogress .spinner { display: block; position: fixed; z-index: 100; top: 15px; right: 15px; }\n#nprogress .spinner-icon { width: 18px; height: 18px; box-sizing: border-box; border: solid 2px transparent; border-top-color: #009BDF; border-left-color: #009BDF; border-radius: 50%; -webkit-animation: nprogress-spinner 400ms linear infinite; animation: nprogress-spinner 400ms linear infinite; }\n@-webkit-keyframes nprogress-spinner { 0%   { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); }\n@keyframes nprogress-spinner { 0%   { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }\n"
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "53bd88b9c22b36672b000108",
+    "parentAssetId": "53bd88b9c22b36672b000108",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "html",
+    "name": "Application HTML",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "visible": true,
+      "html": "<div id=\"verold3d\"></div>\n\n<div class=\"loading\" id=\"loading\">\n  <h1>Loading...</h1>\n</div>\n\n<div class=\"time\" id=\"time\">\n  <h1>Time: ...</h1>\n</div>\n\n<a href=\"#\" id=\"ResonancesTrigger\">\n<div class=\"posterMainPage\" id=\"ResonancesTriggerPanel\">\n  <h1>1. Resonances</h1>\n  <!--<img src=\"http://assets.verold.com/entities/525c57c6e7c503020000034a/a7bb8feed293351776ef5b9633c5e34b/Saturn_A_ring_spiral_density_waves-low.jpg\">-->\n</div>\n</a>\n\n<div class=\"information\" id=\"ResonancesInformation\">\n  <h1>Resonances</h1>\n  <p>\n  Even for a satellite outside of the ring system, where the gravitational acceleration exerted on the ring particles is vanishingly small, clear effects can still be induced in the ring. A satellite can do this through what are called mean-motion orbital resonances. A resonance occurs when the orbital periods of two or more bodies are integer-ratios of each other (e.g. a 3:1 resonance is when one body completes three orbits in exactly the same time as the second completes one). We refer to the portion of the resonance in the longitudinal direction as a \"Lindblad\" resonance (named after astronomer, Bertil Lindblad, who initially described how these resonances generate spiral density waves inside of galaxies) as opposed to the resonant effects that act perpendicular or radially to the ring plane. Lindblad resonances play the most important role in clearing and confining structure in ring systems (de Pater & Lissauer 2010).\n  </p>\n  <p>\n  The strongest Lindblad resonances occur when the orbital ratio between the two bodies has a difference of 1 (e.g. 2:1, 3:2, 4:3, etc.) (de Pater & Lissauer 2010). These resonances are called “first-order” and provide the most coherent forcing because every conjunction occurs at the same location in the orbit of the two bodies. This allows the gravitational disturbance from every encounter to build on each other without being disrupted by forcing in other directions.\n  </p>\n  <p>\n  Ring particles moving past the satellite on an inner orbit (in an \"inner Lindblad resonance, or ILR) will give up some of their momentum to the satellite, slowing them down ever-so-slightly and changing the eccentricity of their orbit. Gaps can be cleared in the rings as the particle's new eccentricity brings it into contact with other less perturbed particles in different orbits. Crossing these orbits leads to inevitable collisions which tend to damp out the eccentricities so that the particle’s mean-motion matches the overall flow of the surrounding particles. This can result in a gap at the location of the resonance if the eccentricity-pumping is strong enough to resist the natural viscous spreading of the ring material (Goldreich & Tremaine 1982).\n  </p>\n  <p>\n    In the animation on the left, we can see the orbits of 300 TP's in the outer A Ring, along with the moons Prometheus (<font color=\"red\">red</font>) and Pandora (<font color=\"green\">green</font>). Over the 10 years of the simulation, the TP's at various ILR's with the two moons have their eccentricities subtly changed. The amount of change is highlighted in pink in the animation and can be clearly seen in the following image where simulation results of eccentricity change are overlaid on a photograph of the outer A Ring. Note that the image is from a simulation with many more particles and a slightly different range than the animation show.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/4634add56326823094f5ff852af8cea5/P+P+Close+Resonances+Overlay2-low.jpg\">\n</div>\n\n<a href=\"#\" id=\"MimasTrigger\">\n<div class=\"posterMainPage\" id=\"MimasTriggerPanel\">\n  <h1>2. Cassini Division</h1>\n  <!--<img src=\"http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg\">-->\n</div>\n</a>\n\n<div class=\"information\" id=\"MimasInformation\">\n  <h1>Mimas and the Cassini Division</h1>\n  <p>\n    Mimas, the innermost, spherical moon of Saturn, is widely considered to be responsible for clearing the Cassini Division in Saturn’s rings via the 2:1 ILR (Freedman, Geller & Kaufmann 2011) (de Pater & Lissauer 2010) (Goldreich & Tremaine 1979). Because of the resonant forcing of the ring particles at the 2:1 location, the ring particles move inward over time, opening a gap. The Cassini Division is roughly 3.2e-5 AU wide and lies between Saturn's A and B rings.\n  </p>\n  <p>\n    The animation on the left shows the results of simulating 300 TP's and Mimas (show in <font color=\"red\">red</font>) over 20 years with SWIFT. The particles are spread across 3.0e-5 AU (about 4500 km). The change in eccentricity is very small so, in the animation playback, the TP's orbit is highlighted pink relative to the amount of eccentricity change it has undergone. Below is a plot from the SWIFT simulation that clearly shows the change in eccentricity at the 2:1 ILR.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/453e0f9ca30d61edd10b779659a874dc/Mimas2-1-low.jpg\">\n  <p>\n    According to my simulations, Mimas inflicts an average eccentricity change on particles at the 2:1 ILR of 3.0e-4 over 20 years which directly corresponds to these particles crossing orbits at least 2.3e-7 AU away from where they started. So it seems very reasonable to assume that, if viscous forces within the rings were also modelled, we would see the perturbed particles eccentricity get damped and a gap in the ring would open at the 2:1 ILR. The gap would grow ever wider until it was balanced by the viscous pressures within the B Ring. Mimas' role in shaping the edge of the B Ring is quite visible but how important it is in shaping the entire Cassini Division is much less clear. The inner edge of the A Ring, almost 5000 km away, is far outside the immediate gravitational influence of the 2:1 ILR. However, once viscous forces and self-gravitation are considered, the transport of angular momentum via density waves may be able to account for this.\n  </p>\n</div>\n\n<a href=\"#\" id=\"ShepherdTrigger\">\n<div class=\"posterMainPage\" id=\"ShepherdTriggerPanel\">\n  <h1>3. Shepherd Moons</h1>\n  <!--<img src=\"http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg\">-->\n</div>\n</a>\n\n<div class=\"information\" id=\"ShepherdInformation\">\n  <h1>Shepherd Information</h1>\n  <p>\n  The two moons, Prometheus (shown in <font color=\"red\">red</font> in the animation and graph below) and Pandora (shown in <font color=\"green\">green</font>) are thought to be responsible for constraining the narrow F Ring through a gravitational interaction known as the shepherding effect. As Prometheus moves past the ring particles outside its orbit (which are travelling more slowly), it gives up some of its momentum to the particle, speeding it up and boosting it into a slightly higher orbit. It also changes the particle's orbital eccentricity, helping to bring it into contact with other TP orbits. In reality, the particles in the F Ring are exerting an outward pressure due to internal collisions and this is being balanced by the forcing of Prometheus and Pandora. In the simulations conducted, we can clearly see this forcing occurring over relatively short timescales of only 25 years. However, after such a short time, the thickness of the F Ring produced is still several times larger than the actual F Ring.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/dfe7feb24f3bae4917e85a1977bd0eee/Shepherd25years-low.jpg\">\n  <p>\n  Over longer timescales, the F Ring undergoes more forcing by the satellites but, with no internal pressure to balance the forcing in the simulations, the system is unstable and the ring disintegrates. Below is a plot of the system over 150,000 years.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/f588daf23240d8e39d2b20a66ead685c/Shepherd+150000+years-low.jpg\">\n  <p>\n  We can estimate the expected eccentricity perturbation of a TP by a nearby satellite, assuming both are on circular orbits (de Pater & Lissauer 2010). We do this for the actual  locations of the inner and outer F Ring and then use the relationship, a = ( 1 - e ) to derive the expected change in semi-major axis due to the eccentricity perturbation (where a is the semi-major axis and e is the eccentricity). The resulting estimate is about 5.6e-8 AU for the inner edge and 9.2e-9 AU for the outer edge per conjunction. In 5 years, Prometheus undergoes roughly 60 conjunctions with the inner F Ring particles while Pandora undergoes about 140 with the outer F Ring particles. Looking at the results of the simulation, these values seem quite reasonable, considering their applicability only while the TP's maintain a circular orbit.\n  </p>\n  \n</div>\n\n<a href=\"#\" id=\"EnckeTrigger\">\n<div class=\"posterMainPage\" id=\"EnckeTriggerPanel\">\n  <h1>4. Encke Gap</h1>\n  <!--<img src=\"http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg\">-->\n</div>\n</a>\n\n<div class=\"information\" id=\"EnckeInformation\">\n  <h1>Pan and the Encke Gap/Ringlet</h1>\n  <p>\n  The final scenario simulated involved the tiny satellite, Pan, embedded inside the Encke Gap. It is thought that Pan cleared the gap itself through the shepherding effect and continues to keep it clear today (Showalter 1991).\n  </p>\n  <p>\n  In the simulation results, we see a gap open up around Pan quite quickly. The actual Encke Gap is 2.2e-6 AU wide (Rings_web) and, in my results, TP’s are most affected by Pan inside a gap of about 5e-6 AU. This seems reasonably consistent since it shows that, neglecting other factors, Pan has at least the sufficient gravitational influence to clear a gap the size of Encke. When viscous spreading is taken into account, I expect that the clearing force would be partially countered by this pressure.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/d512b2b9fb2678ed03d539ae7efb8383/Pan-90+years2-low.jpg\">\n  <p>\n    Several particles in both the shepherding simulations of Pandora and Prometheus as well as the simulations of Pan can be seen maintaining an orbit close to the satellites, despite the tendency for the moons to clear their immediate orbit. These particles have entered a 1:1 resonance with the satellite and their resulting “horseshoe” orbit can be seen. The animation on the left is from a simulation of 300 TP's and Pan (<font color=\"red\">red</font>) inside the Encke Gap. Over the course of 100 years, the particles within about 1.0e-7 AU of Pan maintain their semi-major axis close to Pan while other TP's are cleared (see corresponding graph below). The TP's that remain alternate between orbiting inside and outside of of Pan's orbit and appear stable over long periods of time.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/27b3a8d520c64fd28d0ec0abb6f259cf/Encke+Gap+and+Ringlet-low.jpg\">\n</div>\n\n<!--<a href=\"#\" id=\"BackButtonTrigger\">-->\n  <div class=\"information\" id=\"BackButton\">\n    <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/91df66b9fa132c7a278c16a474ecaa15/Left-Arrow-low.png\">\n  </div>\n<!--</a>-->\n\n<div class=\"posterMainPage\" id=\"posterMainPage\">\n  <h1>External Gavitational Influences on the Morphology of Saturn's Rings</h1>\n  <p>\n    BOND, M. D. C., 2013\n  </p>\n  <h2>Abstract</h2>\n  <p>\n  The first up-close images of Saturn's rings by passing probes in the late 70's and early 80's revealed astonishingly complex and intricate structure. And although we've learned an enormous amount about the morphology of ring systems in the past three decades, we now have more questions than ever before about their nature and evolution (de Pater & Lissauer 2010). Many factors affect their structure including self gravitation, internal particle collisions, radiation drag (Goldreich & Tremaine 1982) and even the magnetic field of the planet (Mitchell et al, 2007). I investigate several ways in which planetary rings are influenced by the gravity of satellites, both embedded in the ring and external, and find that this gravitational influence alone is enough to form significant structure.\n  </p>\n  <h2>Method</h2>\n  <p>\n    Several scenarios were investigated using simulations conducted with the Solar System Dynamics (SSD) simulator. This simulator is based on the SWIFT code (Levison and Duncan 1994) and was run on the Swinburne supercomputer over its web-based interface. The first two scenarios looked at resonances and their ability to form structure in the outer A Ring and, by the satellite Mimas, at the boundary between the Cassini Division and outer B Ring. The third scenario looked at the F Ring and the idea that it is being confined by the satellites Prometheus and Pandora. Finally, the moonlet, Pan, was simulated and its ability to clear the Encke Gap and form the Encke Ringlet was investigated.\n  </p>\n  <p>\n    Compared to the satellites that concern us, the mass of the individual ring particles is negligible and can therefore be considered massless. Additionally, since we are focussing on the external gravitational influences of satellites alone, we neglect self-gravitation of the rings as well as any internal, viscous pressures caused by particle-particle collisions.\n  </p>\n  <p>\n    Simulations of satellites and test particles (TP) around Saturn were run for anywhere between several dozen years down to a few days, depending on what was being studied. The integration time step used was never more than 2e-6 years which corresponds to less than a degree of longitudinal movement for any TP's that we are concerned with.\n  </p>\n  <p>\n    An overview of the results can be found on the left, along with animations of some of the simulations. For the sake of small download sizes, these animations were limited to 100 time steps of data.\n  </p>\n  <h2>Conclusions</h2>\n  <p>\n  The effect of external satellite gravity alone is enough to cause dramatic changes to a ring system and induce clear structure. This occurs mainly at first-order Lindblad resonances where eccentricities are excited most significantly. The intricately banded nature of Saturn’s A Ring coincides perfectly with the pattern of first-order ILR’s of Pandora and Prometheus in the performed simulations. The small eccentricity changes are easily enough to cause TP’s to cross the orbits of other TP’s and have their new eccentricity damped by particle-particle collisions so I would theorize that simulating the viscous forces within the ring would be enough to have these resonances open gaps (i.e. without the need of simulating self-gravity in the ring).\n  </p>\n  <p>\n  The ability for moons to clear their own orbits via the shepherding effect was clearly shown as well as the stability of 1:1 resonant horseshoe orbits within the satellite’s cleared gap. However, to properly make measurements of the confinement of a ring, viscous forces within the ring are required to counter-balance the driving force by the shepherding satellites.\n  </p>\n  <h2>References</h2>\n  <p>\n  de Pater, I., Lissauer, J. J., 2010, Planetary Sciences (2nd ed.), United Kingdom, Cambridge University Press\n  </p>\n  <p>\n  Freedman, R. A., Geller, R. M. & Kaufmann III, W. J., 2011, The Universe, (9th ed.), New York, W. H. Freeman and Company\n  </p>\n  <p>\n  Goldreich, P., 1979, The Rings of Saturn and Uranus, IAUS, 81, 191\n  </p>\n  <p>\n  Goldreich, P., Tremaine, S. 1979, The Excitation and of Density Waves at the Lindblad and Corotation Resonances by an External Potential, ApJ, 233, 857\n  </p>\n  <p>\n  Goldreich, P., Tremaine, S. 1982, The Dynamics of Planetary Rings, ARA&A, 20, 249\n  </p>\n  <p>\n  Levison, H., Duncan, M., 1994, Icarus, 108, 18\n  </p>\n  <p>\n  Mitchell, C. J., Horanyi, M., Havnes, O., Porco, C. C. 2006, Saturn’s Spokes: Lost and Found, Science Magazine, 311, 1587\n  </p>\n  <p>\n  Rings_web: Vital Statistics for Saturn’s Rings and Inner Moons, http://pds-rings.seti.org/saturn/saturn_tables.html (accessed Nov. 15)\n  </p>\n  <p>\n  Showalter, M. R. 1991. Visual detection of 1981S13, Saturn’s eighteenth satellite, and its role in the Encke Gap. Nature 351, 709–713\n  </p>\n</div>"
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
+    "children": {}
+  },
+  {
+    "id": "525c57c6e7c503020000034e",
+    "parentId": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "camera",
+    "name": "App Camera",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "visible": true,
+      "position": {
+        "x": -24.904262595352282,
+        "y": 8.454766362564175,
+        "z": 72.67806698806739
+      },
+      "orientation": {
+        "x": -0.05003188971472816,
+        "y": -0.2495282696254648,
+        "z": -0.012863937444167804,
+        "w": 0.9669886099550083
+      },
+      "fov": 50,
+      "type": "PerspectiveCamera",
+      "aspect": 1.7777777777777777,
+      "near": 0.5,
+      "far": 20000,
+      "left": -1,
+      "right": 1,
+      "top": 1,
+      "bottom": -1,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    "resources": [],
+    "components": {
+      "renderView_component": {
+        "isBuiltIn": true,
+        "scriptId": "render_view_component",
+        "componentData": {
+          "enableShadows": true,
+          "enablePreRenderFunctions": true,
+          "renderTarget": null,
+          "clearDepth": true,
+          "clearColor": false,
+          "renderGroup": 0,
+          "viewportHeight": "100%",
+          "viewportWidth": "100%",
+          "viewportBottom": "0px",
+          "viewportLeft": "0px",
+          "enabled": true
+        },
+        "enabled": true
+      },
+      "filters_comp": {
+        "isBuiltIn": true,
+        "componentData": {
+          "video": {
+            "grayscale": false,
+            "sCount": 512,
+            "sIntensity": 0.05,
+            "nIntensity": 0.15,
+            "enabled": false,
+            "override": false
+          },
+          "sepia": {
+            "amount": 0.9,
+            "enabled": false,
+            "override": false
+          },
+          "dof": {
+            "focus": 1,
+            "aperture": 0.025,
+            "aspect": 1,
+            "enabled": false,
+            "override": false
+          },
+          "ssao": {
+            "gDisplace": 0.4,
+            "diffArea": 0.4,
+            "radius": 8,
+            "noiseAmount": 0.0002,
+            "lumInfluence": 0.75,
+            "aoClamp": 0.75,
+            "onlyAO": 0,
+            "depthScale": 40000,
+            "fogEnabled": 1,
+            "enabled": false,
+            "override": false
+          },
+          "vignette": {
+            "darkness": 1,
+            "offset": 1,
+            "enabled": false,
+            "override": false
+          },
+          "fxaa": {
+            "enabled": false,
+            "override": false
+          },
+          "toneMapping": {
+            "luminance": 1,
+            "maxLuminance": 6,
+            "exposureBias": 1,
+            "adaptSpeed": 0.5,
+            "adaptive": true,
+            "override": false
+          },
+          "bloom": {
+            "resolution": 256,
+            "sigma": 4,
+            "strength": 1,
+            "enabled": false,
+            "override": false
+          }
+        },
+        "enabled": true,
+        "scriptId": "camera_filters_script"
+      }
+    },
+    "componentsOrder": [
+      "filters_comp",
+      "renderView_component",
+      "283df903-9cd5-438a-aa44-ced9aef3d903"
+    ],
+    "template": false,
+    "children": {}
+  },
+  {
+    "id": "539b5009c92acfdf77001788",
+    "parentAssetId": "539b5009c92acfdf77001788",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "application",
+    "name": "Application",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "activeVersion": null,
+      "visible": true,
+      "html": [
+        "53bd88b9c22b36672b000108"
+      ],
+      "css": [
+        "53bd88b9c22b36672b000107"
+      ],
+      "loadStartupScene": "525c57c6e7c503020000034d",
+      "useVeroldLoader": true,
+      "engineName": "Default",
+      "container": "#verold3d",
+      "runtimeVersion": null
+    },
+    "resources": [],
+    "components": {
+      "filters_component": {
+        "isBuiltIn": true,
+        "scriptId": "render_filters_component",
+        "componentData": {
+          "toneMapping": {
+            "luminance": 1,
+            "maxLuminance": 6,
+            "exposureBias": 1,
+            "adaptSpeed": 0.5,
+            "adaptive": true,
+            "enabled": false
+          },
+          "fxaa": {
+            "enabled": false
+          },
+          "dof": {
+            "focus": 1,
+            "aperture": 0.025,
+            "aspect": 1,
+            "enabled": false
+          },
+          "ssao": {
+            "gDisplace": 0.4,
+            "diffArea": 0.4,
+            "radius": 8,
+            "noiseAmount": 0.0002,
+            "lumInfluence": 0.75,
+            "aoClamp": 0.75,
+            "onlyAO": 0,
+            "depthScale": 40000,
+            "fogEnabled": 1,
+            "enabled": false
+          },
+          "vignette": {
+            "darkness": 1,
+            "offset": 1,
+            "enabled": false
+          },
+          "bloom": {
+            "resolution": 256,
+            "sigma": 4,
+            "kernelSize": 25,
+            "strength": 1,
+            "enabled": false
+          },
+          "sepia": {
+            "amount": 0.9,
+            "enabled": false
+          },
+          "video": {
+            "grayscale": false,
+            "sCount": 512,
+            "sIntensity": 0.05,
+            "nIntensity": 0.5,
+            "enabled": false
+          }
+        },
+        "enabled": false
+      },
+      "rendering_component": {
+        "componentData": {
+          "shadowMapEnabledMobile": false,
+          "renderOnDemand": false,
+          "clearAlpha": 0,
+          "scene": "525c57c6e7c503020000034d",
+          "camera": "525c57c6e7c503020000034e",
+          "shadowMapEnabled": true,
+          "gammaInput": true,
+          "gammaOutput": true,
+          "shadowMapType": 2,
+          "shadowMapAutoUpdate": true,
+          "shadowMapCullFace": 1,
+          "shadowMapDebug": false,
+          "antialias": true,
+          "preserveDrawingBuffer": true,
+          "autoClear": false,
+          "devicePixelRatio": 1,
+          "clearColor": 0,
+          "clearOpacity": 0,
+          "precision": "mediump",
+          "logarithmicDepthBuffer": true
+        },
+        "scriptId": "verold_renderer",
+        "isBuiltIn": true,
+        "enabled": true
+      },
+      "input_controller_component": {
+        "isBuiltIn": true,
+        "componentData": {
+          "keyEvents": {
+            "eventHandler": true,
+            "preventDefault": false,
+            "up": true,
+            "down": true,
+            "enable": true
+          },
+          "touchEvents": {
+            "eventHandler": true,
+            "dragBufferDistance": 4,
+            "move_preventDefault": true,
+            "move": true,
+            "leave": true,
+            "cancel": true,
+            "end": true,
+            "start_preventDefault": true,
+            "start": true,
+            "enable": true
+          },
+          "mouseEvents": {
+            "eventHandler": true,
+            "contextMenu_preventDefault": true,
+            "contextMenu": true,
+            "leave": true,
+            "up": true,
+            "down": true,
+            "move": true,
+            "scroll_preventDefault": false,
+            "scroll": true,
+            "enable": true
+          }
+        },
+        "scriptId": "input_controller_component",
+        "enabled": true
+      }
+    },
+    "componentsOrder": [
+      "filters_component",
+      "rendering_component",
+      "input_controller_component"
+    ],
+    "children": {}
+  },
+  {
+    "id": "525c57c6e7c503020000034d",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "scene",
+    "name": "Scene",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "visible": true,
+      "environment": {
+        "groundPlaneMaterial": null,
+        "groundPlaneMaterialScale": 30,
+        "groundPlaneTesselation": 120,
+        "groundPlaneOn": false,
+        "groundPlaneScale": 12000,
+        "skyboxOn": true
+      },
+      "fog": {
+        "color": 328965,
+        "density": 0,
+        "type": "FogExp2"
+      },
+      "startupCamera": {
+        "orbitDistance": 64.57008150000001,
+        "xAngle": -0.6583137293523587,
+        "yAngle": -0.09930802395181926,
+        "targetPosition": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "fov": 50
+      }
+    },
+    "resources": [],
+    "components": {
+      "skyboxRenderer": {
+        "enabled": true,
+        "componentData": {
+          "camera": "528eb4c63b076602000006e9",
+          "skyboxFogScale": 1,
+          "skyboxFogPower": 0.221,
+          "skyboxTexture": "environment_default",
+          "size": 10000
+        },
+        "scriptId": "skybox_renderer",
+        "isBuiltIn": true
+      }
+    },
+    "componentsOrder": [
+      "skyboxRenderer",
+      "editor_mesh_picker",
+      "editor_axis_widget",
+      "editor_bbox_renderer"
+    ],
+    "template": false,
+    "children": {
+      "525c57c6e7c503020000034e": true,
+      "525c57c6e7c503020000034f": true,
+      "525c57c6e7c5030200000350": true,
+      "528666037466e30200000948": true,
+      "528c3327cdf5c802000009bb": true,
+      "528d6e04fd3a300200000373": true,
+      "528d76eb45ec6e02000003f3": true,
+      "528eb18ab7c7e102000005df": true,
+      "528faa9020a91002000000c3": true,
+      "528fab2eaebabd020000009e": true
+    }
+  },
+  {
+    "id": "528eb4c63b076602000006e9",
+    "parentId": "528eb18ab7c7e102000005df",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "camera",
+    "name": "MimasCamera",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "visible": true,
+      "orientation": {
+        "w": 0.7481163878735604,
+        "z": -0.02178190320099499,
+        "y": -0.6604210934193998,
+        "x": -0.06075687824993045
+      },
+      "position": {
+        "z": 31.471570126145508,
+        "y": 1.0976976879890459,
+        "x": 2.716041062459893
+      },
+      "bottom": -100,
+      "top": 100,
+      "right": 100,
+      "left": -100,
+      "far": 200000,
+      "near": 1,
+      "aspect": 1.7777777777777777,
+      "fov": 58.17,
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "type": "PerspectiveCamera",
+      "geometry": {}
+    },
+    "resources": [],
+    "components": {
+      "renderView_component": {
+        "isBuiltIn": true,
+        "scriptId": "render_view_component",
+        "componentData": {
+          "enableShadows": true,
+          "enablePreRenderFunctions": true,
+          "renderTarget": null,
+          "clearDepth": true,
+          "clearColor": false,
+          "renderGroup": 0,
+          "viewportHeight": "100%",
+          "viewportWidth": "100%",
+          "viewportBottom": "0px",
+          "viewportLeft": "0px",
+          "enabled": false
+        },
+        "enabled": false
+      },
+      "filters_comp": {
+        "isBuiltIn": true,
+        "componentData": {
+          "video": {
+            "grayscale": false,
+            "sCount": 512,
+            "sIntensity": 0.05,
+            "nIntensity": 0.15,
+            "enabled": false,
+            "override": false
+          },
+          "sepia": {
+            "amount": 0.9,
+            "enabled": false,
+            "override": false
+          },
+          "dof": {
+            "focus": 0.98,
+            "aperture": 0.4,
+            "aspect": 1,
+            "enabled": false,
+            "override": false
+          },
+          "ssao": {
+            "gDisplace": 0.4,
+            "diffArea": 0.4,
+            "radius": 8,
+            "noiseAmount": 0.0002,
+            "lumInfluence": 0.75,
+            "aoClamp": 0.75,
+            "onlyAO": 0,
+            "depthScale": 100000,
+            "fogEnabled": 1,
+            "enabled": false,
+            "override": false
+          },
+          "vignette": {
+            "darkness": 1,
+            "offset": 1,
+            "enabled": false,
+            "override": false
+          },
+          "fxaa": {
+            "enabled": false,
+            "override": false
+          },
+          "toneMapping": {
+            "luminance": 1,
+            "maxLuminance": 16,
+            "exposureBias": 1,
+            "adaptSpeed": 0.5,
+            "adaptive": true,
+            "override": false
+          },
+          "bloom": {
+            "resolution": 256,
+            "sigma": 4,
+            "strength": 1,
+            "enabled": false,
+            "override": false
+          }
+        },
+        "enabled": true,
+        "scriptId": "camera_filters_script"
+      }
+    },
+    "componentsOrder": [
+      "filters_comp",
+      "renderView_component",
+      "9f3b0e75-3b03-4c6b-b0f0-11bcbfaa50fa"
+    ],
+    "children": {}
+  },
+  {
+    "id": "528faa9020a91002000000c4",
+    "parentId": "528faa9020a91002000000c3",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "camera",
+    "name": "EnckeCamera",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "visible": true,
+      "type": "PerspectiveCamera",
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "fov": 58.17,
+      "aspect": 1.7777777777777777,
+      "near": 0.5,
+      "far": 20000,
+      "left": -100,
+      "right": 100,
+      "top": 100,
+      "bottom": -100,
+      "position": {
+        "x": -21.03078954116089,
+        "y": 0.4581665671755494,
+        "z": 29.196739210014325
+      },
+      "orientation": {
+        "x": -0.061523445058168535,
+        "y": -0.9160711627874722,
+        "z": -0.15446981875953358,
+        "w": 0.36492131413466833
+      }
+    },
+    "resources": [],
+    "components": {
+      "renderView_component": {
+        "isBuiltIn": true,
+        "componentData": {
+          "enableShadows": true,
+          "enablePreRenderFunctions": true,
+          "renderTarget": null,
+          "clearDepth": true,
+          "clearColor": false,
+          "renderGroup": 0,
+          "viewportHeight": "100%",
+          "viewportWidth": "100%",
+          "viewportBottom": "0px",
+          "viewportLeft": "0px",
+          "enabled": false
+        },
+        "scriptId": "render_view_component",
+        "enabled": false
+      },
+      "filters_comp": {
+        "isBuiltIn": true,
+        "componentData": {
+          "video": {
+            "grayscale": false,
+            "sCount": 512,
+            "sIntensity": 0.05,
+            "nIntensity": 0.15,
+            "enabled": false,
+            "override": false
+          },
+          "sepia": {
+            "amount": 0.9,
+            "enabled": false,
+            "override": false
+          },
+          "dof": {
+            "focus": 0.98,
+            "aperture": 0.4,
+            "aspect": 1,
+            "enabled": false,
+            "override": false
+          },
+          "ssao": {
+            "gDisplace": 0.4,
+            "diffArea": 0.4,
+            "radius": 8,
+            "noiseAmount": 0.0002,
+            "lumInfluence": 0.75,
+            "aoClamp": 0.75,
+            "onlyAO": 0,
+            "depthScale": 100000,
+            "fogEnabled": 1,
+            "enabled": false,
+            "override": false
+          },
+          "vignette": {
+            "darkness": 1,
+            "offset": 1,
+            "enabled": false,
+            "override": false
+          },
+          "fxaa": {
+            "enabled": false,
+            "override": false
+          },
+          "toneMapping": {
+            "luminance": 1,
+            "maxLuminance": 16,
+            "exposureBias": 1,
+            "adaptSpeed": 0.5,
+            "adaptive": true,
+            "override": false
+          },
+          "bloom": {
+            "resolution": 256,
+            "sigma": 4,
+            "strength": 1,
+            "enabled": false,
+            "override": false
+          }
+        },
+        "enabled": true,
+        "scriptId": "camera_filters_script"
+      }
+    },
+    "componentsOrder": [
+      "filters_comp",
+      "renderView_component",
+      "ea2d366c-17b6-4967-b21d-7eac3d7c38d9"
+    ],
+    "children": {}
+  },
+  {
+    "id": "528ee4a33b07660200000798",
+    "parentId": "528d76eb45ec6e02000003f3",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "camera",
+    "name": "ShepherdCamera",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "visible": true,
+      "orientation": {
+        "w": 0.9287981144631191,
+        "z": -0.07810124575278779,
+        "y": -0.3335331802484007,
+        "x": -0.14138555674114195
+      },
+      "position": {
+        "z": -21.32987031032516,
+        "y": 1.3754481360208084,
+        "x": -30.523935615120358
+      },
+      "bottom": -100,
+      "top": 100,
+      "right": 100,
+      "left": -100,
+      "far": 20000,
+      "near": 1,
+      "aspect": 1.7777777777777777,
+      "fov": 50,
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "type": "PerspectiveCamera",
+      "geometry": {}
+    },
+    "resources": [],
+    "components": {
+      "renderView_component": {
+        "isBuiltIn": true,
+        "scriptId": "render_view_component",
+        "componentData": {
+          "enableShadows": true,
+          "enablePreRenderFunctions": true,
+          "renderTarget": null,
+          "clearDepth": true,
+          "clearColor": false,
+          "renderGroup": 0,
+          "viewportHeight": "100%",
+          "viewportWidth": "100%",
+          "viewportBottom": "0px",
+          "viewportLeft": "0px",
+          "enabled": false
+        },
+        "enabled": false
+      },
+      "filters_comp": {
+        "isBuiltIn": true,
+        "componentData": {
+          "video": {
+            "grayscale": false,
+            "sCount": 512,
+            "sIntensity": 0.05,
+            "nIntensity": 0.15,
+            "enabled": false,
+            "override": false
+          },
+          "sepia": {
+            "amount": 0.9,
+            "enabled": false,
+            "override": false
+          },
+          "dof": {
+            "focus": 1,
+            "aperture": 0.025,
+            "aspect": 1,
+            "enabled": false,
+            "override": false
+          },
+          "ssao": {
+            "gDisplace": 0.4,
+            "diffArea": 0.4,
+            "radius": 8,
+            "noiseAmount": 0.0002,
+            "lumInfluence": 0.75,
+            "aoClamp": 0.75,
+            "onlyAO": 0,
+            "depthScale": 40000,
+            "fogEnabled": 1,
+            "enabled": false,
+            "override": false
+          },
+          "vignette": {
+            "darkness": 1,
+            "offset": 1,
+            "enabled": false,
+            "override": false
+          },
+          "fxaa": {
+            "enabled": false,
+            "override": false
+          },
+          "toneMapping": {
+            "luminance": 1,
+            "maxLuminance": 6,
+            "exposureBias": 1,
+            "adaptSpeed": 0.5,
+            "adaptive": true,
+            "override": false
+          },
+          "bloom": {
+            "resolution": 256,
+            "sigma": 4,
+            "strength": 1,
+            "enabled": false,
+            "override": false
+          }
+        },
+        "enabled": false,
+        "scriptId": "camera_filters_script"
+      }
+    },
+    "componentsOrder": [
+      "filters_comp",
+      "renderView_component",
+      "529ace9f-1994-46f7-ac29-dffc12bbb9af"
+    ],
+    "children": {}
+  },
+  {
+    "id": "528fab2eaebabd020000009f",
+    "parentId": "528fab2eaebabd020000009e",
+    "parentAssetId": "525c57c6e7c503020000034d",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "camera",
+    "name": "ResonancesCamera_1",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "visible": true,
+      "orientation": {
+        "w": 0.9915172023895765,
+        "z": 0.01694794383826997,
+        "y": -0.11280152237636426,
+        "x": -0.062307472383073464
+      },
+      "position": {
+        "z": 6.52713748846935,
+        "y": 0.6073417050069192,
+        "x": -35.884966838271694
+      },
+      "bottom": -100,
+      "top": 100,
+      "right": 100,
+      "left": -100,
+      "far": 20000,
+      "near": 0.5,
+      "aspect": 1.7777777777777777,
+      "fov": 58.17,
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "type": "PerspectiveCamera"
+    },
+    "resources": [],
+    "components": {
+      "renderView_component": {
+        "isBuiltIn": true,
+        "componentData": {
+          "enableShadows": true,
+          "enablePreRenderFunctions": true,
+          "renderTarget": null,
+          "clearDepth": true,
+          "clearColor": false,
+          "renderGroup": 0,
+          "viewportHeight": "100%",
+          "viewportWidth": "100%",
+          "viewportBottom": "0px",
+          "viewportLeft": "0px",
+          "enabled": false
+        },
+        "scriptId": "render_view_component",
+        "enabled": false
+      },
+      "filters_comp": {
+        "isBuiltIn": true,
+        "componentData": {
+          "video": {
+            "grayscale": false,
+            "sCount": 512,
+            "sIntensity": 0.05,
+            "nIntensity": 0.15,
+            "enabled": false,
+            "override": false
+          },
+          "sepia": {
+            "amount": 0.9,
+            "enabled": false,
+            "override": false
+          },
+          "dof": {
+            "focus": 0.98,
+            "aperture": 0.4,
+            "aspect": 1,
+            "enabled": false,
+            "override": false
+          },
+          "ssao": {
+            "gDisplace": 0.4,
+            "diffArea": 0.4,
+            "radius": 8,
+            "noiseAmount": 0.0002,
+            "lumInfluence": 0.75,
+            "aoClamp": 0.75,
+            "onlyAO": 0,
+            "depthScale": 100000,
+            "fogEnabled": 1,
+            "enabled": false,
+            "override": false
+          },
+          "vignette": {
+            "darkness": 1,
+            "offset": 1,
+            "enabled": false,
+            "override": false
+          },
+          "fxaa": {
+            "enabled": false,
+            "override": false
+          },
+          "toneMapping": {
+            "luminance": 1,
+            "maxLuminance": 16,
+            "exposureBias": 1,
+            "adaptSpeed": 0.5,
+            "adaptive": true,
+            "override": false
+          },
+          "bloom": {
+            "resolution": 256,
+            "sigma": 4,
+            "strength": 1,
+            "enabled": false,
+            "override": false
+          }
+        },
+        "enabled": true,
+        "scriptId": "camera_filters_script"
+      }
+    },
+    "componentsOrder": [
+      "filters_comp",
+      "renderView_component",
+      "3d4954c8-290c-4f4d-4254-ed609f0849b5"
+    ],
+    "children": {}
+  }
+]
