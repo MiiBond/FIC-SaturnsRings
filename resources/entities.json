@@ -185,7 +185,7 @@
       },
       "description": "",
       "externalDependencies": [],
-      "minified": "(function(t,e,i,r,o,a){var e=t(\"underscore\");var s={\"Shepherd 25 Years\":\"resources/demos-mbond-Shepherds25Years.csv\",\"Mimas 2:1\":\"resources/demos-mbond-Mimas2-1.csv\",\"Encke Gap\":\"resources/demos-mbond-EnckeGap.csv\",Resonances2:\"resources/demos-mbond-P%26PResonances.csv\"};function n(){this.currentTime=0;this.animSpeed=1;this.currentTPOrbitData={}}n.prototype=new i.VeroldComponent;n.prototype.init=function(){this.state=\"pending\";this.getEngine().globalEvents.on(\"loadAnimation\",this.loadAnimation,this);this.getEngine().globalEvents.on(\"parseAnimation\",this.parseAnimation,this);this.getEngine().globalEvents.on(\"playAnimation\",this.playAnimation,this);this.getEngine().globalEvents.on(\"stopAnimation\",this.stopAnimation,this)};n.prototype.loadAnimation=function(t,e){var i=this;this.state=\"downloading\";if(s[t]){this.loadData(s[t],function(t){i.state=\"downloaded\";i.textData=t;if(e){e()}})}};n.prototype.parseAnimation=function(t){this.parseDataNew(this.textData);this.setupAnimData();this.state=\"loaded\";this.textData=null;if(t){t()}};n.prototype.playAnimation=function(){var t=this;if(this.state===\"loaded\"){this.state=\"playing\"}};n.prototype.stopAnimation=function(){var t=this;this.state=\"pending\";this.currentTime=0;this.orbitData=undefined;this.currentTPOrbitData=undefined;this.currentPLOrbitData=undefined;if(this.orbitRenderer){this.orbitRenderer.unloadOrbitGeometry()}};n.prototype.loadData=function(t,e){var i=new XMLHttpRequest;i.open(\"GET\",t,true);i.onload=function(){if(i.responseText){var t=i.responseText;e(t)}else{}};i.onerror=function(e){if(e){o.error(\"Error downloading \"+t+\". Seems to be unreachable or file there is empty\",e)}};i.send()};n.prototype.parseDataNew=function(t){var e=u(t);var i=12;e.splice(0,1);var r=p(e,i);var o=0;var s=0;this.tp=[];this.pl=[];var n=r.tpNum+r.plNum;var c=a.round(e.length/n);this.orbitData=[];for(var h=0;h<c;h++){var l=[];var d=[];var b=parseFloat(e[h*n][0]);for(var m=0;m<n;m++){var v=e[h*n+m][1].substr(-2,2);var f=[];f.push(parseInt(e[h*n+m][0]));for(var g=3;g<i;g++){f.push(parseFloat(e[h*n+m][g]))}if(v===\"tp\"){l.push(f)}else{d.push(f)}}this.orbitData.push({time:b,tpBodies:l,plBodies:d})}};function p(t,e){var i={tpNum:0,plNum:0};var r={count:0};var o={count:0};for(var a=0;a<t.length;a++){if(t[a][1].substr(-2,2)===\"tp\"){registry=r}else{registry=o}if(registry[t[a][2]]){i.tpNum=r.count;i.plNum=o.count;return i}else{registry[t[a][2]]=true;registry.count++}}}n.prototype.parseData=function(t){var e=h(t);var i=12;e.splice(0,i);var r=c(e,i);var o=0;var s=0;this.tp=[];this.pl=[];var n=r.tpNum+r.plNum;var p=a.floor(e.length/n/i);this.orbitData=[];for(var u=0;u<p;u++){var l=[];var d=[];var b=e[u*n*i];for(var m=0;m<n;m++){var v=e[u*n*i+m*i+1];var f=[];for(var g=2;g<i;g++){f.push(e[u*n*i+m*i+g])}if(v===\"tp\"){l.push(f)}else{d.push(f)}}this.orbitData.push({time:b,tpBodies:l,plBodies:d})}};function c(t,e){var i={tpNum:0,plNum:0};var r={count:0};var o={count:0};for(var a=0;a<t.length-12;a+=e){if(t[a+1]===\"tp\"){registry=r}else{registry=o}if(registry[t[a+2]]){i.tpNum=r.count;i.plNum=o.count;return i}else{registry[t[a+2]]=true;registry.count++}}}function h(t){var e=/^\\s*(?:'[^'\\\\]*(?:\\\\[\\S\\s][^'\\\\]*)*'|\"[^\"\\\\]*(?:\\\\[\\S\\s][^\"\\\\]*)*\"|[^,'\"\\s\\\\]*(?:\\s+[^,'\"\\s\\\\]+)*)\\s*(?:,\\s*(?:'[^'\\\\]*(?:\\\\[\\S\\s][^'\\\\]*)*'|\"[^\"\\\\]*(?:\\\\[\\S\\s][^\"\\\\]*)*\"|[^,'\"\\s\\\\]*(?:\\s+[^,'\"\\s\\\\]+)*)\\s*)*$/;var i=/(?!\\s*$)\\s*(?:'([^'\\\\]*(?:\\\\[\\S\\s][^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\[\\S\\s][^\"\\\\]*)*)\"|([^,'\"\\s\\\\]*(?:\\s+[^,'\"\\s\\\\]+)*))\\s*(?:,|$|\\n)/g;if(!e.test(t))return null;var r=t.replace(/[\\f\\r\\n\\v↵]/g,\",\");t=undefined;var o=[];r.replace(i,function(t,e,i,r){if(e!==undefined)o.push(e.replace(/\\\\'/g,\"'\"));else if(i!==undefined)o.push(i.replace(/\\\\\"/g,'\"'));else if(r!==undefined)o.push(r);return\"\"});if(/,\\s*$/.test(r))o.push(\"\");return o}function u(t,e){e=e||\",\";var i=new RegExp(\"(\\\\\"+e+\"|\\\\r?\\\\n|\\\\r|^)\"+'(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|'+'([^\"\\\\'+e+\"\\\\r\\\\n]*))\",\"gi\");t.replace(/\\s/g,\"\");var r=[[]];var o=null;while(o=i.exec(t)){var a=o[1];if(a.length&&a!=e){r.push([])}if(o[2]){var s=o[2].replace(new RegExp('\"\"',\"g\"),'\"')}else{var s=o[3]}r[r.length-1].push(s)}return r}n.prototype.setupAnimData=function(){this.currentTPOrbitData=new Array(this.orbitData[0].tpBodies.length);for(var t=0;t<this.orbitData[0].tpBodies.length;t++){var e={};e.objectPosition=new r.Vector3;e.objectVelocity=new r.Vector3;e.orbitParams=new r.Vector3;this.currentTPOrbitData[t]=e}this.currentPLOrbitData=new Array(this.orbitData[0].plBodies.length);for(t=0;t<this.orbitData[0].plBodies.length;t++){var i={};i.objectPosition=new r.Vector3;i.objectVelocity=new r.Vector3;i.orbitParams=new r.Vector3;this.currentPLOrbitData[t]=i}this.orbitRenderer.initializeBodies(this.currentTPOrbitData,this.currentPLOrbitData)};n.prototype.objectCreated=function(){var t=this;t.orbitRenderer=e.values(t.getEntity().getComponentsByScriptName(\"OrbitRenderer\"))[0]};n.prototype.update=function(t){function e(t,e,i){return t*(1-i)+e*i}if(this.veroldEntity.threeData&&this.orbitData){if(this.orbitRenderer&&this.state===\"playing\"){this.currentTime+=t;this.currentTime=this.currentTime%this.totalAnimTime;var i=this.currentTime/this.totalAnimTime;i*=this.orbitData.length;var r=a.floor(i);var o=a.ceil(i);var s=i-r;var n=this.orbitData[r];if(o>=this.orbitData.length){o=0}var p=this.orbitData[o];var c=e(n.time,p.time,s);$(\"#time h1\").text(\"Time: \"+c.toFixed(2)+\" years\");for(var h=0;h<this.orbitData[0].tpBodies.length;h++){this.currentTPOrbitData[h].objectPosition.x=n.tpBodies[h][1];this.currentTPOrbitData[h].objectPosition.y=n.tpBodies[h][2];this.currentTPOrbitData[h].objectPosition.z=n.tpBodies[h][3];this.currentTPOrbitData[h].objectVelocity.x=n.tpBodies[h][4];this.currentTPOrbitData[h].objectVelocity.y=n.tpBodies[h][5];this.currentTPOrbitData[h].objectVelocity.z=n.tpBodies[h][6];this.currentTPOrbitData[h].orbitParams.x=e(n.tpBodies[h][7],p.tpBodies[h][7],s);this.currentTPOrbitData[h].orbitParams.y=e(n.tpBodies[h][8],p.tpBodies[h][8],s);this.currentTPOrbitData[h].orbitParams.z=e(n.tpBodies[h][9],p.tpBodies[h][9],s)}for(h=0;h<this.orbitData[0].plBodies.length;h++){this.currentPLOrbitData[h].objectPosition.x=n.plBodies[h][1];this.currentPLOrbitData[h].objectPosition.y=n.plBodies[h][2];this.currentPLOrbitData[h].objectPosition.z=n.plBodies[h][3];this.currentPLOrbitData[h].objectVelocity.x=n.plBodies[h][4];this.currentPLOrbitData[h].objectVelocity.y=n.plBodies[h][5];this.currentPLOrbitData[h].objectVelocity.z=n.plBodies[h][6];this.currentPLOrbitData[h].orbitParams.x=e(n.plBodies[h][7],p.plBodies[h][7],s);this.currentPLOrbitData[h].orbitParams.y=e(n.plBodies[h][8],p.plBodies[h][8],s);this.currentPLOrbitData[h].orbitParams.z=e(n.plBodies[h][9],p.plBodies[h][9],s)}}}};n.prototype.setTime=function(t){this.currentTime=t};n.prototype.shutdown=function(){};return n});",
+      "minified": "(function(t,e,i,r,o,a){var e=t(\"underscore\");var s={\"Shepherd 25 Years\":\"//commondatastorage.googleapis.com/assets.verold.com%2Fdemos%2Fmbond%2FShepherds25Years.csv\",\"Mimas 2:1\":\"//commondatastorage.googleapis.com/assets.verold.com%2Fdemos%2Fmbond%2FMimas2-1.csv\",\"Encke Gap\":\"//commondatastorage.googleapis.com/assets.verold.com%2Fdemos%2Fmbond%2FEnckeGap.csv\",Resonances2:\"//commondatastorage.googleapis.com/assets.verold.com%2Fdemos%2Fmbond%2FP%26PResonances.csv\"};function n(){this.currentTime=0;this.animSpeed=1;this.currentTPOrbitData={}}n.prototype=new i.VeroldComponent;n.prototype.init=function(){this.state=\"pending\";this.getEngine().globalEvents.on(\"loadAnimation\",this.loadAnimation,this);this.getEngine().globalEvents.on(\"parseAnimation\",this.parseAnimation,this);this.getEngine().globalEvents.on(\"playAnimation\",this.playAnimation,this);this.getEngine().globalEvents.on(\"stopAnimation\",this.stopAnimation,this)};n.prototype.loadAnimation=function(t,e){var i=this;this.state=\"downloading\";if(s[t]){this.loadData(s[t],function(t){i.state=\"downloaded\";i.textData=t;if(e){e()}})}};n.prototype.parseAnimation=function(t){this.parseDataNew(this.textData);this.setupAnimData();this.state=\"loaded\";this.textData=null;if(t){t()}};n.prototype.playAnimation=function(){var t=this;if(this.state===\"loaded\"){this.state=\"playing\"}};n.prototype.stopAnimation=function(){var t=this;this.state=\"pending\";this.currentTime=0;this.orbitData=undefined;this.currentTPOrbitData=undefined;this.currentPLOrbitData=undefined;if(this.orbitRenderer){this.orbitRenderer.unloadOrbitGeometry()}};n.prototype.loadData=function(t,e){var i=new XMLHttpRequest;i.open(\"GET\",t,true);i.onload=function(){if(i.responseText){var t=i.responseText;e(t)}else{}};i.onerror=function(e){if(e){o.error(\"Error downloading \"+t+\". Seems to be unreachable or file there is empty\",e)}};i.send()};n.prototype.parseDataNew=function(t){var e=u(t);var i=12;e.splice(0,1);var r=p(e,i);var o=0;var s=0;this.tp=[];this.pl=[];var n=r.tpNum+r.plNum;var c=a.round(e.length/n);this.orbitData=[];for(var h=0;h<c;h++){var l=[];var d=[];var b=parseFloat(e[h*n][0]);for(var m=0;m<n;m++){var v=e[h*n+m][1].substr(-2,2);var f=[];f.push(parseInt(e[h*n+m][0]));for(var g=3;g<i;g++){f.push(parseFloat(e[h*n+m][g]))}if(v===\"tp\"){l.push(f)}else{d.push(f)}}this.orbitData.push({time:b,tpBodies:l,plBodies:d})}};function p(t,e){var i={tpNum:0,plNum:0};var r={count:0};var o={count:0};for(var a=0;a<t.length;a++){if(t[a][1].substr(-2,2)===\"tp\"){registry=r}else{registry=o}if(registry[t[a][2]]){i.tpNum=r.count;i.plNum=o.count;return i}else{registry[t[a][2]]=true;registry.count++}}}n.prototype.parseData=function(t){var e=h(t);var i=12;e.splice(0,i);var r=c(e,i);var o=0;var s=0;this.tp=[];this.pl=[];var n=r.tpNum+r.plNum;var p=a.floor(e.length/n/i);this.orbitData=[];for(var u=0;u<p;u++){var l=[];var d=[];var b=e[u*n*i];for(var m=0;m<n;m++){var v=e[u*n*i+m*i+1];var f=[];for(var g=2;g<i;g++){f.push(e[u*n*i+m*i+g])}if(v===\"tp\"){l.push(f)}else{d.push(f)}}this.orbitData.push({time:b,tpBodies:l,plBodies:d})}};function c(t,e){var i={tpNum:0,plNum:0};var r={count:0};var o={count:0};for(var a=0;a<t.length-12;a+=e){if(t[a+1]===\"tp\"){registry=r}else{registry=o}if(registry[t[a+2]]){i.tpNum=r.count;i.plNum=o.count;return i}else{registry[t[a+2]]=true;registry.count++}}}function h(t){var e=/^\\s*(?:'[^'\\\\]*(?:\\\\[\\S\\s][^'\\\\]*)*'|\"[^\"\\\\]*(?:\\\\[\\S\\s][^\"\\\\]*)*\"|[^,'\"\\s\\\\]*(?:\\s+[^,'\"\\s\\\\]+)*)\\s*(?:,\\s*(?:'[^'\\\\]*(?:\\\\[\\S\\s][^'\\\\]*)*'|\"[^\"\\\\]*(?:\\\\[\\S\\s][^\"\\\\]*)*\"|[^,'\"\\s\\\\]*(?:\\s+[^,'\"\\s\\\\]+)*)\\s*)*$/;var i=/(?!\\s*$)\\s*(?:'([^'\\\\]*(?:\\\\[\\S\\s][^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\[\\S\\s][^\"\\\\]*)*)\"|([^,'\"\\s\\\\]*(?:\\s+[^,'\"\\s\\\\]+)*))\\s*(?:,|$|\\n)/g;if(!e.test(t))return null;var r=t.replace(/[\\f\\r\\n\\v↵]/g,\",\");t=undefined;var o=[];r.replace(i,function(t,e,i,r){if(e!==undefined)o.push(e.replace(/\\\\'/g,\"'\"));else if(i!==undefined)o.push(i.replace(/\\\\\"/g,'\"'));else if(r!==undefined)o.push(r);return\"\"});if(/,\\s*$/.test(r))o.push(\"\");return o}function u(t,e){e=e||\",\";var i=new RegExp(\"(\\\\\"+e+\"|\\\\r?\\\\n|\\\\r|^)\"+'(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|'+'([^\"\\\\'+e+\"\\\\r\\\\n]*))\",\"gi\");t.replace(/\\s/g,\"\");var r=[[]];var o=null;while(o=i.exec(t)){var a=o[1];if(a.length&&a!=e){r.push([])}if(o[2]){var s=o[2].replace(new RegExp('\"\"',\"g\"),'\"')}else{var s=o[3]}r[r.length-1].push(s)}return r}n.prototype.setupAnimData=function(){this.currentTPOrbitData=new Array(this.orbitData[0].tpBodies.length);for(var t=0;t<this.orbitData[0].tpBodies.length;t++){var e={};e.objectPosition=new r.Vector3;e.objectVelocity=new r.Vector3;e.orbitParams=new r.Vector3;this.currentTPOrbitData[t]=e}this.currentPLOrbitData=new Array(this.orbitData[0].plBodies.length);for(t=0;t<this.orbitData[0].plBodies.length;t++){var i={};i.objectPosition=new r.Vector3;i.objectVelocity=new r.Vector3;i.orbitParams=new r.Vector3;this.currentPLOrbitData[t]=i}this.orbitRenderer.initializeBodies(this.currentTPOrbitData,this.currentPLOrbitData)};n.prototype.objectCreated=function(){var t=this;t.orbitRenderer=e.values(t.getEntity().getComponentsByScriptName(\"OrbitRenderer\"))[0]};n.prototype.update=function(t){function e(t,e,i){return t*(1-i)+e*i}if(this.veroldEntity.threeData&&this.orbitData){if(this.orbitRenderer&&this.state===\"playing\"){this.currentTime+=t;this.currentTime=this.currentTime%this.totalAnimTime;var i=this.currentTime/this.totalAnimTime;i*=this.orbitData.length;var r=a.floor(i);var o=a.ceil(i);var s=i-r;var n=this.orbitData[r];if(o>=this.orbitData.length){o=0}var p=this.orbitData[o];var c=e(n.time,p.time,s);$(\"#time h1\").text(\"Time: \"+c.toFixed(2)+\" years\");for(var h=0;h<this.orbitData[0].tpBodies.length;h++){this.currentTPOrbitData[h].objectPosition.x=n.tpBodies[h][1];this.currentTPOrbitData[h].objectPosition.y=n.tpBodies[h][2];this.currentTPOrbitData[h].objectPosition.z=n.tpBodies[h][3];this.currentTPOrbitData[h].objectVelocity.x=n.tpBodies[h][4];this.currentTPOrbitData[h].objectVelocity.y=n.tpBodies[h][5];this.currentTPOrbitData[h].objectVelocity.z=n.tpBodies[h][6];this.currentTPOrbitData[h].orbitParams.x=e(n.tpBodies[h][7],p.tpBodies[h][7],s);this.currentTPOrbitData[h].orbitParams.y=e(n.tpBodies[h][8],p.tpBodies[h][8],s);this.currentTPOrbitData[h].orbitParams.z=e(n.tpBodies[h][9],p.tpBodies[h][9],s)}for(h=0;h<this.orbitData[0].plBodies.length;h++){this.currentPLOrbitData[h].objectPosition.x=n.plBodies[h][1];this.currentPLOrbitData[h].objectPosition.y=n.plBodies[h][2];this.currentPLOrbitData[h].objectPosition.z=n.plBodies[h][3];this.currentPLOrbitData[h].objectVelocity.x=n.plBodies[h][4];this.currentPLOrbitData[h].objectVelocity.y=n.plBodies[h][5];this.currentPLOrbitData[h].objectVelocity.z=n.plBodies[h][6];this.currentPLOrbitData[h].orbitParams.x=e(n.plBodies[h][7],p.plBodies[h][7],s);this.currentPLOrbitData[h].orbitParams.y=e(n.plBodies[h][8],p.plBodies[h][8],s);this.currentPLOrbitData[h].orbitParams.z=e(n.plBodies[h][9],p.plBodies[h][9],s)}}}};n.prototype.setTime=function(t){this.currentTime=t};n.prototype.shutdown=function(){};return n});",
       "visible": true,
       "category": "User Defined",
       "attributesOrder": [
@@ -1122,26 +1122,26 @@
     },
     "resources": [],
     "components": {
+      "6246c1b7-4fea-48fb-b2fd-b98b0910358c": {
+        "enabled": true,
+        "componentData": {
+          "numSegments": 256,
+          "ringMaterial": "528ad0d3d47d2f020000024b",
+          "innerRadius": 0.000475,
+          "outerRadius": 0.0009565
+        },
+        "scriptId": "528acf24d47d2f0200000247"
+      },
       "1fb50ca9-1363-4582-b270-668ac566d7cd": {
+        "enabled": true,
+        "scriptId": "528d80a1559708020000040d",
         "componentData": {
           "delta": {
-            "z": 0,
+            "x": 0,
             "y": 0.1,
-            "x": 0
+            "z": 0
           }
-        },
-        "scriptId": "528d80a1559708020000040d",
-        "enabled": true
-      },
-      "6246c1b7-4fea-48fb-b2fd-b98b0910358c": {
-        "scriptId": "528acf24d47d2f0200000247",
-        "componentData": {
-          "outerRadius": 0.0009565,
-          "innerRadius": 0.000475,
-          "ringMaterial": "528ad0d3d47d2f020000024b",
-          "numSegments": 256
-        },
-        "enabled": true
+        }
       }
     },
     "componentsOrder": [
@@ -1170,52 +1170,54 @@
     "currentVersion": 1,
     "rootFolder": "525c57c6e7c503020000034a",
     "payload": {
-      "static": true,
-      "material": "528c18c7cdf5c802000008e5",
-      "center": {
+      "orientation": {
+        "w": 1,
         "z": 0,
         "y": 0,
         "x": 0
-      },
-      "visible": true,
-      "boundingbox": {
-        "max": {
-          "z": 16.1144385,
-          "y": 16.1144385,
-          "x": 16.1144385
-        },
-        "min": {
-          "z": -16.1144385,
-          "y": -16.1144385,
-          "x": -16.1144385
-        }
-      },
-      "geometry": {
-        "radius": 16.1144385,
-        "segments": 24,
-        "rings": 32,
-        "type": "Sphere"
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
       },
       "position": {
-        "z": 0,
-        "y": 0,
-        "x": 0
-      },
-      "orientation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
-      }
+        "z": 0
+      },
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "geometry": {
+        "type": "Sphere",
+        "rings": 32,
+        "segments": 24,
+        "radius": 16.1144385
+      },
+      "boundingbox": {
+        "min": {
+          "x": -16.1144385,
+          "y": -16.1144385,
+          "z": -16.1144385
+        },
+        "max": {
+          "x": 16.1144385,
+          "y": 16.1144385,
+          "z": 16.1144385
+        }
+      },
+      "visible": true,
+      "center": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "material": "528c18c7cdf5c802000008e5",
+      "static": false
     },
     "resources": [],
     "components": {},
-    "componentsOrder": [],
+    "componentsOrder": [
+      "1fb50ca9-1363-4582-b270-668ac566d7cd"
+    ],
     "children": {}
   },
   {
@@ -1321,20 +1323,27 @@
     "currentVersion": 1,
     "rootFolder": "525c57c6e7c503020000034a",
     "payload": {
-      "minified": "(function(t,e,i,o,n,a){function h(){}h.prototype=new i.VeroldComponent;h.prototype.editorInit=function(){this.init();var t=this.getEngine();t.on(\"update\",this.update,this)};h.prototype.editorShutdown=function(){var t=this.getEngine();t.off(\"update\",this.update,this);this.shutdown()};h.prototype.init=function(){this.tempVec=new o.Vector3;this.tempMatrix=new o.Matrix4;this.tempQuaternion=new o.Quaternion};h.prototype.update=function(t){var e;if(this.hasThreeData()){e=this.getThreeData();if(this.objectToFace&&this.objectToFace.threeData){var i=this.objectToFace.threeData;this.tempVec.copy(i.position);if(this.respectLocalRotation){e.lookAt(this.tempVec);e.quaternion.multiply(this.veroldEntity.getQuaternion())}else{e.lookAt(this.tempVec)}}}};h.prototype.shutdown=function(){};return h});",
-      "description": "Automatically points an object at another. This can be used for billboarding an object to the camera, making a character look at another, etc.",
+      "attributesOrder": [
+        "respectLocalRotation",
+        "objectToFace"
+      ],
+      "category": "User Defined",
+      "parsedComments": false,
+      "visible": true,
       "attributes": {
-        "respectLocalRotation": {
-          "description": "If toggled, whatever rotation you have already applied to this object will be taken into account.",
-          "default": false,
-          "type": "b"
-        },
         "objectToFace": {
-          "description": "The object that you want this object to point towards. e.g. for billboarding, this would be the camera used to render the scene.",
+          "type": "object",
           "filter": null,
-          "type": "object"
+          "description": "The object that you want this object to point towards. e.g. for billboarding, this would be the camera used to render the scene."
+        },
+        "respectLocalRotation": {
+          "type": "b",
+          "default": false,
+          "description": "If toggled, whatever rotation you have already applied to this object will be taken into account."
         }
-      }
+      },
+      "description": "Automatically points an object at another. This can be used for billboarding an object to the camera, making a character look at another, etc.",
+      "minified": "(function(t,e,i,o,n,a){function h(){}h.prototype=new i.VeroldComponent;h.prototype.editorInit=function(){this.init();var t=this.getEngine();t.on(\"update\",this.update,this)};h.prototype.editorShutdown=function(){var t=this.getEngine();t.off(\"update\",this.update,this);this.shutdown()};h.prototype.init=function(){this.tempVec=new o.Vector3;this.tempMatrix=new o.Matrix4;this.tempQuaternion=new o.Quaternion};h.prototype.update=function(t){var e;if(this.hasThreeData()){e=this.getThreeData();if(this.objectToFace&&this.objectToFace.threeData){var i=this.objectToFace.threeData;this.tempVec.copy(i.position);if(this.respectLocalRotation){e.lookAt(this.tempVec);e.quaternion.multiply(this.veroldEntity.getQuaternion())}else{e.lookAt(this.tempVec)}}}};h.prototype.shutdown=function(){};return h});"
     },
     "resources": [],
     "components": {},
@@ -1432,32 +1441,32 @@
     "currentVersion": 1,
     "rootFolder": "525c57c6e7c503020000034a",
     "payload": {
-      "attributesOrder": [
-        "camera",
-        "presentations"
+      "externalDependencies": [
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"
       ],
-      "category": "User Defined",
-      "visible": true,
-      "minified": "(function(e,t,n,i,o,r){function s(){this.presentationInfo=[{cssTriggerElement:\"#MimasTrigger\"},{cssTriggerElement:\"#ShepherdTrigger\"},{cssTriggerElement:\"#EnckeTriggerPanel\"},{cssTriggerElement:\"#ResonancesTriggerPanel\"}]}s.prototype=new n.VeroldComponent;s.prototype.init=function(){this.scene=this.veroldEntity.getParentAsset();var e=this;t.each(this.presentationInfo,function(n,i){$(n.cssTriggerElement).click(function(n){n.preventDefault();var o=e.presentations[i];if(o){var r=t.values(o.getComponentsByScriptName(\"ResultsPresentation\"))[0];if(r){$(\".posterMainPage\").fadeOut(200);r.start(e.camera,function(){e._tweenObjectTo(e.camera.threeData,e.camera.getPosition(),e.camera.getQuaternion(),.5,0,true,true,function(){$(\".posterMainPage\").fadeIn(200)})})}}})},this)};s.prototype.sceneLoaded=function(){$(\"#loading\").fadeOut(1200);$(\"#verold3d\").fadeIn(1200)};s.prototype.shutdown=function(){};s.prototype.keyDown=function(e){var t=this};s.prototype._tweenObjectTo=function(e,t,n,o,s,a,c,p){if(e&&t){var f=0;var u=0;var g=new i.Vector3;var l;g.copy(e.position);if(n){l=new i.Quaternion;l.copy(e.quaternion)}if(o){this.getEngine().on(\"update\",function y(i){f+=i;if(f>o){this.getEngine().off(\"update\",y,this);if(typeof p===\"function\"){p()}}else{u=f/o;if(u<.5&&a||u>.5&&c){u=r.cos(u*r.PI+r.PI)*.5+.5}e.position.copy(g);e.position.lerp(t,u);if(n){if(s){if(f>=s){u=(f-s)/(o-s);if(u<.5&&a||u>.5&&c){u=r.cos(u*r.PI+r.PI)*.5+.5}e.quaternion.copy(l);e.quaternion.slerp(n,u)}}else{e.quaternion.copy(l);e.quaternion.slerp(n,u)}}}},this)}else{e.position.copy(t);if(n){e.quaternion.copy(n)}if(typeof p===\"function\"){p()}}}};return s});",
+      "parsedComments": false,
       "attributes": {
-        "presentations": {
-          "type": "a",
-          "subType": {
-            "type": "object"
-          },
-          "description": ""
-        },
         "camera": {
-          "type": "object",
+          "description": "",
           "filter": {
             "camera": true
           },
-          "description": ""
+          "type": "object"
+        },
+        "presentations": {
+          "description": "",
+          "subType": {
+            "type": "object"
+          },
+          "type": "a"
         }
       },
-      "parsedComments": false,
-      "externalDependencies": [
-        "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+      "minified": "(function(e,t,n,i,o,r){function a(){this.presentationInfo=[{cssTriggerElement:\"#MimasTrigger\"},{cssTriggerElement:\"#ShepherdTrigger\"},{cssTriggerElement:\"#EnckeTriggerPanel\"},{cssTriggerElement:\"#ResonancesTriggerPanel\"}]}a.prototype=new n.VeroldComponent;a.prototype.init=function(){this.scene=this.veroldEntity.getParentAsset();var e=this;t.each(this.presentationInfo,function(n,i){$(n.cssTriggerElement).click(function(n){n.preventDefault();var o=e.presentations[i];if(o){var r=t.values(o.getComponentsByScriptName(\"ResultsPresentation\"))[0];if(r){$(\".posterMainPage\").fadeOut(200);$(\".gradient-bg\").fadeOut(1400);r.start(e.camera,function(){e._tweenObjectTo(e.camera.threeData,e.camera.getPosition(),e.camera.getQuaternion(),.5,0,true,true,function(){$(\".posterMainPage\").fadeIn(200);$(\".gradient-bg\").fadeIn(200)})})}}})},this)};a.prototype.sceneLoaded=function(){$(\"#loading\").fadeOut(1200);$(\"#verold3d\").fadeIn(1200)};a.prototype.shutdown=function(){};a.prototype.keyDown=function(e){var t=this};a.prototype._tweenObjectTo=function(e,t,n,o,a,s,c,f){if(e&&t){var p=0;var u=0;var g=new i.Vector3;var l;g.copy(e.position);if(n){l=new i.Quaternion;l.copy(e.quaternion)}if(o){this.getEngine().on(\"update\",function d(i){p+=i;if(p>o){this.getEngine().off(\"update\",d,this);if(typeof f===\"function\"){f()}}else{u=p/o;if(u<.5&&s||u>.5&&c){u=r.cos(u*r.PI+r.PI)*.5+.5}e.position.copy(g);e.position.lerp(t,u);if(n){if(a){if(p>=a){u=(p-a)/(o-a);if(u<.5&&s||u>.5&&c){u=r.cos(u*r.PI+r.PI)*.5+.5}e.quaternion.copy(l);e.quaternion.slerp(n,u)}}else{e.quaternion.copy(l);e.quaternion.slerp(n,u)}}}},this)}else{e.position.copy(t);if(n){e.quaternion.copy(n)}if(typeof f===\"function\"){f()}}}};return a});",
+      "visible": true,
+      "category": "User Defined",
+      "attributesOrder": [
+        "camera",
+        "presentations"
       ]
     },
     "resources": [],
@@ -3167,25 +3176,6 @@
     "children": {}
   },
   {
-    "id": "53bd88b9c22b36672b000107",
-    "parentAssetId": "53bd88b9c22b36672b000107",
-    "projectId": "525c57c6e7c503020000034a",
-    "type": "css",
-    "name": "Application CSS",
-    "description": "",
-    "tags": [],
-    "currentVersion": 1,
-    "rootFolder": "525c57c6e7c503020000034a",
-    "payload": {
-      "visible": true,
-      "css": "/* Application */\nbody, html, canvas, #verold3d {\n  margin: 0 auto;\n  padding: 0;\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\n\nbody {\n  background: #000000;\n  /*background-image:url('http://assets.verold.com/production/images/verold-studio-scene-logo.svg');*/\n  background-repeat:no-repeat;\n  background-attachment:fixed;\n  background-position:center;\n}\n\n/* #verold3d {\n  display: none;\n} */\n\n.loading {\n  position: absolute;\n  font-family: tahoma, sans-serif;\n  font-size: 20pt;\n  color: #fff;\n  left: 40%;\n  top: 40%;\n  width: 20%;\n}\n\n.time {\n  position: absolute;\n  background-color: rgba(51,51,51,0.8);\n  border-radius: 5px;\n  border: 3px solid #fff;\n  color: #fff;\n  \n  font-family: tahoma, sans-serif;\n  font-size: 10pt;\n  width: 15%;\n  overflow: hidden;\n  padding: 0px 20px;\n  right: 40%;\n  top: 5%;\n  display: none;\n}\n\n.posterMainPage {\n  position: absolute;\n  background-color: rgba(51,51,51,0.8);\n  border-radius: 5px;\n  border: 3px solid #fff;\n  color: #fff;\n  \n  font-family: tahoma, sans-serif;\n  font-size: 12pt;\n  width: 15%;\n  overflow: hidden;\n  padding: 0px 20px;\n}\n\n.posterMainPage h1 {\n  font-size: 18pt;\n  text-shadow: 2px 1px #111;\n}\n\n.posterMainPage h2 {\n  font-size: 16pt;\n}\n\n#posterMainPage {\n  right: 5%;\n  top: 5%;\n  width: 20%;\n  bottom: 5%;\n  \n  overflow-y: auto;\n}\n\n.posterMainPage img {\n  width: 100%;\n  \n}\n\n#ResonancesTriggerPanel {\n  left: 5%;\n  top: 5%;\n  height: 30%;\n  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/f94f91f10289f08ec96bc269abadba5f/P+PResonances2-low.jpg);\n  background-size: 100%;\n}\n\n#MimasTriggerPanel {\n  left: 50%;\n  top: 5%;\n  height: 30%;\n  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg) top left no-repeat;\n}\n\n#ShepherdTriggerPanel {\n  left: 5%;\n  bottom: 5%;\n  height: 30%;\n  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg) top left no-repeat;\n  background-size: cover;\n}\n\n#EnckeTriggerPanel {\n  left: 50%;\n  bottom: 5%;\n  height: 30%;\n  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg);\n  background-size: cover;\n}\n\n\n\n.information {\n  position: absolute;\n  background-color: rgba(51,51,51,0.8);\n  border-radius: 5px;\n  border: 3px solid #fff;\n  color: #fff;\n  font-family: tahoma, sans-serif;\n  font-size: 12pt;\n  width: 25%;\n  height: 30%;\n  overflow-y: auto;\n  display: none;\n  padding: 20px;\n}\n\n.imformation h1 {\n  font-size: 18pt;\n}\n\n.information img {\n  width: 100%;\n  height: 300px;\n}\n\n#BackButton {\n  left: 5%;\n  top: 5%;\n  width: 100px;\n  height: 100px;\n  overflow: hidden;\n}\n\n#BackButton img {\n  height: 100%;\n  width: 100%;\n}\n\n#MimasInformation {\n  right: 5%;\n  top: 5%;\n  height: 80%;\n}\n\n#ShepherdInformation {\n  right: 5%;\n  top: 5%;\n  height: 80%;\n}\n\n#EnckeInformation {\n  right: 5%;\n  top: 5%;\n  height: 80%;\n}\n\n#ResonancesInformation {\n  right: 5%;\n  top: 5%;\n  height: 80%;\n}\n\n/*\n.trigger {\n  position: absolute;\n}\n\n#trigger-1 {\n  left: 10px;\n  top: 30px;\n}\n\n#trigger-2 {\n  left: 10px;\n  top: 50px;\n}\n\n#trigger-3 {\n  left: 10px;\n  top: 80px;\n}\n*/\n\n\n\n/* NProgress */\n#nprogress { pointer-events: none; }\n#nprogress .bar { background: #009BDF; position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 3px; }\n#nprogress .peg { display: block; position: absolute; right: 0px; width: 100px; height: 100%; box-shadow: 0 0 10px #009BDF, 0 0 5px #009BDF; opacity: 1.0; -webkit-transform: rotate(3deg) translate(0px, -4px); -ms-transform: rotate(3deg) translate(0px, -4px); transform: rotate(3deg) translate(0px, -4px); }\n\n/* Remove these to get rid of the spinner */\n#nprogress .spinner { display: block; position: fixed; z-index: 100; top: 15px; right: 15px; }\n#nprogress .spinner-icon { width: 18px; height: 18px; box-sizing: border-box; border: solid 2px transparent; border-top-color: #009BDF; border-left-color: #009BDF; border-radius: 50%; -webkit-animation: nprogress-spinner 400ms linear infinite; animation: nprogress-spinner 400ms linear infinite; }\n@-webkit-keyframes nprogress-spinner { 0%   { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); }\n@keyframes nprogress-spinner { 0%   { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }\n"
-    },
-    "resources": [],
-    "components": {},
-    "componentsOrder": [],
-    "children": {}
-  },
-  {
     "id": "53bd88b9c22b36672b000108",
     "parentAssetId": "53bd88b9c22b36672b000108",
     "projectId": "525c57c6e7c503020000034a",
@@ -3197,7 +3187,7 @@
     "rootFolder": "525c57c6e7c503020000034a",
     "payload": {
       "visible": true,
-      "html": "<div id=\"verold3d\"></div>\n\n<div class=\"loading\" id=\"loading\">\n  <h1>Loading...</h1>\n</div>\n\n<div class=\"time\" id=\"time\">\n  <h1>Time: ...</h1>\n</div>\n\n<a href=\"#\" id=\"ResonancesTrigger\">\n<div class=\"posterMainPage\" id=\"ResonancesTriggerPanel\">\n  <h1>1. Resonances</h1>\n  <!--<img src=\"http://assets.verold.com/entities/525c57c6e7c503020000034a/a7bb8feed293351776ef5b9633c5e34b/Saturn_A_ring_spiral_density_waves-low.jpg\">-->\n</div>\n</a>\n\n<div class=\"information\" id=\"ResonancesInformation\">\n  <h1>Resonances</h1>\n  <p>\n  Even for a satellite outside of the ring system, where the gravitational acceleration exerted on the ring particles is vanishingly small, clear effects can still be induced in the ring. A satellite can do this through what are called mean-motion orbital resonances. A resonance occurs when the orbital periods of two or more bodies are integer-ratios of each other (e.g. a 3:1 resonance is when one body completes three orbits in exactly the same time as the second completes one). We refer to the portion of the resonance in the longitudinal direction as a \"Lindblad\" resonance (named after astronomer, Bertil Lindblad, who initially described how these resonances generate spiral density waves inside of galaxies) as opposed to the resonant effects that act perpendicular or radially to the ring plane. Lindblad resonances play the most important role in clearing and confining structure in ring systems (de Pater & Lissauer 2010).\n  </p>\n  <p>\n  The strongest Lindblad resonances occur when the orbital ratio between the two bodies has a difference of 1 (e.g. 2:1, 3:2, 4:3, etc.) (de Pater & Lissauer 2010). These resonances are called “first-order” and provide the most coherent forcing because every conjunction occurs at the same location in the orbit of the two bodies. This allows the gravitational disturbance from every encounter to build on each other without being disrupted by forcing in other directions.\n  </p>\n  <p>\n  Ring particles moving past the satellite on an inner orbit (in an \"inner Lindblad resonance, or ILR) will give up some of their momentum to the satellite, slowing them down ever-so-slightly and changing the eccentricity of their orbit. Gaps can be cleared in the rings as the particle's new eccentricity brings it into contact with other less perturbed particles in different orbits. Crossing these orbits leads to inevitable collisions which tend to damp out the eccentricities so that the particle’s mean-motion matches the overall flow of the surrounding particles. This can result in a gap at the location of the resonance if the eccentricity-pumping is strong enough to resist the natural viscous spreading of the ring material (Goldreich & Tremaine 1982).\n  </p>\n  <p>\n    In the animation on the left, we can see the orbits of 300 TP's in the outer A Ring, along with the moons Prometheus (<font color=\"red\">red</font>) and Pandora (<font color=\"green\">green</font>). Over the 10 years of the simulation, the TP's at various ILR's with the two moons have their eccentricities subtly changed. The amount of change is highlighted in pink in the animation and can be clearly seen in the following image where simulation results of eccentricity change are overlaid on a photograph of the outer A Ring. Note that the image is from a simulation with many more particles and a slightly different range than the animation show.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/4634add56326823094f5ff852af8cea5/P+P+Close+Resonances+Overlay2-low.jpg\">\n</div>\n\n<a href=\"#\" id=\"MimasTrigger\">\n<div class=\"posterMainPage\" id=\"MimasTriggerPanel\">\n  <h1>2. Cassini Division</h1>\n  <!--<img src=\"http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg\">-->\n</div>\n</a>\n\n<div class=\"information\" id=\"MimasInformation\">\n  <h1>Mimas and the Cassini Division</h1>\n  <p>\n    Mimas, the innermost, spherical moon of Saturn, is widely considered to be responsible for clearing the Cassini Division in Saturn’s rings via the 2:1 ILR (Freedman, Geller & Kaufmann 2011) (de Pater & Lissauer 2010) (Goldreich & Tremaine 1979). Because of the resonant forcing of the ring particles at the 2:1 location, the ring particles move inward over time, opening a gap. The Cassini Division is roughly 3.2e-5 AU wide and lies between Saturn's A and B rings.\n  </p>\n  <p>\n    The animation on the left shows the results of simulating 300 TP's and Mimas (show in <font color=\"red\">red</font>) over 20 years with SWIFT. The particles are spread across 3.0e-5 AU (about 4500 km). The change in eccentricity is very small so, in the animation playback, the TP's orbit is highlighted pink relative to the amount of eccentricity change it has undergone. Below is a plot from the SWIFT simulation that clearly shows the change in eccentricity at the 2:1 ILR.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/453e0f9ca30d61edd10b779659a874dc/Mimas2-1-low.jpg\">\n  <p>\n    According to my simulations, Mimas inflicts an average eccentricity change on particles at the 2:1 ILR of 3.0e-4 over 20 years which directly corresponds to these particles crossing orbits at least 2.3e-7 AU away from where they started. So it seems very reasonable to assume that, if viscous forces within the rings were also modelled, we would see the perturbed particles eccentricity get damped and a gap in the ring would open at the 2:1 ILR. The gap would grow ever wider until it was balanced by the viscous pressures within the B Ring. Mimas' role in shaping the edge of the B Ring is quite visible but how important it is in shaping the entire Cassini Division is much less clear. The inner edge of the A Ring, almost 5000 km away, is far outside the immediate gravitational influence of the 2:1 ILR. However, once viscous forces and self-gravitation are considered, the transport of angular momentum via density waves may be able to account for this.\n  </p>\n</div>\n\n<a href=\"#\" id=\"ShepherdTrigger\">\n<div class=\"posterMainPage\" id=\"ShepherdTriggerPanel\">\n  <h1>3. Shepherd Moons</h1>\n  <!--<img src=\"http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg\">-->\n</div>\n</a>\n\n<div class=\"information\" id=\"ShepherdInformation\">\n  <h1>Shepherd Information</h1>\n  <p>\n  The two moons, Prometheus (shown in <font color=\"red\">red</font> in the animation and graph below) and Pandora (shown in <font color=\"green\">green</font>) are thought to be responsible for constraining the narrow F Ring through a gravitational interaction known as the shepherding effect. As Prometheus moves past the ring particles outside its orbit (which are travelling more slowly), it gives up some of its momentum to the particle, speeding it up and boosting it into a slightly higher orbit. It also changes the particle's orbital eccentricity, helping to bring it into contact with other TP orbits. In reality, the particles in the F Ring are exerting an outward pressure due to internal collisions and this is being balanced by the forcing of Prometheus and Pandora. In the simulations conducted, we can clearly see this forcing occurring over relatively short timescales of only 25 years. However, after such a short time, the thickness of the F Ring produced is still several times larger than the actual F Ring.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/dfe7feb24f3bae4917e85a1977bd0eee/Shepherd25years-low.jpg\">\n  <p>\n  Over longer timescales, the F Ring undergoes more forcing by the satellites but, with no internal pressure to balance the forcing in the simulations, the system is unstable and the ring disintegrates. Below is a plot of the system over 150,000 years.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/f588daf23240d8e39d2b20a66ead685c/Shepherd+150000+years-low.jpg\">\n  <p>\n  We can estimate the expected eccentricity perturbation of a TP by a nearby satellite, assuming both are on circular orbits (de Pater & Lissauer 2010). We do this for the actual  locations of the inner and outer F Ring and then use the relationship, a = ( 1 - e ) to derive the expected change in semi-major axis due to the eccentricity perturbation (where a is the semi-major axis and e is the eccentricity). The resulting estimate is about 5.6e-8 AU for the inner edge and 9.2e-9 AU for the outer edge per conjunction. In 5 years, Prometheus undergoes roughly 60 conjunctions with the inner F Ring particles while Pandora undergoes about 140 with the outer F Ring particles. Looking at the results of the simulation, these values seem quite reasonable, considering their applicability only while the TP's maintain a circular orbit.\n  </p>\n  \n</div>\n\n<a href=\"#\" id=\"EnckeTrigger\">\n<div class=\"posterMainPage\" id=\"EnckeTriggerPanel\">\n  <h1>4. Encke Gap</h1>\n  <!--<img src=\"http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg\">-->\n</div>\n</a>\n\n<div class=\"information\" id=\"EnckeInformation\">\n  <h1>Pan and the Encke Gap/Ringlet</h1>\n  <p>\n  The final scenario simulated involved the tiny satellite, Pan, embedded inside the Encke Gap. It is thought that Pan cleared the gap itself through the shepherding effect and continues to keep it clear today (Showalter 1991).\n  </p>\n  <p>\n  In the simulation results, we see a gap open up around Pan quite quickly. The actual Encke Gap is 2.2e-6 AU wide (Rings_web) and, in my results, TP’s are most affected by Pan inside a gap of about 5e-6 AU. This seems reasonably consistent since it shows that, neglecting other factors, Pan has at least the sufficient gravitational influence to clear a gap the size of Encke. When viscous spreading is taken into account, I expect that the clearing force would be partially countered by this pressure.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/d512b2b9fb2678ed03d539ae7efb8383/Pan-90+years2-low.jpg\">\n  <p>\n    Several particles in both the shepherding simulations of Pandora and Prometheus as well as the simulations of Pan can be seen maintaining an orbit close to the satellites, despite the tendency for the moons to clear their immediate orbit. These particles have entered a 1:1 resonance with the satellite and their resulting “horseshoe” orbit can be seen. The animation on the left is from a simulation of 300 TP's and Pan (<font color=\"red\">red</font>) inside the Encke Gap. Over the course of 100 years, the particles within about 1.0e-7 AU of Pan maintain their semi-major axis close to Pan while other TP's are cleared (see corresponding graph below). The TP's that remain alternate between orbiting inside and outside of of Pan's orbit and appear stable over long periods of time.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/27b3a8d520c64fd28d0ec0abb6f259cf/Encke+Gap+and+Ringlet-low.jpg\">\n</div>\n\n<!--<a href=\"#\" id=\"BackButtonTrigger\">-->\n  <div class=\"information\" id=\"BackButton\">\n    <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/91df66b9fa132c7a278c16a474ecaa15/Left-Arrow-low.png\">\n  </div>\n<!--</a>-->\n\n<div class=\"posterMainPage\" id=\"posterMainPage\">\n  <h1>External Gavitational Influences on the Morphology of Saturn's Rings</h1>\n  <p>\n    BOND, M. D. C., 2013\n  </p>\n  <h2>Abstract</h2>\n  <p>\n  The first up-close images of Saturn's rings by passing probes in the late 70's and early 80's revealed astonishingly complex and intricate structure. And although we've learned an enormous amount about the morphology of ring systems in the past three decades, we now have more questions than ever before about their nature and evolution (de Pater & Lissauer 2010). Many factors affect their structure including self gravitation, internal particle collisions, radiation drag (Goldreich & Tremaine 1982) and even the magnetic field of the planet (Mitchell et al, 2007). I investigate several ways in which planetary rings are influenced by the gravity of satellites, both embedded in the ring and external, and find that this gravitational influence alone is enough to form significant structure.\n  </p>\n  <h2>Method</h2>\n  <p>\n    Several scenarios were investigated using simulations conducted with the Solar System Dynamics (SSD) simulator. This simulator is based on the SWIFT code (Levison and Duncan 1994) and was run on the Swinburne supercomputer over its web-based interface. The first two scenarios looked at resonances and their ability to form structure in the outer A Ring and, by the satellite Mimas, at the boundary between the Cassini Division and outer B Ring. The third scenario looked at the F Ring and the idea that it is being confined by the satellites Prometheus and Pandora. Finally, the moonlet, Pan, was simulated and its ability to clear the Encke Gap and form the Encke Ringlet was investigated.\n  </p>\n  <p>\n    Compared to the satellites that concern us, the mass of the individual ring particles is negligible and can therefore be considered massless. Additionally, since we are focussing on the external gravitational influences of satellites alone, we neglect self-gravitation of the rings as well as any internal, viscous pressures caused by particle-particle collisions.\n  </p>\n  <p>\n    Simulations of satellites and test particles (TP) around Saturn were run for anywhere between several dozen years down to a few days, depending on what was being studied. The integration time step used was never more than 2e-6 years which corresponds to less than a degree of longitudinal movement for any TP's that we are concerned with.\n  </p>\n  <p>\n    An overview of the results can be found on the left, along with animations of some of the simulations. For the sake of small download sizes, these animations were limited to 100 time steps of data.\n  </p>\n  <h2>Conclusions</h2>\n  <p>\n  The effect of external satellite gravity alone is enough to cause dramatic changes to a ring system and induce clear structure. This occurs mainly at first-order Lindblad resonances where eccentricities are excited most significantly. The intricately banded nature of Saturn’s A Ring coincides perfectly with the pattern of first-order ILR’s of Pandora and Prometheus in the performed simulations. The small eccentricity changes are easily enough to cause TP’s to cross the orbits of other TP’s and have their new eccentricity damped by particle-particle collisions so I would theorize that simulating the viscous forces within the ring would be enough to have these resonances open gaps (i.e. without the need of simulating self-gravity in the ring).\n  </p>\n  <p>\n  The ability for moons to clear their own orbits via the shepherding effect was clearly shown as well as the stability of 1:1 resonant horseshoe orbits within the satellite’s cleared gap. However, to properly make measurements of the confinement of a ring, viscous forces within the ring are required to counter-balance the driving force by the shepherding satellites.\n  </p>\n  <h2>References</h2>\n  <p>\n  de Pater, I., Lissauer, J. J., 2010, Planetary Sciences (2nd ed.), United Kingdom, Cambridge University Press\n  </p>\n  <p>\n  Freedman, R. A., Geller, R. M. & Kaufmann III, W. J., 2011, The Universe, (9th ed.), New York, W. H. Freeman and Company\n  </p>\n  <p>\n  Goldreich, P., 1979, The Rings of Saturn and Uranus, IAUS, 81, 191\n  </p>\n  <p>\n  Goldreich, P., Tremaine, S. 1979, The Excitation and of Density Waves at the Lindblad and Corotation Resonances by an External Potential, ApJ, 233, 857\n  </p>\n  <p>\n  Goldreich, P., Tremaine, S. 1982, The Dynamics of Planetary Rings, ARA&A, 20, 249\n  </p>\n  <p>\n  Levison, H., Duncan, M., 1994, Icarus, 108, 18\n  </p>\n  <p>\n  Mitchell, C. J., Horanyi, M., Havnes, O., Porco, C. C. 2006, Saturn’s Spokes: Lost and Found, Science Magazine, 311, 1587\n  </p>\n  <p>\n  Rings_web: Vital Statistics for Saturn’s Rings and Inner Moons, http://pds-rings.seti.org/saturn/saturn_tables.html (accessed Nov. 15)\n  </p>\n  <p>\n  Showalter, M. R. 1991. Visual detection of 1981S13, Saturn’s eighteenth satellite, and its role in the Encke Gap. Nature 351, 709–713\n  </p>\n</div>"
+      "html": "<div id=\"verold3d\"></div>\n\n<div class=\"loading\" id=\"loading\">\n  <div class=\"loader-wrapper\">\n    <div class=\"spinner\">\n      <div class=\"bounce1\"></div>\n      <div class=\"bounce2\"></div>\n      <div class=\"bounce3\"></div>\n    </div>\n    <p>Loading</p>\n  </div>\n</div>\n\n<div class=\"gradient-bg\"></div>\n\n<div class=\"time\" id=\"time\">\n  <h1>Time...</h1>\n</div>\n\n<a href=\"#\" id=\"ResonancesTrigger\">\n<div class=\"posterMainPage banner\" id=\"ResonancesTriggerPanel\">\n  <h1><span>I</span> Resonances</h1>\n</div>\n</a>\n\n<div class=\"information details\" id=\"ResonancesInformation\">\n  <h1>Resonances</h1>\n  <p>\n  Even for a satellite outside of the ring system, where the gravitational acceleration exerted on the ring particles is vanishingly small, clear effects can still be induced in the ring. A satellite can do this through what are called mean-motion orbital resonances. A resonance occurs when the orbital periods of two or more bodies are integer-ratios of each other (e.g. a 3:1 resonance is when one body completes three orbits in exactly the same time as the second completes one). We refer to the portion of the resonance in the longitudinal direction as a \"Lindblad\" resonance (named after astronomer, Bertil Lindblad, who initially described how these resonances generate spiral density waves inside of galaxies) as opposed to the resonant effects that act perpendicular or radially to the ring plane. Lindblad resonances play the most important role in clearing and confining structure in ring systems (de Pater & Lissauer 2010).\n  </p>\n  <p>\n  The strongest Lindblad resonances occur when the orbital ratio between the two bodies has a difference of 1 (e.g. 2:1, 3:2, 4:3, etc.) (de Pater &amp; Lissauer 2010). These resonances are called “first-order” and provide the most coherent forcing because every conjunction occurs at the same location in the orbit of the two bodies. This allows the gravitational disturbance from every encounter to build on each other without being disrupted by forcing in other directions.\n  </p>\n  <p>\n  Ring particles moving past the satellite on an inner orbit (in an \"inner Lindblad resonance, or ILR) will give up some of their momentum to the satellite, slowing them down ever-so-slightly and changing the eccentricity of their orbit. Gaps can be cleared in the rings as the particle&#39;s new eccentricity brings it into contact with other less perturbed particles in different orbits. Crossing these orbits leads to inevitable collisions which tend to damp out the eccentricities so that the particle&#39;s mean-motion matches the overall flow of the surrounding particles. This can result in a gap at the location of the resonance if the eccentricity-pumping is strong enough to resist the natural viscous spreading of the ring material (Goldreich & Tremaine 1982).\n  </p>\n  <p>\n    In the animation on the left, we can see the orbits of 300 TP's in the outer A Ring, along with the moons Prometheus (<font color=\"red\">red</font>) and Pandora (<font color=\"green\">green</font>). Over the 10 years of the simulation, the TP's at various ILR's with the two moons have their eccentricities subtly changed. The amount of change is highlighted in pink in the animation and can be clearly seen in the following image where simulation results of eccentricity change are overlaid on a photograph of the outer A Ring. Note that the image is from a simulation with many more particles and a slightly different range than the animation show.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/4634add56326823094f5ff852af8cea5/P+P+Close+Resonances+Overlay2-low.jpg\">\n</div>\n\n<a href=\"#\" id=\"MimasTrigger\">\n<div class=\"posterMainPage banner\" id=\"MimasTriggerPanel\">\n  <h1><span>II</span> Cassini Division</h1>\n</div>\n</a>\n\n<div class=\"information details\" id=\"MimasInformation\">\n  <h1>Mimas and the Cassini Division</h1>\n  <p>\n    Mimas, the innermost, spherical moon of Saturn, is widely considered to be responsible for clearing the Cassini Division in Saturn&#39;s rings via the 2:1 ILR (Freedman, Geller & Kaufmann 2011) (de Pater & Lissauer 2010) (Goldreich & Tremaine 1979). Because of the resonant forcing of the ring particles at the 2:1 location, the ring particles move inward over time, opening a gap. The Cassini Division is roughly 3.2e-5 AU wide and lies between Saturn's A and B rings.\n  </p>\n  <p>\n    The animation on the left shows the results of simulating 300 TP's and Mimas (show in <font color=\"red\">red</font>) over 20 years with SWIFT. The particles are spread across 3.0e-5 AU (about 4500 km). The change in eccentricity is very small so, in the animation playback, the TP's orbit is highlighted pink relative to the amount of eccentricity change it has undergone. Below is a plot from the SWIFT simulation that clearly shows the change in eccentricity at the 2:1 ILR.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/453e0f9ca30d61edd10b779659a874dc/Mimas2-1-low.jpg\">\n  <p>\n    According to my simulations, Mimas inflicts an average eccentricity change on particles at the 2:1 ILR of 3.0e-4 over 20 years which directly corresponds to these particles crossing orbits at least 2.3e-7 AU away from where they started. So it seems very reasonable to assume that, if viscous forces within the rings were also modelled, we would see the perturbed particles eccentricity get damped and a gap in the ring would open at the 2:1 ILR. The gap would grow ever wider until it was balanced by the viscous pressures within the B Ring. Mimas' role in shaping the edge of the B Ring is quite visible but how important it is in shaping the entire Cassini Division is much less clear. The inner edge of the A Ring, almost 5000 km away, is far outside the immediate gravitational influence of the 2:1 ILR. However, once viscous forces and self-gravitation are considered, the transport of angular momentum via density waves may be able to account for this.\n  </p>\n</div>\n\n<a href=\"#\" id=\"ShepherdTrigger\">\n<div class=\"posterMainPage banner\" id=\"ShepherdTriggerPanel\">\n  <h1><span>III</span> Shepherd Moons</h1>\n</div>\n</a>\n\n<div class=\"information details\" id=\"ShepherdInformation\">\n  <h1>Shepherd Information</h1>\n  <p>\n  The two moons, Prometheus (shown in <font color=\"red\">red</font> in the animation and graph below) and Pandora (shown in <font color=\"green\">green</font>) are thought to be responsible for constraining the narrow F Ring through a gravitational interaction known as the shepherding effect. As Prometheus moves past the ring particles outside its orbit (which are travelling more slowly), it gives up some of its momentum to the particle, speeding it up and boosting it into a slightly higher orbit. It also changes the particle's orbital eccentricity, helping to bring it into contact with other TP orbits. In reality, the particles in the F Ring are exerting an outward pressure due to internal collisions and this is being balanced by the forcing of Prometheus and Pandora. In the simulations conducted, we can clearly see this forcing occurring over relatively short timescales of only 25 years. However, after such a short time, the thickness of the F Ring produced is still several times larger than the actual F Ring.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/dfe7feb24f3bae4917e85a1977bd0eee/Shepherd25years-low.jpg\">\n  <p>\n  Over longer timescales, the F Ring undergoes more forcing by the satellites but, with no internal pressure to balance the forcing in the simulations, the system is unstable and the ring disintegrates. Below is a plot of the system over 150,000 years.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/f588daf23240d8e39d2b20a66ead685c/Shepherd+150000+years-low.jpg\">\n  <p>\n  We can estimate the expected eccentricity perturbation of a TP by a nearby satellite, assuming both are on circular orbits (de Pater & Lissauer 2010). We do this for the actual  locations of the inner and outer F Ring and then use the relationship, a = ( 1 - e ) to derive the expected change in semi-major axis due to the eccentricity perturbation (where a is the semi-major axis and e is the eccentricity). The resulting estimate is about 5.6e-8 AU for the inner edge and 9.2e-9 AU for the outer edge per conjunction. In 5 years, Prometheus undergoes roughly 60 conjunctions with the inner F Ring particles while Pandora undergoes about 140 with the outer F Ring particles. Looking at the results of the simulation, these values seem quite reasonable, considering their applicability only while the TP's maintain a circular orbit.\n  </p>\n  \n</div>\n\n<a href=\"#\" id=\"EnckeTrigger\">\n<div class=\"posterMainPage banner\" id=\"EnckeTriggerPanel\">\n  <h1><span>IV</span> Encke Gap</h1>\n</div>\n</a>\n\n<div class=\"information details\" id=\"EnckeInformation\">\n  <h1>Pan and the Encke Gap/Ringlet</h1>\n  <p>\n  The final scenario simulated involved the tiny satellite, Pan, embedded inside the Encke Gap. It is thought that Pan cleared the gap itself through the shepherding effect and continues to keep it clear today (Showalter 1991).\n  </p>\n  <p>\n  In the simulation results, we see a gap open up around Pan quite quickly. The actual Encke Gap is 2.2e-6 AU wide (Rings_web) and, in my results, TP&#39;s are most affected by Pan inside a gap of about 5e-6 AU. This seems reasonably consistent since it shows that, neglecting other factors, Pan has at least the sufficient gravitational influence to clear a gap the size of Encke. When viscous spreading is taken into account, I expect that the clearing force would be partially countered by this pressure.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/d512b2b9fb2678ed03d539ae7efb8383/Pan-90+years2-low.jpg\">\n  <p>\n    Several particles in both the shepherding simulations of Pandora and Prometheus as well as the simulations of Pan can be seen maintaining an orbit close to the satellites, despite the tendency for the moons to clear their immediate orbit. These particles have entered a 1:1 resonance with the satellite and their resulting “horseshoe” orbit can be seen. The animation on the left is from a simulation of 300 TP's and Pan (<font color=\"red\">red</font>) inside the Encke Gap. Over the course of 100 years, the particles within about 1.0e-7 AU of Pan maintain their semi-major axis close to Pan while other TP's are cleared (see corresponding graph below). The TP's that remain alternate between orbiting inside and outside of of Pan's orbit and appear stable over long periods of time.\n  </p>\n  <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/27b3a8d520c64fd28d0ec0abb6f259cf/Encke+Gap+and+Ringlet-low.jpg\">\n</div>\n\n<div class=\"information back-btn\" id=\"BackButton\">\n  <svg viewBox=\"0 0 60 60\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"><title>back</title><description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description><g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"><path d=\"M43.13 28.13L23.28 28.13 31 20.4C31.74 19.67 31.74 18.48 31 17.75 30.27 17.01 29.08 17.01 28.35 17.75L17.75 28.35C17.3 28.8 17.16 29.42 17.26 30 17.16 30.58 17.3 31.2 17.75 31.65L28.35 42.26C29.09 42.99 30.27 42.99 31.01 42.26 31.74 41.52 31.74 40.34 31.01 39.6L23.28 31.88 43.13 31.88C44.16 31.88 45 31.04 45 30 45 28.97 44.16 28.13 43.13 28.13L43.13 28.13ZM30 0C13.43 0 0 13.43 0 30 0 46.57 13.43 60 30 60 46.57 60 60 46.57 60 30 60 13.43 46.57 0 30 0L30 0ZM30 56.25C15.5 56.25 3.75 44.5 3.75 30 3.75 15.5 15.5 3.75 30 3.75 44.5 3.75 56.25 15.5 56.25 30 56.25 44.5 44.5 56.25 30 56.25L30 56.25Z\" fill=\"#FFFFFF\"/></g></svg>\n</div>\n\n<div class=\"intro-text posterMainPage\">\n  <h1>External Gavitational Influences on the Morphology of Saturn&#39;s Rings</h1>\n  <h3>\n    BOND, M. D. C., 2013\n  </h3>\n  <h2>Abstract</h2>\n  <p>\n  The first up-close images of Saturn's rings by passing probes in the late 70&#39;s and early 80's revealed astonishingly complex and intricate structure. And although we've learned an enormous amount about the morphology of ring systems in the past three decades, we now have more questions than ever before about their nature and evolution (de Pater &amp; Lissauer 2010). Many factors affect their structure including self gravitation, internal particle collisions, radiation drag (Goldreich & Tremaine 1982) and even the magnetic field of the planet (Mitchell et al, 2007). I investigate several ways in which planetary rings are influenced by the gravity of satellites, both embedded in the ring and external, and find that this gravitational influence alone is enough to form significant structure.\n  </p>\n  <h2>Method</h2>\n  <p>\n    Several scenarios were investigated using simulations conducted with the Solar System Dynamics (SSD) simulator. This simulator is based on the SWIFT code (Levison and Duncan 1994) and was run on the Swinburne supercomputer over its web-based interface. The first two scenarios looked at resonances and their ability to form structure in the outer A Ring and, by the satellite Mimas, at the boundary between the Cassini Division and outer B Ring. The third scenario looked at the F Ring and the idea that it is being confined by the satellites Prometheus and Pandora. Finally, the moonlet, Pan, was simulated and its ability to clear the Encke Gap and form the Encke Ringlet was investigated.\n  </p>\n  <p>\n    Compared to the satellites that concern us, the mass of the individual ring particles is negligible and can therefore be considered massless. Additionally, since we are focussing on the external gravitational influences of satellites alone, we neglect self-gravitation of the rings as well as any internal, viscous pressures caused by particle-particle collisions.\n  </p>\n  <p>\n    Simulations of satellites and test particles (TP) around Saturn were run for anywhere between several dozen years down to a few days, depending on what was being studied. The integration time step used was never more than 2e-6 years which corresponds to less than a degree of longitudinal movement for any TP's that we are concerned with.\n  </p>\n  <p>\n    An overview of the results can be found on the left, along with animations of some of the simulations. For the sake of small download sizes, these animations were limited to 100 time steps of data.\n  </p>\n  <h2>Conclusions</h2>\n  <p>\n  The effect of external satellite gravity alone is enough to cause dramatic changes to a ring system and induce clear structure. This occurs mainly at first-order Lindblad resonances where eccentricities are excited most significantly. The intricately banded nature of Saturn&#39;s A Ring coincides perfectly with the pattern of first-order ILR&#39;s of Pandora and Prometheus in the performed simulations. The small eccentricity changes are easily enough to cause TP&#39;s to cross the orbits of other TP&#39;s and have their new eccentricity damped by particle-particle collisions so I would theorize that simulating the viscous forces within the ring would be enough to have these resonances open gaps (i.e. without the need of simulating self-gravity in the ring).\n  </p>\n  <p>\n  The ability for moons to clear their own orbits via the shepherding effect was clearly shown as well as the stability of 1:1 resonant horseshoe orbits within the satellite&#39;s cleared gap. However, to properly make measurements of the confinement of a ring, viscous forces within the ring are required to counter-balance the driving force by the shepherding satellites.\n  </p>\n  <h2>References</h2>\n  <p>\n  de Pater, I., Lissauer, J. J., 2010, Planetary Sciences (2nd ed.), United Kingdom, Cambridge University Press\n  </p>\n  <p>\n  Freedman, R. A., Geller, R. M. &amp; Kaufmann III, W. J., 2011, The Universe, (9th ed.), New York, W. H. Freeman and Company\n  </p>\n  <p>\n  Goldreich, P., 1979, The Rings of Saturn and Uranus, IAUS, 81, 191\n  </p>\n  <p>\n  Goldreich, P., Tremaine, S. 1979, The Excitation and of Density Waves at the Lindblad and Corotation Resonances by an External Potential, ApJ, 233, 857\n  </p>\n  <p>\n  Goldreich, P., Tremaine, S. 1982, The Dynamics of Planetary Rings, ARA&amp;A, 20, 249\n  </p>\n  <p>\n  Levison, H., Duncan, M., 1994, Icarus, 108, 18\n  </p>\n  <p>\n  Mitchell, C. J., Horanyi, M., Havnes, O., Porco, C. C. 2006, Saturn&#39;s Spokes: Lost and Found, Science Magazine, 311, 1587\n  </p>\n  <p>\n  Rings_web: Vital Statistics for Saturn&#39;s Rings and Inner Moons, http://pds-rings.seti.org/saturn/saturn_tables.html (accessed Nov. 15)\n  </p>\n  <p>\n  Showalter, M. R. 1991. Visual detection of 1981S13, Saturn&#39;s eighteenth satellite, and its role in the Encke Gap. Nature 351, 709–713\n  </p>\n  <a href=\"http://verold.com\" target=\"_blank\" class=\"verold\">\n     <img src=\"https://commondatastorage.googleapis.com/assets.verold.com/production/images/verold-icon.svg\" alt=\"Verold\">\n     <span>3D powered by Verold</span>\n  </a>\n</div>\n\n<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,700' rel='stylesheet' type='text/css'>\n<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>"
     },
     "resources": [],
     "components": {},
@@ -3218,21 +3208,21 @@
     "payload": {
       "visible": true,
       "position": {
-        "x": -24.904262595352282,
-        "y": 8.454766362564175,
-        "z": 72.67806698806739
+        "x": -24.985742057334868,
+        "y": 8.233772316536427,
+        "z": 72.65921109571872
       },
       "orientation": {
-        "x": -0.05003188971472816,
-        "y": -0.2495282696254648,
-        "z": -0.012863937444167804,
-        "w": 0.9669886099550083
+        "x": -0.04059016615947629,
+        "y": -0.23893452739061474,
+        "z": -0.18804887332086972,
+        "w": 0.9517879814623692
       },
-      "fov": 50,
+      "fov": 45,
       "type": "PerspectiveCamera",
       "aspect": 1.7777777777777777,
-      "near": 0.5,
-      "far": 20000,
+      "near": 1,
+      "far": 2000,
       "left": -1,
       "right": 1,
       "top": 1,
@@ -3332,7 +3322,7 @@
     "componentsOrder": [
       "filters_comp",
       "renderView_component",
-      "283df903-9cd5-438a-aa44-ced9aef3d903"
+      "82d84872-67c2-4de1-4f38-0c48c0ff2ba6"
     ],
     "template": false,
     "children": {}
@@ -3580,33 +3570,33 @@
     "currentVersion": 1,
     "rootFolder": "525c57c6e7c503020000034a",
     "payload": {
-      "visible": true,
-      "orientation": {
-        "w": 0.7481163878735604,
-        "z": -0.02178190320099499,
-        "y": -0.6604210934193998,
-        "x": -0.06075687824993045
-      },
-      "position": {
-        "z": 31.471570126145508,
-        "y": 1.0976976879890459,
-        "x": 2.716041062459893
-      },
-      "bottom": -100,
-      "top": 100,
-      "right": 100,
-      "left": -100,
-      "far": 200000,
-      "near": 1,
-      "aspect": 1.7777777777777777,
-      "fov": 58.17,
-      "scale": {
-        "z": 1,
-        "y": 1,
-        "x": 1
-      },
+      "geometry": {},
       "type": "PerspectiveCamera",
-      "geometry": {}
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "fov": 58.17,
+      "aspect": 1.7777777777777777,
+      "near": 1.5,
+      "far": 2000,
+      "left": -100,
+      "right": 100,
+      "top": 100,
+      "bottom": -100,
+      "position": {
+        "x": 2.716041062459893,
+        "y": 1.0976976879890459,
+        "z": 31.471570126145508
+      },
+      "orientation": {
+        "x": -0.06075687824993045,
+        "y": -0.6604210934193998,
+        "z": -0.02178190320099499,
+        "w": 0.7481163878735604
+      },
+      "visible": true
     },
     "resources": [],
     "components": {
@@ -3697,7 +3687,8 @@
     "componentsOrder": [
       "filters_comp",
       "renderView_component",
-      "9f3b0e75-3b03-4c6b-b0f0-11bcbfaa50fa"
+      "04c99e27-547b-4c60-bc20-931745921461",
+      "1fb50ca9-1363-4582-b270-668ac566d7cd"
     ],
     "children": {}
   },
@@ -3713,32 +3704,32 @@
     "currentVersion": 1,
     "rootFolder": "525c57c6e7c503020000034a",
     "payload": {
-      "visible": true,
-      "type": "PerspectiveCamera",
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "fov": 58.17,
-      "aspect": 1.7777777777777777,
-      "near": 0.5,
-      "far": 20000,
-      "left": -100,
-      "right": 100,
-      "top": 100,
-      "bottom": -100,
-      "position": {
-        "x": -21.03078954116089,
-        "y": 0.4581665671755494,
-        "z": 29.196739210014325
-      },
       "orientation": {
-        "x": -0.061523445058168535,
-        "y": -0.9160711627874722,
+        "w": 0.36492131413466833,
         "z": -0.15446981875953358,
-        "w": 0.36492131413466833
-      }
+        "y": -0.9160711627874722,
+        "x": -0.061523445058168535
+      },
+      "position": {
+        "z": 28.470639264449577,
+        "y": 0.8639203109326316,
+        "x": -21.964125303914354
+      },
+      "bottom": -100,
+      "top": 100,
+      "right": 100,
+      "left": -100,
+      "far": 2000,
+      "near": 1,
+      "aspect": 1.7777777777777777,
+      "fov": 58.17,
+      "scale": {
+        "z": 1,
+        "y": 1,
+        "x": 1
+      },
+      "type": "PerspectiveCamera",
+      "visible": true
     },
     "resources": [],
     "components": {
@@ -3829,7 +3820,7 @@
     "componentsOrder": [
       "filters_comp",
       "renderView_component",
-      "ea2d366c-17b6-4967-b21d-7eac3d7c38d9"
+      "7c1e1eaf-0e2d-4dcb-a456-65d4dbe83c6a"
     ],
     "children": {}
   },
@@ -3962,7 +3953,7 @@
     "componentsOrder": [
       "filters_comp",
       "renderView_component",
-      "529ace9f-1994-46f7-ac29-dffc12bbb9af"
+      "96db2d92-1a3b-4c43-9e66-302578fe7adb"
     ],
     "children": {}
   },
@@ -3978,32 +3969,32 @@
     "currentVersion": 1,
     "rootFolder": "525c57c6e7c503020000034a",
     "payload": {
-      "visible": true,
-      "orientation": {
-        "w": 0.9915172023895765,
-        "z": 0.01694794383826997,
-        "y": -0.11280152237636426,
-        "x": -0.062307472383073464
-      },
-      "position": {
-        "z": 6.52713748846935,
-        "y": 0.6073417050069192,
-        "x": -35.884966838271694
-      },
-      "bottom": -100,
-      "top": 100,
-      "right": 100,
-      "left": -100,
-      "far": 20000,
-      "near": 0.5,
-      "aspect": 1.7777777777777777,
-      "fov": 58.17,
+      "type": "PerspectiveCamera",
       "scale": {
-        "z": 1,
+        "x": 1,
         "y": 1,
-        "x": 1
+        "z": 1
       },
-      "type": "PerspectiveCamera"
+      "fov": 58.17,
+      "aspect": 1.7777777777777777,
+      "near": 1,
+      "far": 20000,
+      "left": -100,
+      "right": 100,
+      "top": 100,
+      "bottom": -100,
+      "position": {
+        "x": -35.78646771019143,
+        "y": 0.7145895462858236,
+        "z": 6.840553663713124
+      },
+      "orientation": {
+        "x": -0.06075245461991377,
+        "y": -0.03314235274159945,
+        "z": 0.02187677504426082,
+        "w": 0.9973625806042584
+      },
+      "visible": true
     },
     "resources": [],
     "components": {
@@ -4094,8 +4085,27 @@
     "componentsOrder": [
       "filters_comp",
       "renderView_component",
-      "3d4954c8-290c-4f4d-4254-ed609f0849b5"
+      "166a95af-1f8e-496b-b9b9-148fe871ffed"
     ],
+    "children": {}
+  },
+  {
+    "id": "53bd88b9c22b36672b000107",
+    "parentAssetId": "53bd88b9c22b36672b000107",
+    "projectId": "525c57c6e7c503020000034a",
+    "type": "css",
+    "name": "Application CSS",
+    "description": "",
+    "tags": [],
+    "currentVersion": 1,
+    "rootFolder": "525c57c6e7c503020000034a",
+    "payload": {
+      "css": "\n/* Application */\nbody, html, canvas, #verold3d {\n  margin: 0 auto;\n  padding: 0;\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\n\nbody {\n  color: #fff;\n  font: 300 16px/1.5em 'Roboto', sans-serif;\n  background: #111; \n}\n\nh1, h2, h3, h4, h5, h6{\n  font-weight: 100;\n  line-height: 1.2em;\n}\n\n*, *:before, *:after {\n    -webkit-box-sizing: border-box;\n    -moz-box-sizing: border-box;\n    box-sizing: border-box;\n}\n\na{\n  color: #fff;\n  text-decoration: none;\n}\n\n\n/* #verold3d {\n  display: none;\n} */\n\n\n\n.time {\n  display: none;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 62%;\n  text-align: center;\n  font-family: 'Droid Sans Mono', sans-serif;\n  pointer-events: none;\n}\n\n.time h1{\n  font-size: 16px;\n  line-height: 77px;\n  text-shadow: 0 0 5px rgba(0,0,0,0.5);\n}\n\n@media screen and (max-width: 600px){\n  .time{\n    display: none !important;\n  }\n}\n\n.gradient-bg{\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  background: linear-gradient(to bottom,  #d0b774 0%,#4d3f24 100%); /* W3C */\n  opacity: .8;\n}\n\n.intro-text{\n  position: absolute;\n  left: 0;\n  top: 0;\n  bottom: 0;\n  width: 62%;\n  overflow: auto;\n  background: rgba(0,0,0,.5);\n  padding: 2% 4%;\n  line-height: 1.61em;\n}\n\n.intro-text p,\n.intro-text h1,\n.intro-text h2{\n  max-width: 800px;\n}\n\n.intro-text h1{\n  color: #e2cd6c;\n}\n\n.intro-text h2{\n  margin-top: 2em;  \n  font-size: 1.8em;\n}\n\n.intro-text h3{\n  color: #ccc;\n  font-size: 16px;\n}\n\n.banner {\n  position: absolute;\n  overflow: hidden;\n  height: 19vh;\n  right: 4%;\n  width: 30%;\n  background-size: cover;\n  background-position: top center;\n  transition: all 0.3s ease;\n}\n\n.banner:after{\n  content:'';\n  position: absolute;\n  top:0;\n  bottom:0;\n  right:0;\n  left:0;\n  background:rgba(62,52,30,0.5);\n}\n\n\n.banner h1 {\n  position: absolute;\n  top: 0;\n  width: 92%;\n  left: 4%;\n  z-index: 1;\n  font-weight: 100;\n  font-size: 2.5vw;\n  line-height: 1.2em;\n  text-shadow: 0 0 10px rgba(0,0,0,0.5);\n}\n\n.banner h1 span:after{\n  content:'.';\n}\n\n.banner:hover{\n  box-shadow: 0 0 20px rgba(0,0,0,0.5);\n}\n\n.banner:hover:after{\n  background:rgba(62,52,30,.7);\n}\n\n#ResonancesTriggerPanel {\n  top: 3vh;\n/*   background-image: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/f94f91f10289f08ec96bc269abadba5f/P+PResonances2-low.jpg); */\n  background-image: url(https://s3.amazonaws.com/verold-demos-assets/saturns-rings/resonances.jpg);\n\n}\n\n#MimasTriggerPanel {\n  top: 25vh;\n/*   background-image: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg); */\n  background-image: url(https://s3.amazonaws.com/verold-demos-assets/saturns-rings/mimas-cassini.jpg);\n\n}\n\n#ShepherdTriggerPanel {\n  top: 50vh;\n  background-image: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg);\n}\n\n#EnckeTriggerPanel {\n  top: 75vh;\n/*   background-image: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg); */\n  background-image: url(https://s3.amazonaws.com/verold-demos-assets/saturns-rings/encke-gap.jpg);\n}\n\n@media screen and (max-width: 800px), screen and (max-height: 500px){\n  .banner{\n    right: 0;\n    width: 38%;\n    height: 25vh;\n  }\n  #ResonancesTriggerPanel {\n    top: 0;\n  }\n}\n\n\n@media screen and (max-width: 500px){\n  .intro-text{\n    width: 75%;\n  }\n  .intro-text h1{\n    font-size: 22px;\n  }\n  .intro-text h2{\n    font-size: 18px;\n  }\n  .intro-text p,\n  .intro-text h3{\n    font-size: 14px;\n  }\n  .banner{\n    width: 25%;\n    text-align: center;\n  }\n  .banner h1{\n    font-size: 3.5vw;\n  }\n  .banner h1 span{\n    position: absolute;\n    color: rgba(255,255,255,0.3);\n    font-size: 20vmin;\n    margin: 0 auto;\n    left: 0;\n    right: 0;\n    line-height: 20vh;\n    z-index: -1;\n  }\n  .banner h1 span:after{\n    content:'';\n  }\n}\n\n\n.information{\n  display: none;\n}\n\n.details {\n  position: absolute;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background:rgba(0,0,0,0.5);\n  width: 38%;\n  max-width: 800px;\n  min-width: 320px;\n  overflow-y: auto;\n  padding: 20px;\n}\n\n.details h1 {\n  font-size: 18pt;\n}\n\n.details img {\n  width: 100%;\n  height: auto;\n}\n\n\n@media screen and (max-width: 600px){\n  .details{\n    font-size: 14px;\n    padding: 2%;\n    width: 45%;\n    min-width: 150px;\n  }\n}\n\n.back-btn{\n  cursor: pointer;\n  position: absolute;\n  left: 2%;\n  top: 2%;\n  width: 60px;\n  height: 60px;\n  z-index: 2;\n}\n\n.back-btn svg{\n  width: 60px;\n  height: 60px;\n}\n\n.back-btn svg path{\n  transition: all 0.5s ease;\n}\n\n\n.back-btn:hover svg path{\n  fill: #e2cd6c;\n}\n\n@media screen and (max-width: 600px){\n  .back-btn svg{\n    width: 44px;\n    height: 44px;\n  }\n}\n\n\n.loading {\n  position: absolute;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  width: 38%;\n  background: rgba(0,0,0,0.8);\n  text-align: center;\n  z-index: 2;\n}\n\n\n@media screen and (max-width: 500px){\n  .loading{\n    width: 25%;\n  }\n}\n\n.loader-wrapper{\n  width: 100%;\n  text-align: center;\n  margin: auto;\n  position: absolute;\n  top: 50%; left: 50%;\n  -webkit-transform: translate(-50%,-75%);\n      -ms-transform: translate(-50%,-75%);\n          transform: translate(-50%,-75%);\n}\n\n.loader-wrapper p{\n  text-transform: uppercase;\n  font-size: 14px;\n  letter-spacing: 2px;\n}\n\n\n.spinner {\n  margin: 100px auto 0;\n  width: 70px;\n  text-align: center;\n}\n\n.spinner > div {\n  width: 18px;\n  height: 18px;\n  border-radius: 100%;\n  background: rgba(255,255,255,0.5);\n  display: inline-block;\n  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;\n  animation: bouncedelay 1.4s infinite ease-in-out;\n  /* Prevent first frame from flickering when animation starts */\n  -webkit-animation-fill-mode: both;\n  animation-fill-mode: both;\n}\n\n.spinner .bounce1 {\n  -webkit-animation-delay: -0.32s;\n  animation-delay: -0.32s;\n}\n\n.spinner .bounce2 {\n  -webkit-animation-delay: -0.16s;\n  animation-delay: -0.16s;\n}\n\n@-webkit-keyframes bouncedelay {\n  0%, 80%, 100% { -webkit-transform: scale(0.0) }\n  40% { -webkit-transform: scale(1.0) }\n}\n\n@keyframes bouncedelay {\n  0%, 80%, 100% { \n    transform: scale(0.0);\n    -webkit-transform: scale(0.0);\n  } 40% { \n    transform: scale(1.0);\n    -webkit-transform: scale(1.0);\n  }\n}\n\n\n.verold{\n  font-size: 12px;\n  display: block;\n  margin-top: 6em;\n}\n\n.verold img{\n  height: 33px;\n  vertical-align: middle;\n  margin-right: 5px;\n}\n\n\n/* NProgress */\n#nprogress { pointer-events: none; }\n#nprogress .bar { background: #009BDF; position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 3px; }\n#nprogress .peg { display: block; position: absolute; right: 0px; width: 100px; height: 100%; box-shadow: 0 0 10px #009BDF, 0 0 5px #009BDF; opacity: 1.0; -webkit-transform: rotate(3deg) translate(0px, -4px); -ms-transform: rotate(3deg) translate(0px, -4px); transform: rotate(3deg) translate(0px, -4px); }\n\n/* Remove these to get rid of the spinner */\n#nprogress .spinner { display: block; position: fixed; z-index: 100; top: 15px; right: 15px; }\n#nprogress .spinner-icon { width: 18px; height: 18px; box-sizing: border-box; border: solid 2px transparent; border-top-color: #009BDF; border-left-color: #009BDF; border-radius: 50%; -webkit-animation: nprogress-spinner 400ms linear infinite; animation: nprogress-spinner 400ms linear infinite; }\n@-webkit-keyframes nprogress-spinner { 0%   { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); }\n@keyframes nprogress-spinner { 0%   { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }\n\n  \n  \n",
+      "visible": true
+    },
+    "resources": [],
+    "components": {},
+    "componentsOrder": [],
     "children": {}
   }
 ]

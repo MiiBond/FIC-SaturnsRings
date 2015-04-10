@@ -7,6 +7,7 @@
   <style>
   
     
+
 /* Application */
 body, html, canvas, #verold3d {
   margin: 0 auto;
@@ -17,196 +18,379 @@ body, html, canvas, #verold3d {
 }
 
 body {
-  background: #000000;
-  /*background-image:url('http://assets.verold.com/production/images/verold-studio-scene-logo.svg');*/
-  background-repeat:no-repeat;
-  background-attachment:fixed;
-  background-position:center;
+  color: #fff;
+  font: 300 16px/1.5em 'Roboto', sans-serif;
+  background: #111; 
 }
+
+h1, h2, h3, h4, h5, h6{
+  font-weight: 100;
+  line-height: 1.2em;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a{
+  color: #fff;
+  text-decoration: none;
+}
+
 
 /* #verold3d {
   display: none;
 } */
 
-.loading {
-  position: absolute;
-  font-family: tahoma, sans-serif;
-  font-size: 20pt;
-  color: #fff;
-  left: 40%;
-  top: 40%;
-  width: 20%;
-}
+
 
 .time {
-  position: absolute;
-  background-color: rgba(51,51,51,0.8);
-  border-radius: 5px;
-  border: 3px solid #fff;
-  color: #fff;
-  
-  font-family: tahoma, sans-serif;
-  font-size: 10pt;
-  width: 15%;
-  overflow: hidden;
-  padding: 0px 20px;
-  right: 40%;
-  top: 5%;
   display: none;
-}
-
-.posterMainPage {
   position: absolute;
-  background-color: rgba(51,51,51,0.8);
-  border-radius: 5px;
-  border: 3px solid #fff;
-  color: #fff;
-  
-  font-family: tahoma, sans-serif;
-  font-size: 12pt;
-  width: 15%;
+  top: 0;
+  left: 0;
+  width: 62%;
+  text-align: center;
+  font-family: 'Droid Sans Mono', sans-serif;
+  pointer-events: none;
+}
+
+.time h1{
+  font-size: 16px;
+  line-height: 77px;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+@media screen and (max-width: 600px){
+  .time{
+    display: none !important;
+  }
+}
+
+.gradient-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to bottom,  #d0b774 0%,#4d3f24 100%); /* W3C */
+  opacity: .8;
+}
+
+.intro-text{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 62%;
+  overflow: auto;
+  background: rgba(0,0,0,.5);
+  padding: 2% 4%;
+  line-height: 1.61em;
+}
+
+.intro-text p,
+.intro-text h1,
+.intro-text h2{
+  max-width: 800px;
+}
+
+.intro-text h1{
+  color: #e2cd6c;
+}
+
+.intro-text h2{
+  margin-top: 2em;  
+  font-size: 1.8em;
+}
+
+.intro-text h3{
+  color: #ccc;
+  font-size: 16px;
+}
+
+.banner {
+  position: absolute;
   overflow: hidden;
-  padding: 0px 20px;
+  height: 19vh;
+  right: 4%;
+  width: 30%;
+  background-size: cover;
+  background-position: top center;
+  transition: all 0.3s ease;
 }
 
-.posterMainPage h1 {
-  font-size: 18pt;
-  text-shadow: 2px 1px #111;
+.banner:after{
+  content:'';
+  position: absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background:rgba(62,52,30,0.5);
 }
 
-.posterMainPage h2 {
-  font-size: 16pt;
+
+.banner h1 {
+  position: absolute;
+  top: 0;
+  width: 92%;
+  left: 4%;
+  z-index: 1;
+  font-weight: 100;
+  font-size: 2.5vw;
+  line-height: 1.2em;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-#posterMainPage {
-  right: 5%;
-  top: 5%;
-  width: 20%;
-  bottom: 5%;
-  
-  overflow-y: auto;
+.banner h1 span:after{
+  content:'.';
 }
 
-.posterMainPage img {
-  width: 100%;
-  
+.banner:hover{
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.banner:hover:after{
+  background:rgba(62,52,30,.7);
 }
 
 #ResonancesTriggerPanel {
-  left: 5%;
-  top: 5%;
-  height: 30%;
-  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/f94f91f10289f08ec96bc269abadba5f/P+PResonances2-low.jpg);
-  background-size: 100%;
+  top: 3vh;
+/*   background-image: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/f94f91f10289f08ec96bc269abadba5f/P+PResonances2-low.jpg); */
+  background-image: url(https://s3.amazonaws.com/verold-demos-assets/saturns-rings/resonances.jpg);
+
 }
 
 #MimasTriggerPanel {
-  left: 50%;
-  top: 5%;
-  height: 30%;
-  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg) top left no-repeat;
+  top: 25vh;
+/*   background-image: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg); */
+  background-image: url(https://s3.amazonaws.com/verold-demos-assets/saturns-rings/mimas-cassini.jpg);
+
 }
 
 #ShepherdTriggerPanel {
-  left: 5%;
-  bottom: 5%;
-  height: 30%;
-  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg) top left no-repeat;
-  background-size: cover;
+  top: 50vh;
+  background-image: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg);
 }
 
 #EnckeTriggerPanel {
-  left: 50%;
-  bottom: 5%;
-  height: 30%;
-  background: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg);
-  background-size: cover;
+  top: 75vh;
+/*   background-image: url(http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg); */
+  background-image: url(https://s3.amazonaws.com/verold-demos-assets/saturns-rings/encke-gap.jpg);
+}
+
+@media screen and (max-width: 800px), screen and (max-height: 500px){
+  .banner{
+    right: 0;
+    width: 38%;
+    height: 25vh;
+  }
+  #ResonancesTriggerPanel {
+    top: 0;
+  }
 }
 
 
+@media screen and (max-width: 500px){
+  .intro-text{
+    width: 75%;
+  }
+  .intro-text h1{
+    font-size: 22px;
+  }
+  .intro-text h2{
+    font-size: 18px;
+  }
+  .intro-text p,
+  .intro-text h3{
+    font-size: 14px;
+  }
+  .banner{
+    width: 25%;
+    text-align: center;
+  }
+  .banner h1{
+    font-size: 3.5vw;
+  }
+  .banner h1 span{
+    position: absolute;
+    color: rgba(255,255,255,0.3);
+    font-size: 20vmin;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    line-height: 20vh;
+    z-index: -1;
+  }
+  .banner h1 span:after{
+    content:'';
+  }
+}
 
-.information {
-  position: absolute;
-  background-color: rgba(51,51,51,0.8);
-  border-radius: 5px;
-  border: 3px solid #fff;
-  color: #fff;
-  font-family: tahoma, sans-serif;
-  font-size: 12pt;
-  width: 25%;
-  height: 30%;
-  overflow-y: auto;
+
+.information{
   display: none;
+}
+
+.details {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background:rgba(0,0,0,0.5);
+  width: 38%;
+  max-width: 800px;
+  min-width: 320px;
+  overflow-y: auto;
   padding: 20px;
 }
 
-.imformation h1 {
+.details h1 {
   font-size: 18pt;
 }
 
-.information img {
+.details img {
   width: 100%;
-  height: 300px;
+  height: auto;
 }
 
-#BackButton {
-  left: 5%;
-  top: 5%;
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
+
+@media screen and (max-width: 600px){
+  .details{
+    font-size: 14px;
+    padding: 2%;
+    width: 45%;
+    min-width: 150px;
+  }
 }
 
-#BackButton img {
-  height: 100%;
-  width: 100%;
-}
-
-#MimasInformation {
-  right: 5%;
-  top: 5%;
-  height: 80%;
-}
-
-#ShepherdInformation {
-  right: 5%;
-  top: 5%;
-  height: 80%;
-}
-
-#EnckeInformation {
-  right: 5%;
-  top: 5%;
-  height: 80%;
-}
-
-#ResonancesInformation {
-  right: 5%;
-  top: 5%;
-  height: 80%;
-}
-
-/*
-.trigger {
+.back-btn{
+  cursor: pointer;
   position: absolute;
+  left: 2%;
+  top: 2%;
+  width: 60px;
+  height: 60px;
+  z-index: 2;
 }
 
-#trigger-1 {
-  left: 10px;
-  top: 30px;
+.back-btn svg{
+  width: 60px;
+  height: 60px;
 }
 
-#trigger-2 {
-  left: 10px;
-  top: 50px;
+.back-btn svg path{
+  transition: all 0.5s ease;
 }
 
-#trigger-3 {
-  left: 10px;
-  top: 80px;
-}
-*/
 
+.back-btn:hover svg path{
+  fill: #e2cd6c;
+}
+
+@media screen and (max-width: 600px){
+  .back-btn svg{
+    width: 44px;
+    height: 44px;
+  }
+}
+
+
+.loading {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 38%;
+  background: rgba(0,0,0,0.8);
+  text-align: center;
+  z-index: 2;
+}
+
+
+@media screen and (max-width: 500px){
+  .loading{
+    width: 25%;
+  }
+}
+
+.loader-wrapper{
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  top: 50%; left: 50%;
+  -webkit-transform: translate(-50%,-75%);
+      -ms-transform: translate(-50%,-75%);
+          transform: translate(-50%,-75%);
+}
+
+.loader-wrapper p{
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+
+.spinner {
+  margin: 100px auto 0;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background: rgba(255,255,255,0.5);
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bouncedelay {
+  0%, 80%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+
+.verold{
+  font-size: 12px;
+  display: block;
+  margin-top: 6em;
+}
+
+.verold img{
+  height: 33px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
 
 
 /* NProgress */
@@ -219,6 +403,9 @@ body {
 #nprogress .spinner-icon { width: 18px; height: 18px; box-sizing: border-box; border: solid 2px transparent; border-top-color: #009BDF; border-left-color: #009BDF; border-radius: 50%; -webkit-animation: nprogress-spinner 400ms linear infinite; animation: nprogress-spinner 400ms linear infinite; }
 @-webkit-keyframes nprogress-spinner { 0%   { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); }
 @keyframes nprogress-spinner { 0%   { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+  
+  
 
   
 
@@ -324,30 +511,38 @@ body {
 <div id="verold3d"></div>
 
 <div class="loading" id="loading">
-  <h1>Loading...</h1>
+  <div class="loader-wrapper">
+    <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+    <p>Loading</p>
+  </div>
 </div>
 
+<div class="gradient-bg"></div>
+
 <div class="time" id="time">
-  <h1>Time: ...</h1>
+  <h1>Time...</h1>
 </div>
 
 <a href="#" id="ResonancesTrigger">
-<div class="posterMainPage" id="ResonancesTriggerPanel">
-  <h1>1. Resonances</h1>
-  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/a7bb8feed293351776ef5b9633c5e34b/Saturn_A_ring_spiral_density_waves-low.jpg">-->
+<div class="posterMainPage banner" id="ResonancesTriggerPanel">
+  <h1><span>I</span> Resonances</h1>
 </div>
 </a>
 
-<div class="information" id="ResonancesInformation">
+<div class="information details" id="ResonancesInformation">
   <h1>Resonances</h1>
   <p>
   Even for a satellite outside of the ring system, where the gravitational acceleration exerted on the ring particles is vanishingly small, clear effects can still be induced in the ring. A satellite can do this through what are called mean-motion orbital resonances. A resonance occurs when the orbital periods of two or more bodies are integer-ratios of each other (e.g. a 3:1 resonance is when one body completes three orbits in exactly the same time as the second completes one). We refer to the portion of the resonance in the longitudinal direction as a "Lindblad" resonance (named after astronomer, Bertil Lindblad, who initially described how these resonances generate spiral density waves inside of galaxies) as opposed to the resonant effects that act perpendicular or radially to the ring plane. Lindblad resonances play the most important role in clearing and confining structure in ring systems (de Pater & Lissauer 2010).
   </p>
   <p>
-  The strongest Lindblad resonances occur when the orbital ratio between the two bodies has a difference of 1 (e.g. 2:1, 3:2, 4:3, etc.) (de Pater & Lissauer 2010). These resonances are called “first-order” and provide the most coherent forcing because every conjunction occurs at the same location in the orbit of the two bodies. This allows the gravitational disturbance from every encounter to build on each other without being disrupted by forcing in other directions.
+  The strongest Lindblad resonances occur when the orbital ratio between the two bodies has a difference of 1 (e.g. 2:1, 3:2, 4:3, etc.) (de Pater &amp; Lissauer 2010). These resonances are called “first-order” and provide the most coherent forcing because every conjunction occurs at the same location in the orbit of the two bodies. This allows the gravitational disturbance from every encounter to build on each other without being disrupted by forcing in other directions.
   </p>
   <p>
-  Ring particles moving past the satellite on an inner orbit (in an "inner Lindblad resonance, or ILR) will give up some of their momentum to the satellite, slowing them down ever-so-slightly and changing the eccentricity of their orbit. Gaps can be cleared in the rings as the particle's new eccentricity brings it into contact with other less perturbed particles in different orbits. Crossing these orbits leads to inevitable collisions which tend to damp out the eccentricities so that the particle’s mean-motion matches the overall flow of the surrounding particles. This can result in a gap at the location of the resonance if the eccentricity-pumping is strong enough to resist the natural viscous spreading of the ring material (Goldreich & Tremaine 1982).
+  Ring particles moving past the satellite on an inner orbit (in an "inner Lindblad resonance, or ILR) will give up some of their momentum to the satellite, slowing them down ever-so-slightly and changing the eccentricity of their orbit. Gaps can be cleared in the rings as the particle&#39;s new eccentricity brings it into contact with other less perturbed particles in different orbits. Crossing these orbits leads to inevitable collisions which tend to damp out the eccentricities so that the particle&#39;s mean-motion matches the overall flow of the surrounding particles. This can result in a gap at the location of the resonance if the eccentricity-pumping is strong enough to resist the natural viscous spreading of the ring material (Goldreich & Tremaine 1982).
   </p>
   <p>
     In the animation on the left, we can see the orbits of 300 TP's in the outer A Ring, along with the moons Prometheus (<font color="red">red</font>) and Pandora (<font color="green">green</font>). Over the 10 years of the simulation, the TP's at various ILR's with the two moons have their eccentricities subtly changed. The amount of change is highlighted in pink in the animation and can be clearly seen in the following image where simulation results of eccentricity change are overlaid on a photograph of the outer A Ring. Note that the image is from a simulation with many more particles and a slightly different range than the animation show.
@@ -356,16 +551,15 @@ body {
 </div>
 
 <a href="#" id="MimasTrigger">
-<div class="posterMainPage" id="MimasTriggerPanel">
-  <h1>2. Cassini Division</h1>
-  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/6892a71a5044f5c2590353f064b4b56a/Mimas-jpl-nasa-low.jpg">-->
+<div class="posterMainPage banner" id="MimasTriggerPanel">
+  <h1><span>II</span> Cassini Division</h1>
 </div>
 </a>
 
-<div class="information" id="MimasInformation">
+<div class="information details" id="MimasInformation">
   <h1>Mimas and the Cassini Division</h1>
   <p>
-    Mimas, the innermost, spherical moon of Saturn, is widely considered to be responsible for clearing the Cassini Division in Saturn’s rings via the 2:1 ILR (Freedman, Geller & Kaufmann 2011) (de Pater & Lissauer 2010) (Goldreich & Tremaine 1979). Because of the resonant forcing of the ring particles at the 2:1 location, the ring particles move inward over time, opening a gap. The Cassini Division is roughly 3.2e-5 AU wide and lies between Saturn's A and B rings.
+    Mimas, the innermost, spherical moon of Saturn, is widely considered to be responsible for clearing the Cassini Division in Saturn&#39;s rings via the 2:1 ILR (Freedman, Geller & Kaufmann 2011) (de Pater & Lissauer 2010) (Goldreich & Tremaine 1979). Because of the resonant forcing of the ring particles at the 2:1 location, the ring particles move inward over time, opening a gap. The Cassini Division is roughly 3.2e-5 AU wide and lies between Saturn's A and B rings.
   </p>
   <p>
     The animation on the left shows the results of simulating 300 TP's and Mimas (show in <font color="red">red</font>) over 20 years with SWIFT. The particles are spread across 3.0e-5 AU (about 4500 km). The change in eccentricity is very small so, in the animation playback, the TP's orbit is highlighted pink relative to the amount of eccentricity change it has undergone. Below is a plot from the SWIFT simulation that clearly shows the change in eccentricity at the 2:1 ILR.
@@ -377,13 +571,12 @@ body {
 </div>
 
 <a href="#" id="ShepherdTrigger">
-<div class="posterMainPage" id="ShepherdTriggerPanel">
-  <h1>3. Shepherd Moons</h1>
-  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/e354887f38e7dd96444e623bdc3fbb93/Shepherds-Wikipedia-low.jpg">-->
+<div class="posterMainPage banner" id="ShepherdTriggerPanel">
+  <h1><span>III</span> Shepherd Moons</h1>
 </div>
 </a>
 
-<div class="information" id="ShepherdInformation">
+<div class="information details" id="ShepherdInformation">
   <h1>Shepherd Information</h1>
   <p>
   The two moons, Prometheus (shown in <font color="red">red</font> in the animation and graph below) and Pandora (shown in <font color="green">green</font>) are thought to be responsible for constraining the narrow F Ring through a gravitational interaction known as the shepherding effect. As Prometheus moves past the ring particles outside its orbit (which are travelling more slowly), it gives up some of its momentum to the particle, speeding it up and boosting it into a slightly higher orbit. It also changes the particle's orbital eccentricity, helping to bring it into contact with other TP orbits. In reality, the particles in the F Ring are exerting an outward pressure due to internal collisions and this is being balanced by the forcing of Prometheus and Pandora. In the simulations conducted, we can clearly see this forcing occurring over relatively short timescales of only 25 years. However, after such a short time, the thickness of the F Ring produced is still several times larger than the actual F Ring.
@@ -400,19 +593,18 @@ body {
 </div>
 
 <a href="#" id="EnckeTrigger">
-<div class="posterMainPage" id="EnckeTriggerPanel">
-  <h1>4. Encke Gap</h1>
-  <!--<img src="http://assets.verold.com/entities/525c57c6e7c503020000034a/8723f6912d3f4a4155b5c6ea786871de/Encke_Division-low.jpg">-->
+<div class="posterMainPage banner" id="EnckeTriggerPanel">
+  <h1><span>IV</span> Encke Gap</h1>
 </div>
 </a>
 
-<div class="information" id="EnckeInformation">
+<div class="information details" id="EnckeInformation">
   <h1>Pan and the Encke Gap/Ringlet</h1>
   <p>
   The final scenario simulated involved the tiny satellite, Pan, embedded inside the Encke Gap. It is thought that Pan cleared the gap itself through the shepherding effect and continues to keep it clear today (Showalter 1991).
   </p>
   <p>
-  In the simulation results, we see a gap open up around Pan quite quickly. The actual Encke Gap is 2.2e-6 AU wide (Rings_web) and, in my results, TP’s are most affected by Pan inside a gap of about 5e-6 AU. This seems reasonably consistent since it shows that, neglecting other factors, Pan has at least the sufficient gravitational influence to clear a gap the size of Encke. When viscous spreading is taken into account, I expect that the clearing force would be partially countered by this pressure.
+  In the simulation results, we see a gap open up around Pan quite quickly. The actual Encke Gap is 2.2e-6 AU wide (Rings_web) and, in my results, TP&#39;s are most affected by Pan inside a gap of about 5e-6 AU. This seems reasonably consistent since it shows that, neglecting other factors, Pan has at least the sufficient gravitational influence to clear a gap the size of Encke. When viscous spreading is taken into account, I expect that the clearing force would be partially countered by this pressure.
   </p>
   <img src="https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/d512b2b9fb2678ed03d539ae7efb8383/Pan-90+years2-low.jpg">
   <p>
@@ -421,20 +613,18 @@ body {
   <img src="https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/27b3a8d520c64fd28d0ec0abb6f259cf/Encke+Gap+and+Ringlet-low.jpg">
 </div>
 
-<!--<a href="#" id="BackButtonTrigger">-->
-  <div class="information" id="BackButton">
-    <img src="https://commondatastorage.googleapis.com/assets.verold.com/entities/525c57c6e7c503020000034a/91df66b9fa132c7a278c16a474ecaa15/Left-Arrow-low.png">
-  </div>
-<!--</a>-->
+<div class="information back-btn" id="BackButton">
+  <svg viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>back</title><description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M43.13 28.13L23.28 28.13 31 20.4C31.74 19.67 31.74 18.48 31 17.75 30.27 17.01 29.08 17.01 28.35 17.75L17.75 28.35C17.3 28.8 17.16 29.42 17.26 30 17.16 30.58 17.3 31.2 17.75 31.65L28.35 42.26C29.09 42.99 30.27 42.99 31.01 42.26 31.74 41.52 31.74 40.34 31.01 39.6L23.28 31.88 43.13 31.88C44.16 31.88 45 31.04 45 30 45 28.97 44.16 28.13 43.13 28.13L43.13 28.13ZM30 0C13.43 0 0 13.43 0 30 0 46.57 13.43 60 30 60 46.57 60 60 46.57 60 30 60 13.43 46.57 0 30 0L30 0ZM30 56.25C15.5 56.25 3.75 44.5 3.75 30 3.75 15.5 15.5 3.75 30 3.75 44.5 3.75 56.25 15.5 56.25 30 56.25 44.5 44.5 56.25 30 56.25L30 56.25Z" fill="#FFFFFF"/></g></svg>
+</div>
 
-<div class="posterMainPage" id="posterMainPage">
-  <h1>External Gavitational Influences on the Morphology of Saturn's Rings</h1>
-  <p>
+<div class="intro-text posterMainPage">
+  <h1>External Gavitational Influences on the Morphology of Saturn&#39;s Rings</h1>
+  <h3>
     BOND, M. D. C., 2013
-  </p>
+  </h3>
   <h2>Abstract</h2>
   <p>
-  The first up-close images of Saturn's rings by passing probes in the late 70's and early 80's revealed astonishingly complex and intricate structure. And although we've learned an enormous amount about the morphology of ring systems in the past three decades, we now have more questions than ever before about their nature and evolution (de Pater & Lissauer 2010). Many factors affect their structure including self gravitation, internal particle collisions, radiation drag (Goldreich & Tremaine 1982) and even the magnetic field of the planet (Mitchell et al, 2007). I investigate several ways in which planetary rings are influenced by the gravity of satellites, both embedded in the ring and external, and find that this gravitational influence alone is enough to form significant structure.
+  The first up-close images of Saturn's rings by passing probes in the late 70&#39;s and early 80's revealed astonishingly complex and intricate structure. And although we've learned an enormous amount about the morphology of ring systems in the past three decades, we now have more questions than ever before about their nature and evolution (de Pater &amp; Lissauer 2010). Many factors affect their structure including self gravitation, internal particle collisions, radiation drag (Goldreich & Tremaine 1982) and even the magnetic field of the planet (Mitchell et al, 2007). I investigate several ways in which planetary rings are influenced by the gravity of satellites, both embedded in the ring and external, and find that this gravitational influence alone is enough to form significant structure.
   </p>
   <h2>Method</h2>
   <p>
@@ -451,17 +641,17 @@ body {
   </p>
   <h2>Conclusions</h2>
   <p>
-  The effect of external satellite gravity alone is enough to cause dramatic changes to a ring system and induce clear structure. This occurs mainly at first-order Lindblad resonances where eccentricities are excited most significantly. The intricately banded nature of Saturn’s A Ring coincides perfectly with the pattern of first-order ILR’s of Pandora and Prometheus in the performed simulations. The small eccentricity changes are easily enough to cause TP’s to cross the orbits of other TP’s and have their new eccentricity damped by particle-particle collisions so I would theorize that simulating the viscous forces within the ring would be enough to have these resonances open gaps (i.e. without the need of simulating self-gravity in the ring).
+  The effect of external satellite gravity alone is enough to cause dramatic changes to a ring system and induce clear structure. This occurs mainly at first-order Lindblad resonances where eccentricities are excited most significantly. The intricately banded nature of Saturn&#39;s A Ring coincides perfectly with the pattern of first-order ILR&#39;s of Pandora and Prometheus in the performed simulations. The small eccentricity changes are easily enough to cause TP&#39;s to cross the orbits of other TP&#39;s and have their new eccentricity damped by particle-particle collisions so I would theorize that simulating the viscous forces within the ring would be enough to have these resonances open gaps (i.e. without the need of simulating self-gravity in the ring).
   </p>
   <p>
-  The ability for moons to clear their own orbits via the shepherding effect was clearly shown as well as the stability of 1:1 resonant horseshoe orbits within the satellite’s cleared gap. However, to properly make measurements of the confinement of a ring, viscous forces within the ring are required to counter-balance the driving force by the shepherding satellites.
+  The ability for moons to clear their own orbits via the shepherding effect was clearly shown as well as the stability of 1:1 resonant horseshoe orbits within the satellite&#39;s cleared gap. However, to properly make measurements of the confinement of a ring, viscous forces within the ring are required to counter-balance the driving force by the shepherding satellites.
   </p>
   <h2>References</h2>
   <p>
   de Pater, I., Lissauer, J. J., 2010, Planetary Sciences (2nd ed.), United Kingdom, Cambridge University Press
   </p>
   <p>
-  Freedman, R. A., Geller, R. M. & Kaufmann III, W. J., 2011, The Universe, (9th ed.), New York, W. H. Freeman and Company
+  Freedman, R. A., Geller, R. M. &amp; Kaufmann III, W. J., 2011, The Universe, (9th ed.), New York, W. H. Freeman and Company
   </p>
   <p>
   Goldreich, P., 1979, The Rings of Saturn and Uranus, IAUS, 81, 191
@@ -470,21 +660,28 @@ body {
   Goldreich, P., Tremaine, S. 1979, The Excitation and of Density Waves at the Lindblad and Corotation Resonances by an External Potential, ApJ, 233, 857
   </p>
   <p>
-  Goldreich, P., Tremaine, S. 1982, The Dynamics of Planetary Rings, ARA&A, 20, 249
+  Goldreich, P., Tremaine, S. 1982, The Dynamics of Planetary Rings, ARA&amp;A, 20, 249
   </p>
   <p>
   Levison, H., Duncan, M., 1994, Icarus, 108, 18
   </p>
   <p>
-  Mitchell, C. J., Horanyi, M., Havnes, O., Porco, C. C. 2006, Saturn’s Spokes: Lost and Found, Science Magazine, 311, 1587
+  Mitchell, C. J., Horanyi, M., Havnes, O., Porco, C. C. 2006, Saturn&#39;s Spokes: Lost and Found, Science Magazine, 311, 1587
   </p>
   <p>
-  Rings_web: Vital Statistics for Saturn’s Rings and Inner Moons, http://pds-rings.seti.org/saturn/saturn_tables.html (accessed Nov. 15)
+  Rings_web: Vital Statistics for Saturn&#39;s Rings and Inner Moons, http://pds-rings.seti.org/saturn/saturn_tables.html (accessed Nov. 15)
   </p>
   <p>
-  Showalter, M. R. 1991. Visual detection of 1981S13, Saturn’s eighteenth satellite, and its role in the Encke Gap. Nature 351, 709–713
+  Showalter, M. R. 1991. Visual detection of 1981S13, Saturn&#39;s eighteenth satellite, and its role in the Encke Gap. Nature 351, 709–713
   </p>
+  <a href="http://verold.com" target="_blank" class="verold">
+     <img src="https://commondatastorage.googleapis.com/assets.verold.com/production/images/verold-icon.svg" alt="Verold">
+     <span>3D powered by Verold</span>
+  </a>
 </div>
+
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
   
   
   <div id="load-scene" class="load-scene">

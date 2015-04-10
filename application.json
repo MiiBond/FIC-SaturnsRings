@@ -17,6 +17,7 @@
     "published": true,
     "hasModel": true,
     "title": "Gravity in Saturn's Rings",
+    "version": 0,
     "description": "A simple, interactive presentation of the simulation results I obtained as part of a school project.",
     "customAttribution": "",
     "tags": [],
@@ -44,7 +45,7 @@
     "entityId": "525c57c6e7c503020000034d",
     "startupApplicationId": "539b5009c92acfdf77001788",
     "counts": {
-      "views": 203,
+      "views": 253,
       "forks": 1,
       "follows": 0
     },
